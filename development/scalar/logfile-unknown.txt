@@ -1,0 +1,6 @@
+12:30:14   Scalar v1.0.0 starting up...
+           experiment.properties - conf/experiment.properties
+           platform.properties - conf/platform.properties
+12:30:15   Registered new VMShutdownHook housekeeper.
+12:30:15   Loaded data provider LocalStorageProvider
+12:30:24   Received termination notification from thread VMShutdownHook-housekeeper.

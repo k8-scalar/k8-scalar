@@ -1,0 +1,112 @@
+<project name="scalar" basedir="." default="loadtest_all">
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="${scalar.home}/ant-contrib-1.0b3.jar"/>
+		</classpath>
+	</taskdef>
+
+	<target name="clean">
+		<delete dir="${build.home}" />
+		<delete file="${jar.file}"/>
+		<delete file="MANIFEST.MF"/>
+	</target>
+
+	<path id="build.classpath">
+		<fileset dir="${basedir}/lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${scalar.home}/scalar_lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${scalar.home}">
+			<include name="scalar.jar" />
+		</fileset>
+	</path>
+
+	<target name="build">
+		<mkdir dir="${build.home}/${ant.project.name}" />
+		<mkdir dir="${basedir}/lib" />
+		<javac srcdir="${src.home}" destdir="${build.home}/${ant.project.name}" debug="${compile.debug}" deprecation="${compile.deprecation}" optimize="${compile.optimize}" includeantruntime="false">
+			<classpath>
+				<path refid="build.classpath" />
+			</classpath>
+		</javac>
+		<copy todir="${build.home}/${ant.project.name}">
+			<fileset dir="${src.home}" excludes="**/*.java" />
+		</copy>
+	</target>
+
+	<target name="unpack_jar_loader">
+		<unzip src="${scalar.home}/jar-in-jar-loader.zip" dest="${build.home}" />
+	</target>
+
+	<target name="package" depends="build,unpack_jar_loader">
+
+		<jar destfile="${build.home}/${ant.project.name}.jar" basedir="${build.home}/${ant.project.name}"/>
+
+		<delete>
+			<fileset dir="${build.home}/${ant.project.name}"/>
+		</delete>
+
+		<pathconvert property="mf.classpath" pathsep=" ">
+			<path refid="build.classpath" />
+			<chainedmapper>
+				<flattenmapper/>
+				<globmapper from="*" to="lib/*"/>
+			</chainedmapper>
+		</pathconvert>
+
+		<tstamp />
+		<manifest file="MANIFEST.MF">
+			<attribute name="Rsrc-Main-Class" value="be.kuleuven.distrinet.scalar.Launcher" />
+			<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
+			<attribute name="Built-Date" value="${TODAY}" />
+			<attribute name="Rsrc-Class-Path" value="${ant.project.name}.jar ${mf.classpath}" />
+			<attribute name="Class-Path" value="." />
+		</manifest>
+
+		<jar basedir="${build.home}" destfile="${jar.file}" includes="**/*.*" manifest="MANIFEST.MF">
+			<zipfileset dir="lib" includes="*.jar" prefix="lib" />
+			<zipfileset dir="${scalar.home}/scalar_lib" includes="*.jar" prefix="lib" />
+			<zipfileset dir="${scalar.home}" includes="scalar.jar" prefix="lib" />
+		</jar>
+		
+		<delete file="MANIFEST.MF"/>
+	</target>
+
+	<target name="loadtest_all" depends="package">
+		<tstamp>
+			<format property="experiment.time" pattern="yy-MM-dd-HH:mm"/>
+		</tstamp>
+		<for param="experimentfile">
+			<path>
+				<fileset dir="${scalar.experiment.directory}" includes="**/*" excludes="**/.*"/>
+			</path>
+			<sequential>
+				<antcall target="loadtest">
+					<param name="experiment.properties" value="@{experimentfile}"/>
+				</antcall>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="loadtest">
+		<echo message="Starting load test with configuration ${experiment.properties}..."/>
+		<java jar="${jar.file}" fork="true">
+			<arg value="${scalar.platform.properties}"/>
+			<arg value="${experiment.properties}"/>
+		</java>
+		<mkdir dir="${scalar.results.directory}"/>
+		<move todir="${scalar.results.directory}">
+			<fileset dir="${basedir}">
+				<include name="results-*.dat"/>
+				<include name="residence-times-*.dat"/>
+				<include name="gnuplot-*.dat"/>
+			</fileset>
+			<file name="${experiment.properties}"/>
+			<mapper type="glob" from="*" to="${experiment.time}-*"/>
+		</move>
+	</target>
+
+</project>

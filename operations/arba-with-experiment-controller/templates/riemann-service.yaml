@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    task: monitoring
+  name: riemann
+  namespace: kube-system
+spec:
+  ports:
+  - port: 5555
+    targetPort: 5555
+  selector:
+    app: riemann
+    
