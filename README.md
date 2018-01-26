@@ -117,7 +117,7 @@ sed -ie "s@/Users/wito/.minikube/@/root/.kube/@g" ./config
 kubectl create secret generic kubeconfig --from-file .
 ```
 
-Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which is should scale. Finally, the resource requests and limits of the Cassandra pod can also be adjusted. The files can have to be modified can be found in [operations/cassandra-cluster/templates](operations/cassandra-cluster/templates).
+Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which is should scale. Finally, the resource requests and limits of the Cassandra pod can also be adjusted. The file that must be modified can be found in [operations/cassandra-cluster/templates](operations/cassandra-cluster/templates/cassandra-statefulset.yaml).
 
 __Experiment deployment with Helm__  
 [Helm](https://github.com/kubernetes/helm) is utilised to deploy the distributed system of the experiment. Helm is a package manager for Kubernetes charts. These charts are packages of pre-configured Kubernetes resources. For this system, we provide three charts. A shared _monitoring-core_ is used across several experiments. This core contains _Heapster_, _Grafana_ and _InfluxDb_. The second chart provides a database cluster and the third the ARBA system with an experiment controller included.
