@@ -1,0 +1,27 @@
+<!-- Scalar project build file. Please name your project below. -->
+<project name="openam" basedir=".">
+
+	<!--
+		"build" compiles your project.
+		"package" creates a jar file with a directory of libraries.
+		"loadtest" runs your Scalar project.
+		"clean" removes the build files.
+	-->
+	
+	<!-- The base directory of your project. -->
+	<property name="dist.home" value="${basedir}/" />
+	<!-- The directory where the Scalar libraries and main jar file resides. -->
+	<property name="scalar.home" value="${basedir}/dist" />
+	<!-- The location of the experiment.properties configuration file. -->
+	<property name="scalar.experiment.properties" value="${basedir}/experiment.properties" />
+	<!-- The location of the platform.properties configuration file. -->
+	<property name="scalar.platform.properties" value="${basedir}/platform.properties" />
+	<!-- The location of your source files. -->
+	<property name="src.home" value="${basedir}/src" />
+	<!-- Where to put build output (i.e., class files). -->
+	<property name="build.home" value="${basedir}/build" />
+	<!-- The name and location of the final jar file. -->
+	<property name="jar.file" value="${basedir}/target/scalar.jar" />
+
+	<import file="${scalar.home}/scalar-build.xml" />
+</project>

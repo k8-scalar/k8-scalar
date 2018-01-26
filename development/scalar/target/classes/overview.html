@@ -1,0 +1,20 @@
+<body>
+<p>
+The Scalar API allows you to easily extend the Scalar framework to adapt it to your own needs,
+and allows you to perform scalability tests of your own system.
+In order to extend the Scalar platform, the following classes are relevant.
+<ul>
+<li>{@link be.kuleuven.distrinet.scalar.users.User} allows you to implement custom user behavior,
+i.e., "use cases" against which the scalability of the system will be tested.
+<li>{@link be.kuleuven.distrinet.scalar.requests.Request} classes are the way by which
+user objects interact with the system under test.
+<li>{@link be.kuleuven.distrinet.scalar.data.DataProvider} classes realize inter user and
+inter node communication and synchronization.
+<li>{@link be.kuleuven.distrinet.scalar.core.Plugin} allows you to extend the core
+framework functionality. Examples of tasks that are typically performed by a plugin are
+configuring a service, cleaning up a database, synchronizing time, etc.
+</ul>
+</p>
+
+@author Thomas Heyman
+</body>

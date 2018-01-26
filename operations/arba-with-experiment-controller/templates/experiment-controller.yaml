@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: experiment-controller
+spec:
+  containers:
+  - name: experiment-controller
+    image: t138/experiment-2
+    volumeMounts:
+    - name: kubeconfig
+      mountPath: /root/.kube
+  volumes:
+  - name: kubeconfig
+    secret:
+      secretName: kubeconfig

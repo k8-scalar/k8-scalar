@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: riemann
+  namespace: kube-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        task: monitoring
+        app: riemann
+    spec:
+      nodeSelector: 
+        role: controller
+      containers:
+      - name: riemann
+        image: t138/riemann:demo
+        imagePullPolicy: Always
+        env:
+        - name: CASSANDRA_CPU_THRESHOLD
+          value: "1400"
+        - name: RIEMANN_STRATEGY
+          value: "{{ .Values.strategy }}"

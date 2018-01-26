@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.hazelcast:hazelcast-cloud:3.6-EA">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-cloud/3.6-EA/hazelcast-cloud-3.6-EA.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-cloud/3.6-EA/hazelcast-cloud-3.6-EA-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hazelcast/hazelcast-cloud/3.6-EA/hazelcast-cloud-3.6-EA-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
