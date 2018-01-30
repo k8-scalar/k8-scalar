@@ -1,4 +1,4 @@
-#Hello world
+# Hello world
 
 ## Development
 
@@ -90,3 +90,41 @@ In this file, th enormalized values of 0/90, 10/90, 60/90/ and 20/90 requests ha
 
 To add a think time strategy, define a subclass of the `ThinkTimeStrategy` and  `ThinkTimeStrategyFactory` classes
 of the package `be.kuleuven.distrinet.scalar.users.scheduling`.
+
+
+### Sypport for testing mult-tenant applications
+Suppose you have an application that is used by differnt customers and different customer prefer to use different combinations of features.
+Such an application supports typically a configuration interface that allows customers to activate the desired feature. 
+In order to test the scaleability of every combination of features, you can configure Scalar to automate this in the `featuremapping.conf` file. For each feature it can be specified how Scalar must activate or deactivate a feature
+
+More specifically,. featuremapping.conf is a JSON array of objects as follows
+
+```
+
+{
+  "feature": "Logging",
+  "enable": {
+    "helpers": {
+      "be.preuveneers.mobicent.scalar.config.MobiCentFeatureConfig": "enableLogging"
+    }
+  },
+  "disable": {
+    "helpers": {
+      "be.preuveneers.mobicent.scalar.config.MobiCentFeatureConfig": "disableLogging"
+    }
+  }
+}
+
+```
+Suppoose that je activate the Logging feature:
+```feature_model_config=Logging```
+
+Then, Scalar will start an Java object of the  `be.preuveneers.mobicent.scalar.config.MobiCentFeatureConfig` class and invoke the method 
+`enableLogging()`. This helper class must inherit from aanmaken the  `FeatureHelper` subclass.
+
+If Logging is not included in in the `feature_model_config` value as follows:
+```
+feature_model_config=SomeFeature,SomeOtherFeature
+```
+Then, Scalar will create during the start of the experiment also an object of the `be.preuveneers.mobicent.scalar.config.MobiCentFeatureConfig` class but invoke the method `disableLogging()`.
+
