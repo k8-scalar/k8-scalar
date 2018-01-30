@@ -9,7 +9,8 @@ This tutorial provides more practical know-how for the related paper. Eight step
 # Note2: The snippets contain environment variables which should be self-declarative. Do not forget to specify them:
 # - ${k8-scalar_dir} = the local directory on your system in which the k8-scalar GitHub project has been cloned
 # - ${MyRepository} = the name of the Docker repository of the customized experiment-controller image (based on Scalar). Create in 
-#                     advance an account for the ${MyRepository} repository at https://hub.docker.com/                      
+#                     advance an account for the ${MyRepository} repository at https://hub.docker.com/ 
+# - ${my_experiment} = the name of the directory where code and data of your current experiment is stored
 ```
 
 __(1) Setup a Kubernetes cluster with Heapster activated__  
@@ -76,7 +77,7 @@ kubectl exec experiment-controller -- bash bin/stress.sh --duration 400 500:1500
 This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds. Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the pod experiment-controller pod in the `/exp/var` directory. The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Ofcourse, the second command is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
 ```bash
 # Copy experiment-controller pod's Scalar results
-kubectl cp default/experiment-controller:/exp/var ${k8-scalar_dir}/experiment/scalar-results
+kubectl cp default/experiment-controller:/exp/var ${k8-scalar_dir}/${my_experiment}/scalar-results
 
 # Open the Grafana dashboard in your default browser and take relevant screenshots
 open http://$(minikube ip):30345/
