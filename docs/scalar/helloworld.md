@@ -92,6 +92,7 @@ To add a think time strategy, define a subclass of the `ThinkTimeStrategy` and  
 of the package `be.kuleuven.distrinet.scalar.users.scheduling`.
 
 
+ 
 ### Sypport for testing mult-tenant applications
 Suppose you have an application that is used by differnt customers and different customer prefer to use different combinations of features.
 Such an application supports typically a configuration interface that allows customers to activate the desired feature. 
@@ -116,7 +117,7 @@ More specifically,. featuremapping.conf is a JSON array of objects as follows
 }
 
 ```
-Suppoose that je activate the Logging feature:
+Suppose that je activate the Logging feature:
 ```feature_model_config=Logging```
 
 Then, Scalar will start an Java object of the  `be.preuveneers.mobicent.scalar.config.MobiCentFeatureConfig` class and invoke the method 
@@ -128,3 +129,23 @@ feature_model_config=SomeFeature,SomeOtherFeature
 ```
 Then, Scalar will create during the start of the experiment also an object of the `be.preuveneers.mobicent.scalar.config.MobiCentFeatureConfig` class but invoke the method `disableLogging()`.
 
+### Custom experiment.properties
+It is also possible to add custom properties to configure the experment.
+Suppose you want to test the application of a particular customer, also referred to as tenant. 
+
+You can then add for example the following two properties to `experiment.properties` :
+
+```
+use_tenant_id: true
+tenant_id: 23246
+```
+
+and let a User class implementation retrieve the values of these two properties as follows:
+
+```
+_useTenantID = data().getAsBoolean("use_tenant_id");
+if (_useTenantID) { 
+  int tenantID = data().getAsInt("tenant_id");
+}
+
+```
