@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: scaler
+  namespace: kube-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        task: monitoring
+        app: scaler
+    spec:
+      containers:
+      - name: scaler
+        image: t138/scaler
+        imagePullPolicy: Always
