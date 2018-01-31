@@ -13,7 +13,7 @@ __(0) Prerequisites
 ```bash
 # Note1: This tutorial contains many code snippets. They are only tested on MacOS but most should work on Linux.
 # Note2: The snippets contain environment variables which should be self-declarative. Do not forget to specify them:
-# - ${k8-scalar_dir} = the local directory on your system in which the k8-scalar GitHub project has been cloned
+# - ${k8_scalar_dir} = the local directory on your system in which the k8-scalar GitHub project has been cloned
 # - ${MyRepository} = the name of the Docker repository of the customized experiment-controller image (based on Scalar). Create in 
 #                     advance an account for the ${MyRepository} repository at https://hub.docker.com/ 
 # - ${my_experiment} = the name of the directory where code and data of your current experiment is stored
@@ -34,33 +34,33 @@ minikube start
 
 Afterwards, we want to add the monitoring capabilities to the cluster. To ease to installing of the monitoring layer we use [Helm](https://github.com/kubernetes/helm). Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes objects. We install the _monitoring-core_ chart by the following command. This chart includes instantiated templates for the following Kubernetes services: Heapster, Grafana and the InfluxDb. 
 ```bash
-helm install ${k8-scalar_dir}/operations/monitoring-core
+helm install ${k8_scalar_dir}/operations/monitoring-core
 ```
 
 __(2) Setup a Database Cluster__  
 This _cassandra-cluster_ chart uses a modified image which resolves a missing dependency in one of Google Cassandra's image. Of course, this chart can be replaced with a different database technology. Do mind that Scalar will have to be modified for the experiment with implementations of desired workload generators for the Cassandra database. The next step will provide more information about this modification.
 ```bash 
-helm install ${k8-scalar_dir}/operations/cassandra-cluster
+helm install ${k8_scalar_dir}/operations/cassandra-cluster
 ```
 
 __(3) Determine and implement desired workload type for the deployed database in Scalar__  
 This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](development/scalar/src/be/kuleuven/distrinet/scalar/requests). Afterwards we want to build the application and copy the resulting jar:
 ```bash
 # Extend User with operations for your database in the directory below
-cd ${k8-scalar_dir}/development/scalar/src/be/kuleuven/distrinet/scalar/users
+cd ${k8_scalar_dir}/development/scalar/src/be/kuleuven/distrinet/scalar/users
 vim ${myDatabase}User.java # Cfr CassandraWriteUser.java
 
 # After building the project, copy the resulting Jar file to the experiment-controller image
-mv ${k8-scalar_dir}/development/scalar/target/scalar-1-0-0.jar ${k8-scalar_dir}/development/example-experiment/lib/scalar-1-0-0.jar
+mv ${k8_scalar_dir}/development/scalar/target/scalar-1-0-0.jar ${k8_scalar_dir}/development/example-experiment/lib/scalar-1-0-0.jar
 
 # Configure the experiment-controller's workload
-cd ${k8-scalar_dir}/development/example-experiment/etc/
+cd ${k8_scalar_dir}/development/example-experiment/etc/
 vim experiment-template.properties # Configure user_implementations, do not modify user_implementations_prestart
 ``` 
 
 Finally, build a new image for the experiment-controller
 ```bash
-docker build -t ${myRepository}/experiment-controller ${k8-scalar_dir}/development/example-experiment/
+docker build -t ${myRepository}/experiment-controller ${k8_scalar_dir}/development/example-experiment/
 # overwrite in following command MyRepository_DOCKERHUB_PASSWRD with your secret password: 
 # docker login -u ${myRepository} -p MyRepository_DOCKERHUB_PASSWRD  
 docker push ${myRepository}/experiment-controller
@@ -71,7 +71,7 @@ Scalar is a fully distributed, extensible load testing tool with a numerous feat
 __(4) Deploying ARBA__  
 Before deploying, check out the [Operations section](README.md#operations) below in this document for performing the necessary Kubernetes secret management and resource configuration. The secret management is mandatory as ARBA requires this to communicate with the Master API of the Kubernetes cluster.
 ```bash
-helm install ${k8-scalar_dir}/operations/arba-with-experiment-controller
+helm install ${k8_scalar_dir}/operations/arba-with-experiment-controller
 ```
 
 __(5) Perform experiment for determining the mapping between SLA violations and relevant metrics for the specific workload and database based on asssumptions what are relevant metrics (latency, cpu utilization, disk usage) based on a proven theory (e.g the universal law of scalability or the the law of little).__  
@@ -83,7 +83,7 @@ kubectl exec experiment-controller -- bash bin/stress.sh --duration 400 500:1500
 This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds. Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the pod experiment-controller pod in the `/exp/var` directory. The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Ofcourse, the second command is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
 ```bash
 # Copy experiment-controller pod's Scalar results
-kubectl cp default/experiment-controller:/exp/var ${k8-scalar_dir}/${my_experiment}/scalar-results
+kubectl cp default/experiment-controller:/exp/var ${k8_scalar_dir}/${my_experiment}/scalar-results
 
 # Open the Grafana dashboard in your default browser and take relevant screenshots
 open http://$(minikube ip):30345/
@@ -112,8 +112,8 @@ The experiment has a mandatory configuration to allow communication with the clu
 The autoscaler interacts directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. The next snippet creates the required keys for a MiniKube cluster. First, prepare a directory that contains all the required files. Secondly, change paths to the location at which we will mount the secret (`/root/.kube`). Finally, the last command will create the secret. Do note that the keys required depend on the platform that you have your cluster deployed on.
 
 ```bash
-mkdir ${k8-scalar_dir}/operations/secrets
-cd ${k8-scalar_dir}/operations/secrets
+mkdir ${k8_scalar_dir}/operations/secrets
+cd ${k8_scalar_dir}/operations/secrets
 cp ~/.kube/config .
 cp ~/.minikube/client.crt .
 cp ~/.minikube/client.key .
