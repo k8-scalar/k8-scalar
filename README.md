@@ -35,7 +35,7 @@ The setup of a Kubernetes cluster depends on the underlying platform. The _infra
 [Helm](https://github.com/kubernetes/helm) is utilised to deploy the distributed system of the experiment. Helm is a package manager for Kubernetes charts. These charts are packages of pre-configured Kubernetes resources. For this system, we provide three charts. A shared _monitoring-core_ is used across several experiments. This core contains _Heapster_, _Grafana_ and _InfluxDb_. The second chart provides a database cluster and the third the ARBA system with an experiment controller included.
 
 
-**For Mac OS:**
+### For Mac OS:
 install kubectl, minikube and helm client
 ```bash
 # Install VirtualBox
@@ -54,13 +54,15 @@ $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
 minikube   Ready     <none>    21m       v1.9.0
 ```
+
 Install Helm
 ```
-
-# Install Helm
+# Install Helm client:
 curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-darwin-amd64.tar.gz && tar xvzf helm-v2.8.0-darwin-amd64.tar.gz && chmod +x ./darwin-amd64/helm && sudo mv ./darwin-amd64/helm /usr/local/bin/helm
+# Install Helm server on Kubernetes cluster
+helm init
 ```
-**For Linux OS on bare-metal with VT-x virtualization:**
+### For Linux OS on bare-metal with VT-x virtualization:
 
 Install [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
 
@@ -80,14 +82,16 @@ $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
 minikube   Ready     <none>    21m       v1.9.0
 ```
+
 Install Helm
 ```
-
-# Install Helm
+# Install Helm client
 curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-linux-amd64.tar.gz && tar xvzf helm-v2.8.0-linux-amd64.tar.gz && chmod +x ./linux-amd64/helm && sudo mv ./linux-amd64/helm /usr/local/bin/helm
+# Install Helm server on Kubernetes cluster
+helm init
 ```
 
-**For Windows:**
+## For Windows:
 
 Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
@@ -109,9 +113,13 @@ $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
 minikube   Ready     <none>    21m       v1.9.0
 ```
+
 Install Helm
 ```
+# Install Helm client
 curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-windows-amd64.tar.gz && tar xvzf helm-v2.8.0-windows-amd64.tar.gz && export PATH=$PATH:`pwd`/windows-amd64/
+# Install Helm server on Kubernetes cluster
+helm init
 ```
 
 
