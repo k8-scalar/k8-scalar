@@ -1,12 +1,36 @@
 # K8-Scalar
 For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. The goal is to enable modification of the K8-Scalar examplar to experiment with other types of autoscalers and other types of applications.
 
-# Implementing and evaluating elastic scaling policies for container-orchestrated database clusters
+# Comparing autoscalars for container-orchestrated database clusters
 This tutorial provides more practical know-how for the related paper. Eight steps allow us to effectively implement and evaluate elastic scaling strategies for specific workloads.
 
+The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on your local machine, then you can run directly the bash scripts that are provided by this tutorial. This tutorial installs [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). 
+
+
+## Prerequisites
+
+
+**System requirements**
+  * Your local machine should support VT-x virtualization
+  * One local VM with 4 virtual CPU cores and 8GB virtual memory must be able to run on your machine
+  
+**Install git:** 
+  * MacOS: https://git-scm.com/download/mac
+  * Linux Debian: sudo apt-get install git
+  * Linux CentOS: sudo yum install git
+  * Windows: https://git-scm.com/download/win. GitBash is by default also installed. Open a GitBash session and keep it open during the rest of the experiment
+ 
+**Clone the K8-scalar GitHub repository and set the k8_scalar_dir variable:** 
+  
+```bash
+git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
+```
+
+
+**Setup other environment variables**
 
 ```bash
-# Note1: This tutorial contains many code snippets for MacOS, Linux or Windows. They are only tested on MacOS.
+# Note1: This tutorial contains many code snippets for MacOS, Linux or Windows. They are only tested on MacOS and Windows
 # Note2: The snippets contain environment variables which should be self-declarative. Do not forget to specify them:
 # - ${k8_scalar_dir} = the local directory on your system in which the k8-scalar GitHub project has been cloned
 # - ${MyRepository} = the name of the Docker repository of the customized experiment-controller image (based on Scalar). Create in 
@@ -14,23 +38,8 @@ This tutorial provides more practical know-how for the related paper. Eight step
 # - ${my_experiment} = the name of the directory where code and data of your current experiment is stored
 ```
 
-
-## Prerequisites
-
-**Install git:** 
-  * MacOS: https://git-scm.com/download/mac
-  * Linux Debian: sudo apt-get install git
-  * Linux CentOS: sudo yum install git
-  * Windows: https://git-scm.com/download/win. GitBash is by default also installed. Open a GitBash session and keep it open during the rest of the experiment
- 
-**Clone this repository:** 
-  
-```bash
-git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
-```
   
 ## (1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service__  
-The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on your local machine, then you can install [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). 
 
 [Helm](https://github.com/kubernetes/helm) is utilised to deploy the distributed system of the experiment. Helm is a package manager for Kubernetes charts. These charts are packages of pre-configured Kubernetes resources. For this system, we provide three charts. A shared _monitoring-core_ is used across several experiments. This core contains _Heapster_, _Grafana_ and _InfluxDb_. The second chart provides a database cluster and the third the ARBA system with an experiment controller included.
 
@@ -48,8 +57,18 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.1/minik
 minikube start --cpus 4 --memory 8192
 
 ```
-Wait till the node is ready by running `kubectl get nodes`:
+
+If you get an authorization error when running `kubectl get nodes`:
 ```
+$ kubectl.exe get nodes
+error: You must be logged in to the server (Unauthorized)
+```
+then you have to switch to the minikube kubectl context
+
+```
+$ kubectl config use-context minikube
+Switched to context "minikube".
+
 $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
 minikube   Ready     <none>    21m       v1.9.0
@@ -62,7 +81,7 @@ curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-darwin-amd64
 # Install Helm server on Kubernetes cluster
 helm init
 ```
-### For Linux OS on bare-metal with VT-x virtualization:
+### For Linux OS on bare-metal:
 
 Install [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
 
@@ -72,12 +91,21 @@ install kubectl, minikube and helm client
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
 #Install MiniKube
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
-# Start MiniKube
+# Start MiniKube with enough resources
 minikube start --cpus 4 --memory 8192
 ```
 
-Wait till the node is ready by running `kubectl get nodes`:
+If you get an authorization error when running `kubectl get nodes`:
 ```
+$ kubectl.exe get nodes
+error: You must be logged in to the server (Unauthorized)
+```
+then you have to switch to the minikube kubectl context
+
+```
+$ kubectl config use-context minikube
+Switched to context "minikube".
+
 $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
 minikube   Ready     <none>    21m       v1.9.0
@@ -107,8 +135,17 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-window
 minikube start --cpus 4 --memory 8192
 ```
 
-Wait till the node is ready by running `kubectl get nodes`:
+If you get an authorization error when running `kubectl get nodes`:
 ```
+$ kubectl.exe get nodes
+error: You must be logged in to the server (Unauthorized)
+```
+You have to switch to the minikube kubectl context
+
+```
+$ kubectl config use-context minikube
+Switched to context "minikube".
+
 $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
 minikube   Ready     <none>    21m       v1.9.0
