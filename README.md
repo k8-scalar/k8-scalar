@@ -265,6 +265,7 @@ cp ~/.minikube/ca.crt .
 sed -ie "s@/Users/wito/.minikube/@/root/.kube/@g" ./config
 
 kubectl create secret generic kubeconfig --from-file . --namespace=kube-system
+kubectl create secret generic kubeconfig --from-file .
 ```
 
 Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which is should scale. 
