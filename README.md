@@ -2,16 +2,11 @@
 For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. The goal is to enable modification of the K8-Scalar examplar to experiment with other types of autoscalers and other types of applications.
 
 ## Implementing and evaluating elastic scaling policies for container-orchestrated database clusters
-This tutorial provides more practical know-how for the related paper. Eight steps allow us to effectively implement and evaluate elastic scaling strategies for specific workloads. 
+This tutorial provides more practical know-how for the related paper. Eight steps allow us to effectively implement and evaluate elastic scaling strategies for specific workloads.
 
-__(0) Prerequisites
-
-  * install git  
-  * clone this repository: `git clone https://github.com/k8-scalar/k8-scalar/`
-  * install [Helm](https://github.com/kubernetes/helm). Helm is utilised to deploy the distributed system of the experiment. Helm is a package manager for Kubernetes charts. These charts are packages of pre-configured Kubernetes resources. For this system, we provide three charts. A shared _monitoring-core_ is used across several experiments. This core contains _Heapster_, _Grafana_ and _InfluxDb_. The second chart provides a database cluster and the third the ARBA system with an experiment controller included.
 
 ```bash
-# Note1: This tutorial contains many code snippets. They are only tested on MacOS but most should work on Linux.
+# Note1: This tutorial contains many code snippets for MacOS, Linux or Windows. They are only tested on MacOS.
 # Note2: The snippets contain environment variables which should be self-declarative. Do not forget to specify them:
 # - ${k8_scalar_dir} = the local directory on your system in which the k8-scalar GitHub project has been cloned
 # - ${MyRepository} = the name of the Docker repository of the customized experiment-controller image (based on Scalar). Create in 
@@ -19,8 +14,24 @@ __(0) Prerequisites
 # - ${my_experiment} = the name of the directory where code and data of your current experiment is stored
 ```
 
-__(1) Setup a Kubernetes cluster with Heapster activated__  
-The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on MacOS, then you can install MiniKube using the following steps:
+
+__(0) Prerequisites
+
+  * install git 
+      * MacOS: https://git-scm.com/download/mac
+      * Debian: sudo apt-get install git
+      * CentOS: sudo yum install git
+      * Windows: https://git-scm.com/download/win. GitBash is by default also installed
+  * clone this repository: `git clone https://github.com/k8-scalar/k8-scalar/`
+  
+  
+__(1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service__  
+The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on your local machine, then you can install [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). 
+
+[Helm](https://github.com/kubernetes/helm) is utilised to deploy the distributed system of the experiment. Helm is a package manager for Kubernetes charts. These charts are packages of pre-configured Kubernetes resources. For this system, we provide three charts. A shared _monitoring-core_ is used across several experiments. This core contains _Heapster_, _Grafana_ and _InfluxDb_. The second chart provides a database cluster and the third the ARBA system with an experiment controller included.
+
+
+**For Mac OS:**
 ```bash
 # Install VirtualBox
 brew cask install virtualbox
@@ -30,7 +41,46 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/da
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.1/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube
 minikube start
+# Install Helm
+curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-darwin-amd64.tar.gz && tar xvzf helm-v2.8.0-darwin-amd64.tar.gz && chmod +x ./darwin-amd64/helm && sudo mv ./darwin-amd64/helm /usr/local/bin/helm
 ```
+**For Linux OS on bare-metal with VT-x virtualization:**
+
+Install [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
+
+```bash
+# Install kubectl:
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
+#Install MiniKube
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+# Start MiniKube
+minikube start
+# Install Helm
+curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-linux-amd64.tar.gz && tar xvzf helm-v2.8.0-linux-amd64.tar.gz && chmod +x ./linux-amd64/helm && sudo mv ./linux-amd64/helm /usr/local/bin/helm
+```
+
+**For Windows:**
+
+1)Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+
+2) Open the GitBash desktop application
+
+3) Install kubectl, minikube and helm client
+```bash
+# Install kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/windows/amd64/kubectl.exe && export PATH=$PATH:`pwd`
+
+# Install minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=$PATH:`pwd`
+minikube.exe start
+
+# Install Helm
+curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-windows-amd64.tar.gz && tar xvzf helm-v2.8.0-windows-amd64.tar.gz && export PATH=$PATH:`pwd`/windows-amd64/
+```
+
+
+
+
 
 Afterwards, we want to add the monitoring capabilities to the cluster. To ease to installing of the monitoring layer we use [Helm](https://github.com/kubernetes/helm). Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes objects. We install the _monitoring-core_ chart by the following command. This chart includes instantiated templates for the following Kubernetes services: Heapster, Grafana and the InfluxDb. 
 ```bash
