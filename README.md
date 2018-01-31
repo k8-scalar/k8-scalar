@@ -252,7 +252,7 @@ For a more accurate reproduction scenario, we suggest adding labels to each node
 __Experiment configuration__  
 The experiment has a mandatory configuration to allow communication with the cluster, and an optional configuration to fine-tune experiment parameters. Also, do not forget to use your own repository name in Kubernetes resource declaration files when uploading custom images.
 
-The autoscaler interacts directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. The next snippet creates the required keys for a MiniKube cluster. First, prepare a directory that contains all the required files. Secondly, change paths to the location at which we will mount the secret (`/root/.kube`). Finally, the last command will create the secret. Do note that the keys required depend on the platform that you have your cluster deployed on.
+The autoscaler interacts directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. The next snippet creates the required keys for a MiniKube cluster. First, prepare a directory that contains all the required files. 
 
 ```bash
 mkdir ${k8_scalar_dir}/operations/secrets
@@ -261,14 +261,58 @@ cp ~/.kube/config .
 cp ~/.minikube/client.crt .
 cp ~/.minikube/client.key .
 cp ~/.minikube/ca.crt .
-
-sed -ie "s@/Users/wito/.minikube/@/root/.kube/@g" ./config
-
-kubectl create secret generic kubeconfig --from-file . --namespace=kube-system
-kubectl create secret generic kubeconfig --from-file .
+vim config
 ```
 
-Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which is should scale. 
+```
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: C:\Users\eddy\.minikube\ca.crt
+    server: https://192.168.99.102:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    as-user-extra: {}
+    client-certificate: C:\Users\eddy\.minikube\client.crt
+    client-key: C:\Users\eddy\.minikube\client.key
+```
+
+
+Secondly, now some messy stuff: change all absolute paths in the above `.config` file to the location at which these secrets are mounted by the Helm chart of the experiment-controller and arba (`/root/.kube`). Have a look at the config file below. The `ca.crt` certificate and the `client.crt` and `client.key` are stored in the `C:\Users\eddy\.minikube` directory. This must be changed to `/root/.kube`. You can either do it manually or execute the following sed script:
+
+**Windows**
+```
+#Espacing a backslash requires three backslashes in Windows Cygwin 
+sed -ie "s@C:\\\Users\\\eddy\\\.minikube\\\@/root/.kube/@g" ./config
+```
+
+**Linux/MacOS**
+```
+sed -ie "s@/Users/wito/.minikube/@/root/.kube/@g" ./config
+```
+
+
+Finally, the last command will create the secret. You will have to create the same secret in two different namespaces.  Do note that the keys required depend on the platform that you have your cluster deployed on.
+
+```
+#Secret for ARBA that runs in the kube-system namespace
+kubectl create secret generic kubeconfig --from-file . --namespace=kube-system
+
+#The same secret for the experiment-controller that runs in default namespace
+kubectl create secret generic kubeconfig --from-file . --namespace=default
+```
+
+Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which it should scale. 
 
 Finally, the resource requests and limits of the Cassandra pod can also be adjusted. These files can be found in the `operations` subdirectory, e.g. the Cassandra YAML file can be found in [operations/cassandra-cluster/templates](operations/cassandra-cluster/templates/cassandra-statefulset.yaml).
 
