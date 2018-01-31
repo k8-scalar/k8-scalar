@@ -22,8 +22,11 @@ __(0) Prerequisites
       * Debian: sudo apt-get install git
       * CentOS: sudo yum install git
       * Windows: https://git-scm.com/download/win. GitBash is by default also installed
-  * clone this repository: `git clone https://github.com/k8-scalar/k8-scalar/`
+  * clone this repository: 
   
+  ```bash
+  git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
+  ```
   
 __(1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service__  
 The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on your local machine, then you can install [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). 
@@ -82,7 +85,7 @@ curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-windows-amd6
 
 
 
-Afterwards, we want to add the monitoring capabilities to the cluster. To ease to installing of the monitoring layer we use [Helm](https://github.com/kubernetes/helm). Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes objects. We install the _monitoring-core_ chart by the following command. This chart includes instantiated templates for the following Kubernetes services: Heapster, Grafana and the InfluxDb. 
+Afterwards, we want to add the monitoring capabilities to the cluster using Helm. We install the _monitoring-core_ chart by the following command. This chart includes instantiated templates for the following Kubernetes services: Heapster, Grafana and the InfluxDb. 
 ```bash
 helm install ${k8_scalar_dir}/operations/monitoring-core
 ```
