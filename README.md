@@ -46,6 +46,17 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/da
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.1/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube
 minikube start
+
+```
+Wait till the node is ready by running `kubectl get nodes`:
+```
+$ kubectl get nodes
+NAME       STATUS    ROLES     AGE       VERSION
+minikube   Ready     <none>    21m       v1.9.0
+```
+Install Helm
+```
+
 # Install Helm
 curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-darwin-amd64.tar.gz && tar xvzf helm-v2.8.0-darwin-amd64.tar.gz && chmod +x ./darwin-amd64/helm && sudo mv ./darwin-amd64/helm /usr/local/bin/helm
 ```
@@ -61,6 +72,17 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/li
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube
 minikube start
+```
+
+Wait till the node is ready by running `kubectl get nodes`:
+```
+$ kubectl get nodes
+NAME       STATUS    ROLES     AGE       VERSION
+minikube   Ready     <none>    21m       v1.9.0
+```
+Install Helm
+```
+
 # Install Helm
 curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-linux-amd64.tar.gz && tar xvzf helm-v2.8.0-linux-amd64.tar.gz && chmod +x ./linux-amd64/helm && sudo mv ./linux-amd64/helm /usr/local/bin/helm
 ```
@@ -79,12 +101,18 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/wi
 # Install minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=$PATH:`pwd`
 minikube.exe start
-
-# Install Helm
-curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-windows-amd64.tar.gz && tar xvzf helm-v2.8.0-windows-amd64.tar.gz && export PATH=$PATH:`pwd`/windows-amd64/
 ```
 
-
+Wait till the node is ready by running `kubectl get nodes`:
+```
+$ kubectl get nodes
+NAME       STATUS    ROLES     AGE       VERSION
+minikube   Ready     <none>    21m       v1.9.0
+```
+Install Helm
+```
+curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-windows-amd64.tar.gz && tar xvzf helm-v2.8.0-windows-amd64.tar.gz && export PATH=$PATH:`pwd`/windows-amd64/
+```
 
 
 
@@ -92,6 +120,22 @@ Afterwards, we want to add the monitoring capabilities to the cluster using Helm
 ```bash
 helm install ${k8_scalar_dir}/operations/monitoring-core
 ```
+
+To check if all services are running execute the following command to see if all Pods of these services are running
+```bash
+$ kubectl get pods --namespace=kube-system
+NAME                                    READY     STATUS    RESTARTS   AGE
+heapster-76647b5d6c-ln7lp               1/1       Running   0          6m
+kube-addon-manager-minikube             1/1       Running   0          17m
+kube-dns-54cccfbdf8-wstwt               3/3       Running   0          17m
+kubernetes-dashboard-77d8b98585-qqkmx   1/1       Running   0          17m
+monitoring-grafana-8fcc5f8d6-x49wv      1/1       Running   0          6m
+monitoring-influxdb-7bf9b74f99-kpvr8    1/1       Running   0          6m
+storage-provisioner                     1/1       Running   0          17m
+tiller-deploy-7594bf7b76-598xv          1/1       Running   0          7m
+```
+
+
 
 __(2) Setup a Database Cluster__  
 This _cassandra-cluster_ chart uses a modified image which resolves a missing dependency in one of Google Cassandra's image. Of course, this chart can be replaced with a different database technology. Do mind that Scalar will have to be modified for the experiment with implementations of desired workload generators for the Cassandra database. The next step will provide more information about this modification.
