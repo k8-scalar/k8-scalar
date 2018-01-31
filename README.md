@@ -18,16 +18,16 @@ This tutorial provides more practical know-how for the related paper. Eight step
 ### Prerequisites
 
 **install git:** 
-      * MacOS: https://git-scm.com/download/mac
-      * Linux Debian: sudo apt-get install git
-      * Linux CentOS: sudo yum install git
-      * Windows: https://git-scm.com/download/win. GitBash is by default also installed
+  * MacOS: https://git-scm.com/download/mac
+  * Linux Debian: sudo apt-get install git
+  * Linux CentOS: sudo yum install git
+  * Windows: https://git-scm.com/download/win. GitBash is by default also installed. Open a GitBash session and keep it open during the rest of the experiment
  
 **Clone this repository: 
   
-  ```bash
-  git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
-  ```
+```bash
+git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
+```
   
 __(1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service__  
 The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on your local machine, then you can install [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). 
