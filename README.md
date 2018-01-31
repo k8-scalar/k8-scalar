@@ -288,7 +288,7 @@ users:
 ```
 
 
-Secondly, now some messy stuff: change all absolute paths in the above `.config` file to the location at which these secrets are mounted by the Helm chart of the experiment-controller and arba (`/root/.kube`). Have a look at the config file below. The `ca.crt` certificate and the `client.crt` and `client.key` are stored in the `C:\Users\eddy\.minikube` directory. This must be changed to `/root/.kube`. You can either do it manually or execute the following sed script:
+Secondly, change all absolute paths in the  `.config` file to the location at which these secrets are mounted by the Helm chart of the experiment-controller and arba (`/root/.kube`). Have a look at the example config file above. The `ca.crt` certificate and the `client.crt` and `client.key` are stored in the `C:\Users\eddy\.minikube` directory. This must be changed to `/root/.kube`. You can either do it manually or execute one of the following two sed scripts:
 
 **Windows**
 ```
