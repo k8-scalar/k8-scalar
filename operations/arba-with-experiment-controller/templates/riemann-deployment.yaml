@@ -11,8 +11,8 @@ spec:
         task: monitoring
         app: riemann
     spec:
-      nodeSelector: 
-        role: controller
+      #nodeSelector: 
+      #  role: controller
       containers:
       - name: riemann
         image: t138/riemann:demo
