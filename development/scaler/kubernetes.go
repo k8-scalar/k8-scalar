@@ -20,7 +20,7 @@ func PrintPods() {
 }
 
 func GetNumberOfCurrentReplicas(name string) int {
-	cmd := fmt.Sprintf("kubectl describe --namespace=default statefulset %s | grep Replicas | egrep -o '[0-9]+' | tail -n +2", name);
+	cmd := fmt.Sprintf("kubectl get statefulset %s -o yaml  | grep currentReplicas | egrep -o '[0-9]+'", name);
 
 	result, err := exec.Command("sh", "-c", cmd).Output()
 
