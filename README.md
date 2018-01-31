@@ -15,14 +15,15 @@ This tutorial provides more practical know-how for the related paper. Eight step
 ```
 
 
-__(0) Prerequisites
+### Prerequisites
 
-  * install git 
+**install git:** 
       * MacOS: https://git-scm.com/download/mac
-      * Debian: sudo apt-get install git
-      * CentOS: sudo yum install git
+      * Linux Debian: sudo apt-get install git
+      * Linux CentOS: sudo yum install git
       * Windows: https://git-scm.com/download/win. GitBash is by default also installed
-  * clone this repository: 
+ 
+**Clone this repository: 
   
   ```bash
   git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
@@ -35,6 +36,7 @@ The setup of a Kubernetes cluster depends on the underlying platform. The _infra
 
 
 **For Mac OS:**
+install kubectl, minikube and helm client
 ```bash
 # Install VirtualBox
 brew cask install virtualbox
@@ -51,6 +53,7 @@ curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-darwin-amd64
 
 Install [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
 
+install kubectl, minikube and helm client
 ```bash
 # Install kubectl:
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
@@ -64,11 +67,11 @@ curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-linux-amd64.
 
 **For Windows:**
 
-1)Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
-2) Open the GitBash desktop application
+Open the GitBash desktop application
 
-3) Install kubectl, minikube and helm client
+install kubectl, minikube and helm client
 ```bash
 # Install kubectl
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/windows/amd64/kubectl.exe && export PATH=$PATH:`pwd`
