@@ -194,6 +194,7 @@ cd ${k8_scalar_dir}/development/scalar/src/be/kuleuven/distrinet/scalar/users
 vim ${myDatabase}User.java # Cfr CassandraWriteUser.java
 
 # After building the project, copy the resulting Jar file to the experiment-controller image
+# Note source code of scalar is not yet included in this project. You have to build from the existing scalar-1-0-0.jar and use the resulting # jar file.
 mv ${k8_scalar_dir}/development/scalar/target/scalar-1-0-0.jar ${k8_scalar_dir}/development/example-experiment/lib/scalar-1-0-0.jar
 
 # Configure the experiment-controller's workload
@@ -240,7 +241,7 @@ Finally, this step is very similar to the fifth step. The biggest difference occ
 
 ## (8) Repeat steps 6 and 7 until you have found an elastic scaling policy that works for this workload__  
 
-## Infrastructure
+# Infrastructure
 You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit.
 
 In this tutorial, however, we will use a MiniKube deployment on our local device.
@@ -248,8 +249,8 @@ This is just for demonstrating purposes as the resources provided by a single la
 You can, however, follow the same exact steps on a multi-node cluster.
 For a more accurate reproduction scenario, we suggest adding labels to each node and add them as constraints to the YAML files of the relevant Kubernetes objects via a [nodeSelector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector).
 
-## Operations
-__Experiment configuration__  
+# Operations
+## Experiment configuration  
 The experiment has a mandatory configuration to allow communication with the cluster, and an optional configuration to fine-tune experiment parameters. Also, do not forget to use your own repository name in Kubernetes resource declaration files when uploading custom images.
 
 The autoscaler interacts directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. The next snippet creates the required keys for a MiniKube cluster. First, prepare a directory that contains all the required files. 
@@ -312,8 +313,9 @@ kubectl create secret generic kubeconfig --from-file . --namespace=kube-system
 kubectl create secret generic kubeconfig --from-file . --namespace=default
 ```
 
+### Configuration of of other Kubernetes objects 
 Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which it should scale. 
 
-Finally, the resource requests and limits of the Cassandra pod can also be adjusted. These files can be found in the `operations` subdirectory, e.g. the Cassandra YAML file can be found in [operations/cassandra-cluster/templates](operations/cassandra-cluster/templates/cassandra-statefulset.yaml).
+Finally, the resource requests and limits of the Cassandra pod can also be adjusted. These files can be found in the `operations` subdirectory, e.g. the Cassandra YAML file can be found in [operations/cassandra-cluster/templates](operations/cassandra-cluster/templates/cassandra-statefulset.yaml). For this MiniKube tutorial we have set for resource Requests lower than the resource limits in comparison to the configuration of Cassandra instances in the [scientifically evaluated experiments of the associated paper](experiments/LMaaS)
 
 
