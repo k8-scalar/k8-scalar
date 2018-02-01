@@ -1,5 +1,5 @@
 # K8-Scalar
-For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. The goal is to enable modification of the K8-Scalar examplar to experiment with other types of autoscalers and other types of applications.
+For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. 
 
 # Evaluating autoscalers for container-orchestrated database clusters
 This tutorial provides more practical know-how for the related paper. Eight steps allow us to effectively implement and evaluate elastic scaling strategies for specific database and workload types.
@@ -314,9 +314,31 @@ kubectl create secret generic kubeconfig --from-file . --namespace=kube-system
 kubectl create secret generic kubeconfig --from-file . --namespace=default
 ```
 
-### Configuration of of other Kubernetes objects 
+## Configuration of of other Kubernetes objects 
 Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which it should scale. 
 
 Finally, the resource requests and limits of the Cassandra pod can also be adjusted. These files can be found in the `operations` subdirectory, e.g. the Cassandra YAML file can be found in [operations/cassandra-cluster/templates](operations/cassandra-cluster/templates/cassandra-statefulset.yaml). For this MiniKube tutorial we have set for resource Requests lower than the resource limits in comparison to the configuration of Cassandra instances in the [scientifically evaluated experiments of the associated paper](experiments/LMaaS)
 
+# Development
+The goal of this section is to explain how to modify the K8-Scalar examplar to experiment with other types of autoscalers and other types of services.
+
+In order to replace the default ARBA autoscaler with another autoscaler,
+it is important to understand that the stable parts of the
+current implementation are Kubernetes and Heapster. Heapster
+can store the collected metrics into different backends, which are
+referred to as sinks. Heapster currently supports [16 different sink
+types](https://github.com/kubernetes/heapster/blob/master/docs/sink-configuration.md), including the Riemann sink. To plug-in another autoscaler,
+the autoscaler should be compatible with one of these sink
+types.
+
+The REST-based interface of the Scaler service of ARBA also
+aims to offer a portable specification of scaling actions for any type
+of application and any type of container orchestration framework.
+
+Finally, Scalar’s implementation can be easily extended with
+additional functionality.  It is of course also possible to use another
+benchmarking tool as Experiment-Controller if that tool is more appropriate
+for a particular experiment. The ARBA-with-experiment-
+Controller must then be changed with a Docker image for that
+tool.
 
