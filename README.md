@@ -58,17 +58,21 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.1/minik
 minikube start --cpus 4 --memory 8192
 
 ```
+On windows 10 we experienced a bootstrapping race-condition:
+We get an authorization error when running `kubectl get nodes` while all appropriate credentials are actually correctly configured:
 
-If you get an authorization error when running `kubectl get nodes`:
 ```
 $ kubectl.exe get nodes
 error: You must be logged in to the server (Unauthorized)
 ```
-then you have to switch to the minikube kubectl context
+What helps is to wait some time, switch to the minikube kubectl context, and
+open the ./minikube/config file
 
 ```
 $ kubectl config use-context minikube
 Switched to context "minikube".
+
+$vi ./.minikube/config
 
 $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
