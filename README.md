@@ -314,7 +314,7 @@ kubectl create secret generic kubeconfig --from-file . --namespace=kube-system
 kubectl create secret generic kubeconfig --from-file . --namespace=default
 ```
 
-## Configuration of of other Kubernetes objects 
+## Configuration of other Kubernetes objects 
 Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which it should scale. 
 
 Finally, the resource requests and limits of the Cassandra pod can also be adjusted. These files can be found in the `operations` subdirectory, e.g. the Cassandra YAML file can be found in [operations/cassandra-cluster/templates](operations/cassandra-cluster/templates/cassandra-statefulset.yaml). For this MiniKube tutorial we have set for resource Requests lower than the resource limits in comparison to the configuration of Cassandra instances in the [scientifically evaluated experiments of the associated paper](experiments/LMaaS)
