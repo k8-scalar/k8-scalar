@@ -1,8 +1,8 @@
 # K8-Scalar
 For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. The goal is to enable modification of the K8-Scalar examplar to experiment with other types of autoscalers and other types of applications.
 
-# Comparing autoscalars for container-orchestrated database clusters
-This tutorial provides more practical know-how for the related paper. Eight steps allow us to effectively implement and evaluate elastic scaling strategies for specific workloads.
+# Evaluating autoscalers for container-orchestrated database clusters
+This tutorial provides more practical know-how for the related paper. Eight steps allow us to effectively implement and evaluate elastic scaling strategies for specific database and workload types.
 
 The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on your local machine, then you can run directly the bash scripts that are provided by this tutorial. This tutorial installs [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). 
 
@@ -27,19 +27,20 @@ git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/
 ```
 
 
-**Setup other environment variables**
+**Setup other environment variables:**
 
-```bash
-# Note1: This tutorial contains many code snippets for MacOS, Linux or Windows. They are only tested on MacOS and Windows
-# Note2: The snippets contain environment variables which should be self-declarative. Do not forget to specify them:
-# - ${k8_scalar_dir} = the local directory on your system in which the k8-scalar GitHub project has been cloned
-# - ${MyRepository} = the name of the Docker repository of the customized experiment-controller image (based on Scalar). Create in 
-#                     advance an account for the ${MyRepository} repository at https://hub.docker.com/ 
-# - ${my_experiment} = the name of the directory where code and data of your current experiment is stored
-```
+
+Note1: This tutorial contains many code snippets for MacOS, Linux or Windows. They are only tested on MacOS and Windows
+Note2: The snippets contain environment variables which should be self-declarative. Do not forget to specify them:
+  * `${k8_scalar_dir}` = the local directory on your system in which the k8-scalar GitHub project has been cloned
+                         This environment variable is already set by executing the above snippet of the git clone
+  * `${MyRepository}` = the name of the Docker repository of the customized experiment-controller image (based on Scalar). Create in 
+                        advance an account for the ${MyRepository} repository at https://hub.docker.com/. In the context of this tutorial, 
+                        and all experiments from the paper are stored in the t138 repository at docker hub.
+  * `${my_experiment}` = the name of the directory under `${k8_scalar_dir}` where code and data of your current experiment is stored
 
   
-## (1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service__  
+## (1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service
 
 [Helm](https://github.com/kubernetes/helm) is utilised to deploy the distributed system of the experiment. Helm is a package manager for Kubernetes charts. These charts are packages of pre-configured Kubernetes resources. For this system, we provide three charts. A shared _monitoring-core_ is used across several experiments. This core contains _Heapster_, _Grafana_ and _InfluxDb_. The second chart provides a database cluster and the third the ARBA system with an experiment controller included.
 
@@ -180,7 +181,7 @@ tiller-deploy-7594bf7b76-598xv          1/1       Running   0          7m
 
 
 
-## (2) Setup a Database Cluster__  
+## (2) Setup a Database Cluster
 This _cassandra-cluster_ chart uses a modified image which resolves a missing dependency in one of Google Cassandra's image. Of course, this chart can be replaced with a different database technology. Do mind that Scalar will have to be modified for the experiment with implementations of desired workload generators for the Cassandra database. The next step will provide more information about this modification.
 ```bash 
 helm install ${k8_scalar_dir}/operations/cassandra-cluster
@@ -212,7 +213,7 @@ docker push ${myRepository}/experiment-controller
 
 Scalar is a fully distributed, extensible load testing tool with a numerous features. I recommend checking out https://distrinet.cs.kuleuven.be/software/scalar/ for more information.
 
-## (4) Deploying ARBA__  
+## (4) Deploying ARBA
 Before deploying, check out the [Operations section](README.md#operations) below in this document for performing the necessary Kubernetes secret management and resource configuration. The secret management is mandatory as ARBA requires this to communicate with the Master API of the Kubernetes cluster.
 ```bash
 helm install ${k8_scalar_dir}/operations/arba-with-experiment-controller
@@ -233,13 +234,13 @@ kubectl cp default/experiment-controller:/exp/var ${k8_scalar_dir}/${my_experime
 open http://$(minikube ip):30345/
 ```
 
-## (6) Implement an elastic scaling policy that monitors the resource usage__  
+## (6) Implement an elastic scaling policy that monitors the resource usage
 This step requires some custom development in the Riemann component. Extend Riemann's configuration with a custom scaling strategy. We recommend checking out http://riemann.io/ to get familiar with the way that events are processed. While Riemann has a slight learning curve, the configuration has access to a Clojure, which is a complete programming language. While out of scope for the provided examplar, new strategies should most often combine events of the same deployment or statefulset by folding them. The image should be build and uploaded to the repository in a similar fashion as demonstrated in step (3).
 
-## (7) Test the elastic scaling policy by executing the workload and measuring the number of SLA violations__  
+## (7) Test the elastic scaling policy by executing the workload and measuring the number of SLA violations
 Finally, this step is very similar to the fifth step. The biggest difference occurs during processing the results. We will use the each request's latency time to determine whether a SLA violation has occured. The implemented scaling policy is ineffective if the service level agreement does not reach its objective.
 
-## (8) Repeat steps 6 and 7 until you have found an elastic scaling policy that works for this workload__  
+## (8) Repeat steps 6 and 7 until you have found an elastic scaling policy that works for this workload
 
 # Infrastructure
 You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit.
@@ -247,7 +248,7 @@ You need to have a Kubernetes cluster, and the kubectl command-line tool must be
 In this tutorial, however, we will use a MiniKube deployment on our local device.
 This is just for demonstrating purposes as the resources provided by a single laptop are unsufficient for valid experiment results.
 You can, however, follow the same exact steps on a multi-node cluster.
-For a more accurate reproduction scenario, we suggest adding labels to each node and add them as constraints to the YAML files of the relevant Kubernetes objects via a [nodeSelector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector).
+For a more accurate reproduction scenario, we suggest adding labels to each node and add them as constraints to the YAML files of the relevant Kubernetes objects via a [nodeSelector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector). As such different Kubernetes objects such as experiment-controller and the cassandra instance will not be created on the same node, as presented in the related paper.
 
 # Operations
 ## Experiment configuration  
