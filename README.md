@@ -187,7 +187,7 @@ This _cassandra-cluster_ chart uses a modified image which resolves a missing de
 helm install ${k8_scalar_dir}/operations/cassandra-cluster
 ```
 
-## (3) Determine and implement desired workload type for the deployed database in Scalar__  
+## (3) Determine and implement desired workload type for the deployed database in Scalar
 This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](development/scalar/src/be/kuleuven/distrinet/scalar/requests). Afterwards we want to build the application and copy the resulting jar:
 ```bash
 # Extend User with operations for your database in the directory below
@@ -224,7 +224,6 @@ Before starting the experiment, we recommend using the `kubectl get pods --all-n
 ```bash
 kubectl exec experiment-controller -- bash bin/stress.sh --duration 400 500:1500:1000
 ```
-
 This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds. Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the pod experiment-controller pod in the `/exp/var` directory. The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Ofcourse, the second command is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
 ```bash
 # Copy experiment-controller pod's Scalar results
@@ -232,6 +231,34 @@ kubectl cp default/experiment-controller:/exp/var ${k8_scalar_dir}/${my_experime
 
 # Open the Grafana dashboard in your default browser and take relevant screenshots
 open http://$(minikube ip):30345/
+```
+
+
+The user guide of `stress.sh` is returned when running stress.sh without any option:
+
+```
+kubectl exec experiment-controller -- bash bin/stress.sh
+bin/stress.sh [OPTIONS] [ARGS]
+
+ Performs an experiment to determine the threshhold to start scaling databases.
+
+ Parameters:
+   userload                             Specify user load or, the start user load, end user load and incrementing interval. (Format:  NN or NN:NN:NN)
+
+ Options:
+   -d | --duration              Specify the duration in seconds for each run. (Default: 60)
+   -p | --pod                   The initial pod (Default: cassandra-0)
+   -h | --help                  Display this message
+
+ Note:
+   This script MUST be executed from within the experiment directory.
+
+ Examples:
+   # Stress Cassandra with an user load of 125 requests per seconds for 200 seconds
+   bin/stress.sh --duration 200 125
+
+   # Executes the experiment: 10 users for first run, 20 users for second run, .., 100 users for last run.
+   bin/stress.sh 10:100:10
 ```
 
 ## (6) Implement an elastic scaling policy that monitors the resource usage
