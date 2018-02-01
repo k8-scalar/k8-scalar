@@ -317,7 +317,7 @@ users:
 ```
 
 
-Secondly, change all absolute paths in the  `.config` file to the location at which these secrets are mounted by the Helm chart of the experiment-controller and arba (`/root/.kube`). Have a look at the example config file above. The `ca.crt` certificate and the `client.crt` and `client.key` are stored in the `C:\Users\eddy\.minikube` directory. This must be changed to `/root/.kube`. You can either do it manually or execute one of the following two sed scripts:
+Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `arba-with-experiment-controller` Helm chart, i.e. `/root/.kube`. Have a look at the example config file above. The `ca.crt` certificate and the `client.crt` and `client.key` are stored in the `C:\Users\eddy\.minikube` directory of the local machine. This must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
 
 **Windows**
 ```
@@ -331,7 +331,7 @@ sed -ie "s@/Users/wito/.minikube/@/root/.kube/@g" ./config
 ```
 
 
-Finally, the last command will create the secret. You will have to create the same secret in two different namespaces.  Do note that the keys required depend on the platform that you have your cluster deployed on.
+Finally, the following command will create the secret. You will have to create the same secret in two different namespaces.  Do note that the keys required depend on the platform that you have your cluster deployed on.
 
 ```
 #Secret for ARBA that runs in the kube-system namespace
