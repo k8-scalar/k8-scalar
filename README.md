@@ -2,7 +2,7 @@
 For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. 
 
 # Evaluating autoscalers for container-orchestrated database clusters
-This tutorial provides more practical know-how for the related paper. Eight steps allow us to effectively implement and evaluate elastic scaling strategies for specific database and workload types.
+This tutorial provides more practical know-how for the related paper. Nine steps allow us to effectively implement and evaluate elastic scaling strategies for specific database and workload types.
 
 The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on your local machine, then you can run directly the bash scripts that are provided by this tutorial. This tutorial installs [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). 
 
@@ -217,22 +217,29 @@ docker push ${myRepository}/experiment-controller
 
 Scalar is a fully distributed, extensible load testing tool with a numerous features. I recommend checking out https://distrinet.cs.kuleuven.be/software/scalar/ for more information.
 
-## (4) Deploying ARBA
-Before deploying, check out the [Operations section](README.md#operations) below in this document for performing the necessary Kubernetes secret management and resource configuration. The secret management is mandatory as ARBA requires this to communicate with the Master API of the Kubernetes cluster.
+## (4) Deploying experiment-controller
+Before deploying, check out the [Operations section](README.md#operations) below in this document for performing the necessary Kubernetes secret management and resource configuration. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
+
+The example experiment in the operations directory contains only a helm chart for deploying the experiment-controller with ARBA. As such the script below illustrates how to directly install the experiment controller using `kubectl`. In this simple exeriment we only deploy a single Pod.
+
 ```bash
-helm install ${k8_scalar_dir}/operations/arba-with-experiment-controller
+kubectl create -f ${k8_scalar_dir}/operations/arba-with-experiment-controller/templates/experiment-controller.yaml 
 ```
 
 ## (5) Perform experiment for determining the mapping between SLA violations and resource usage metrics  
 Before starting the experiment, we recommend using the `kubectl get pods --all-namespaces` command to validate that no error occured during the deployment. Finally, we can start the experiment by executing the following command:
+
 ```bash
 kubectl exec experiment-controller -- bash bin/stress.sh --duration 400 500:1500:1000
 ```
+
 This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds. Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the pod experiment-controller pod in the `/exp/var` directory. The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Ofcourse, the second command is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
 ```bash
 # Copy experiment-controller pod's Scalar results
 kubectl cp default/experiment-controller:/exp/var ${k8_scalar_dir}/${my_experiment}/scalar-results
-
+kubectl delete pod experiment-controller
+```
+```bash
 # Open the Grafana dashboard in your default browser and take relevant screenshots
 open http://$(minikube ip):30345/
 ```
@@ -268,10 +275,36 @@ bin/stress.sh [OPTIONS] [ARGS]
 ## (6) Implement an elastic scaling policy that monitors the resource usage
 This step requires some custom development in the Riemann component. Extend Riemann's configuration with a custom scaling strategy. We recommend checking out http://riemann.io/ to get familiar with the way that events are processed. While Riemann has a slight learning curve, the configuration has access to a Clojure, which is a complete programming language. While out of scope for the provided examplar, new strategies should most often combine events of the same deployment or statefulset by folding them. The image should be build and uploaded to the repository in a similar fashion as demonstrated in step (3).
 
-## (7) Test the elastic scaling policy by executing the workload and measuring the number of SLA violations
-Finally, this step is very similar to the fifth step. The biggest difference occurs during processing the results. We will use the each request's latency time to determine whether a SLA violation has occured. The implemented scaling policy is ineffective if the service level agreement does not reach its objective.
+This example experiment has created an [ARBA image with three scaling strategies](development/riemann/etc/riemann.config) as defined in Table 1 of the related paper. The ARBA service will be deployed with as configuration to use one of these strategies (i.e Strategy 2 of Table 1: `scale if CPU usage > 67% of CPU usage limit`). See [operations/arba-with-experiment-controller/values.yaml](operations/arba-with-experiment-controller/values.yaml).
 
-## (8) Repeat steps 6 and 7 until you have found an elastic scaling policy that works for this workload
+## (7) Deploy ARBA 
+
+To deploy the ARBA image together with the experiment-controller using Helm, execute the following script
+
+```bash
+#kubectl delete old Pod of experiment-controller if not already done
+kubectl delete Pod experiment-controller
+helm install ${k8_scalar_dir}/operations/arba-with-experiment-controller
+```
+
+## (8) Test the elastic scaling policy by executing the workload and measuring the number of SLA violations
+Finally, this step is very similar to the fifth step. The biggest difference occurs during processing the results. We will analyze the request latencies to determine how many SLO violations have occured with respect to the expected latency of 150 ms. The implemented scaling policy is ineffective if SLO violations have occurred for more than 5% of the requests.
+
+Repeat the experiment:
+```bash
+kubectl exec experiment-controller -- bash bin/stress.sh --duration 400 500:1500:1000
+```
+And open grafana to see when a second cassandra Pod is added.
+```bash
+# Open the Grafana dashboard in your default browser and take relevant screenshots
+open http://$(minikube ip):30345/
+```
+or requests the number of replicas of the statefulset:
+```bash
+kubectl get statefulset cassandra
+```
+
+## (9) Repeat steps 7 and 8 until you have found an elastic scaling policy that works for this workload
 
 # Infrastructure
 You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit.
