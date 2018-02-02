@@ -86,7 +86,7 @@ curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-darwin-amd64
 # Install Helm server on Kubernetes cluster
 helm init
 ```
-### For Linux OS on bare-metal:
+### For Linux on bare-metal:
 
 Install [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
 
