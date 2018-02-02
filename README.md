@@ -128,7 +128,7 @@ curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-linux-amd64.
 helm init
 ```
 
-## For Windows:
+### For Windows:
 
 Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 
@@ -168,7 +168,10 @@ curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-windows-amd6
 helm init
 ```
 
-Afterwards, we want to add the monitoring capabilities to the cluster using Helm. We install the _monitoring-core_ chart by the following command. This chart includes instantiated templates for the following Kubernetes services: Heapster, Grafana and the InfluxDb. 
+## Deploy Heapster monitoring service
+Now with Kubernetes and Helm installed, you should be able to install services on Kubernetes using Helm.
+
+Let us add the monitoring capabilities of Heapstwe to the cluster using Helm. We install the _monitoring-core_ chart by the following command. This chart includes instantiated templates for the following Kubernetes services: Heapster, Grafana and the InfluxDb. 
 ```bash
 helm install ${k8_scalar_dir}/operations/monitoring-core
 ```
