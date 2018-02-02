@@ -10,10 +10,14 @@ The setup of a Kubernetes cluster depends on the underlying platform. The _infra
 ## Prerequisites
 
 
+
 **System requirements**
   * Your local machine should support VT-x virtualization
-  * One local VM with 4 virtual CPU cores and 8GB virtual memory must be able to run on your machine
-  
+  * One local VM with minimmaly 4 virtual CPU cores and 8GB virtual memory must be able to run on your machine in order to run 2 Cassandra instances of each 4GB memory. 
+ 
+**Disclaimer**
+This local minikube-based setup is not suitable for running scientific experiments. If you want accurate results for the example experiment on a single machine, your system should at least support try a local VM of 16 virtual CPU cores and 32 GB of virtual memory. But we have never tested this. Moreover it is better to run the different component of the K8-Scalar architecture on different VM as illustrated in Section 3 of the related paper. See the __Infrastructure__ section at the end of this README fule for some advice on how to control the placement of Pods.  
+
 **Install git:** 
   * MacOS: https://git-scm.com/download/mac
   * Linux Debian: sudo apt-get install git
