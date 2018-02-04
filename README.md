@@ -143,17 +143,17 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/wi
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=$PATH:`pwd`
 minikube start --cpus 4 --memory 8192
 ```
-
-If you get an authorization error when running `kubectl get nodes`:
+It takes several minutes on our Windows 10 machine before the Kubernetes worker node gets ready.
 ```
 $ kubectl.exe get nodes
 error: You must be logged in to the server (Unauthorized)
-```
-You have to switch to the minikube kubectl context
+...
 
-```
-$ kubectl config use-context minikube
-Switched to context "minikube".
+$ kubectl get nodes
+NAME       STATUS     ROLES     AGE       VERSION
+minikube   NotReady   <none>    4d        v1.9.0
+
+...
 
 $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
@@ -212,6 +212,7 @@ mv ${k8_scalar_dir}/development/scalar/target/scalar-1-0-0.jar ${k8_scalar_dir}/
 # Configure the experiment-controller's workload
 cd ${k8_scalar_dir}/development/example-experiment/etc/
 vim experiment-template.properties # Configure user_implementations, do not modify user_implementations_prestart
+#to quit vi type ":q <enter>"
 ``` 
 
 Finally, build a new image for the experiment-controller
@@ -335,6 +336,7 @@ cp ~/.minikube/client.crt .
 cp ~/.minikube/client.key .
 cp ~/.minikube/ca.crt .
 vim config
+#to quit vim type ":q <enter>"
 ```
 
 ```
