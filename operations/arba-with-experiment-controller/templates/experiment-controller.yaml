@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: experiment-controller
-    image: t138/experiment-2
+    image: t138/experiment-3
     volumeMounts:
     - name: kubeconfig
       mountPath: /root/.kube
