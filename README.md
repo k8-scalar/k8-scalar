@@ -345,7 +345,12 @@ kubectl get statefulset cassandra
 ## (9) Repeat steps 7 and 8 until you have found an elastic scaling policy that works for this workload
 
 # Infrastructure
-You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit.
+You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account:
+
+```
+kubectl create -f ${k8_scalar_dir}/development/helm/helm.yaml
+helm init --service-account helm
+```
 
 In this tutorial, however, we will use a MiniKube deployment on our local device.
 This is just for demonstrating purposes as the resources provided by a single laptop are unsufficient for valid experiment results.
