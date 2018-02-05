@@ -244,6 +244,7 @@ Before starting the experiment, we recommend using the `kubectl get pods --all-n
 ```bash
 kubectl exec experiment-controller -- bash bin/stress.sh --duration 400 500:1500:1000
 ```
+This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds.
 
 The user guide of `stress.sh` is returned when running stress.sh without any option:
 
@@ -272,7 +273,7 @@ bin/stress.sh [OPTIONS] [ARGS]
    bin/stress.sh 10:100:10
 ```
 
-This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds. Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the pod experiment-controller pod in the `/exp/var` directory. The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Of course, the second script to open grafana is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
+Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the pod experiment-controller pod in the `/exp/var` directory. The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Of course, the second script to open grafana is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
 ```bash
 # Open a shell to experiment-controller pod's Scalar results
 $ kubectl exec -it experiment-controller -- bash
