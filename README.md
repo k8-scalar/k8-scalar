@@ -327,7 +327,7 @@ To deploy the ARBA image together with the experiment-controller using Helm, exe
 
 ```bash
 #kubectl delete old Pod of experiment-controller if not already done
-kubectl delete Pod experiment-controller
+kubectl delete pod experiment-controller
 helm install ${k8_scalar_dir}/operations/arba-with-experiment-controller
 ```
 
