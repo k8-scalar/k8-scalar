@@ -211,7 +211,7 @@ mv ${k8_scalar_dir}/development/scalar/target/scalar-1-0-0.jar ${k8_scalar_dir}/
 ```
 Next we want to configure scalar itself. If you want to configure a linearly increasing workload profile, you don't need to do anything here. The `stress.sh` script offers a user-friendly tool for configuring such workload profile (See step 5 for more detail)
 
-If you want to configure another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](development/scalar/conf.experiment.properties). How to specify this configuration is explained [here](docs/scalar/features.md).
+If you want to configure another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](development/scalar/conf.experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](docs/scalar/features.md).
 ```
 # Configure the experiment-controller's workload
 cd ${k8_scalar_dir}/development/example-experiment/etc/
