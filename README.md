@@ -16,7 +16,7 @@ The setup of a Kubernetes cluster depends on the underlying platform. The _infra
   * One local VM with minimmaly 4 virtual CPU cores and 8GB virtual memory must be able to run on your machine in order to run 2 Cassandra instances of each 4GB memory. 
  
 **Disclaimer**
-This local minikube-based setup is not suitable for running scientific experiments. If you want accurate results for the example experiment on a single machine, your could try a minikube VM of 16 virtual CPU cores and 32 GB of virtual memory. But we have never tested this. Moreover Minikube only supports kubernetes clusters with one worker node (i.e. the minikube VM). it is better to run the different components of the K8-Scalar architecture on different VMs as illustrated in Section 3 of the related paper. See the __Infrastructure__ section at the end of this README fule for some advice on how to control the placement of Pods across VMs.  
+This local minikube-based setup is not suitable for running scientific experiments. If you want accurate results for the example experiment on a single machine, your could try a minikube VM of 16 virtual CPU cores and 32 GB of virtual memory. But we have never tested this. Moreover Minikube only supports kubernetes clusters with one worker node (i.e. the minikube VM). it is better to run the different components of the K8-Scalar architecture on different VMs as illustrated in Section 3 of the related paper. See the __Infrastructure__ section at the end of this README file for some advice on how to control the placement of Pods across VMs.  
 
 **Install git:** 
   * MacOS: https://git-scm.com/download/mac
@@ -244,11 +244,39 @@ Before starting the experiment, we recommend using the `kubectl get pods --all-n
 ```bash
 kubectl exec experiment-controller -- bash bin/stress.sh --duration 400 500:1500:1000
 ```
+This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds.
 
-This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds. Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the pod experiment-controller pod in the `/exp/var` directory. The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Of course, the second script to open grafana is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
+The user guide of `stress.sh` is returned when running stress.sh without any option:
+
+```
+kubectl exec experiment-controller -- bash bin/stress.sh
+bin/stress.sh [OPTIONS] [ARGS]
+
+ Performs an experiment to determine the threshhold to start scaling databases.
+
+ Parameters:
+   userload                             Specify user load or, the start user load, end user load and incrementing interval. (Format:  NN or NN:NN:NN)
+
+ Options:
+   -d | --duration              Specify the duration in seconds for each run. (Default: 60)
+   -p | --pod                   The initial pod (Default: cassandra-0)
+   -h | --help                  Display this message
+
+ Note:
+   This script MUST be executed from within the experiment directory.
+
+ Examples:
+   # Stress Cassandra with an user load of 125 requests per seconds for 200 seconds
+   bin/stress.sh --duration 200 125
+
+   # Executes the experiment: 10 users for first run, 20 users for second run, .., 100 users for last run.
+   bin/stress.sh 10:100:10
+```
+
+Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the pod experiment-controller pod in the `/exp/var` directory. The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Of course, the second script to open grafana is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
 ```bash
 # Open a shell to experiment-controller pod's Scalar results
-$ kubectl exit -it experiment-controller --bash
+$ kubectl exec -it experiment-controller -- bash
 root@experiment-controller:/exp/var# cd results/
 root@experiment-controller:/exp/var/results# ls
 run-1500.dat  run-500.dat
@@ -287,32 +315,7 @@ open http://192.168.99.100:30345/
 ```
 
 
-The user guide of `stress.sh` is returned when running stress.sh without any option:
 
-```
-kubectl exec experiment-controller -- bash bin/stress.sh
-bin/stress.sh [OPTIONS] [ARGS]
-
- Performs an experiment to determine the threshhold to start scaling databases.
-
- Parameters:
-   userload                             Specify user load or, the start user load, end user load and incrementing interval. (Format:  NN or NN:NN:NN)
-
- Options:
-   -d | --duration              Specify the duration in seconds for each run. (Default: 60)
-   -p | --pod                   The initial pod (Default: cassandra-0)
-   -h | --help                  Display this message
-
- Note:
-   This script MUST be executed from within the experiment directory.
-
- Examples:
-   # Stress Cassandra with an user load of 125 requests per seconds for 200 seconds
-   bin/stress.sh --duration 200 125
-
-   # Executes the experiment: 10 users for first run, 20 users for second run, .., 100 users for last run.
-   bin/stress.sh 10:100:10
-```
 
 ## (6) Implement an elastic scaling policy that monitors the resource usage
 This step requires some custom development in the Riemann component. Extend Riemann's configuration with a custom scaling strategy. We recommend checking out http://riemann.io/ to get familiar with the way that events are processed. While Riemann has a slight learning curve, the configuration has access to a Clojure, which is a complete programming language. While out of scope for the provided examplar, new strategies should most often combine events of the same deployment or statefulset by folding them. The image should be build and uploaded to the repository in a similar fashion as demonstrated in step (3).
@@ -325,7 +328,7 @@ To deploy the ARBA image together with the experiment-controller using Helm, exe
 
 ```bash
 #kubectl delete old Pod of experiment-controller if not already done
-kubectl delete Pod experiment-controller
+kubectl delete pod experiment-controller
 helm install ${k8_scalar_dir}/operations/arba-with-experiment-controller
 ```
 
@@ -349,12 +352,17 @@ kubectl get statefulset cassandra
 ## (9) Repeat steps 7 and 8 until you have found an elastic scaling policy that works for this workload
 
 # Infrastructure
-You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account:
+You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account. Moreover, to install the monitoring system in kubeadm, you need to install the monitoring-core-rbac chart instead of the monitoring-core chart.
 
 ```
 kubectl create -f ${k8_scalar_dir}/development/helm/helm.yaml
 helm init --service-account helm
 ```
+
+```
+helm install ${k8_scalar_dir}/operations/monitoring-core-rbac
+```
+
 
 In this tutorial, however, we will use a MiniKube deployment on our local device.
 This is just for demonstrating purposes as the resources provided by a single laptop are unsufficient for valid experiment results.
