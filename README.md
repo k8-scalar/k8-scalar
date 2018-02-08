@@ -235,21 +235,22 @@ Before deploying, check out the [Operations section](README.md#operations) below
 The example experiment in the operations directory contains only a helm chart for deploying the experiment-controller with ARBA. As such the script below illustrates how to directly install the experiment controller using `kubectl`. In this simple exeriment we only deploy a single Pod.
 
 ```bash
-kubectl create -f ${k8_scalar_dir}/operations/arba-with-experiment-controller/templates/experiment-controller.yaml 
+kubectl create -f ${k8_scalar_dir}/operations/arba-with-experiment-controller/templates/experiment-controller-service.yaml
+kubectl create -f ${k8_scalar_dir}/operations/arba-with-experiment-controller/templates/experiment-controller-statefulset.yaml  
 ```
 
 ## (5) Perform experiment for determining the mapping between SLA violations and resource usage metrics  
 Before starting the experiment, we recommend using the `kubectl get pods --all-namespaces` command to validate that no error occured during the deployment. Finally, we can start the experiment by executing the following command:
 
 ```bash
-kubectl exec experiment-controller -- bash bin/stress.sh --duration 400 500:1500:1000
+kubectl exec experiment-controller-0 -- bash bin/stress.sh --duration 400 500:1500:1000
 ```
 This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds.
 
 The user guide of `stress.sh` is returned when running stress.sh without any option:
 
 ```
-kubectl exec experiment-controller -- bash bin/stress.sh
+kubectl exec experiment-controller-0 -- bash bin/stress.sh
 bin/stress.sh [OPTIONS] [ARGS]
 
  Performs an experiment to determine the threshhold to start scaling databases.
@@ -273,14 +274,22 @@ bin/stress.sh [OPTIONS] [ARGS]
    bin/stress.sh 10:100:10
 ```
 
-Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the pod experiment-controller pod in the `/exp/var` directory. The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Of course, the second script to open grafana is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
+Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the experiment-controller pod in the `/exp/var` directory as well as in the `/data/results` directory of the VM on which the experiment-controller pod runs The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Of course, the second script to open grafana is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
 ```bash
 # Open a shell to experiment-controller pod's Scalar results
 $ kubectl exec -it experiment-controller -- bash
 root@experiment-controller:/exp/var# cd results/
 root@experiment-controller:/exp/var/results# ls
 run-1500.dat  run-500.dat
-root@experiment-controller:/exp/var/results# vi run-500.dat
+
+#OR: Open a shell to the minikube VM
+$ minikube ssh
+$ cd /data/results/results
+$ ls
+run-1500.dat  run-500.dat
+```
+```bash
+$vi run-500.dat
 Experiment consisting of 1 runs and 1 request types:
         CassandraWriteRequest
 
@@ -328,7 +337,8 @@ To deploy the ARBA image together with the experiment-controller using Helm, exe
 
 ```bash
 #kubectl delete old Pod of experiment-controller if not already done
-kubectl delete pod experiment-controller
+kubectl delete pod -l app=experiment-controller
+kubectl delete service experiment-controller
 helm install ${k8_scalar_dir}/operations/arba-with-experiment-controller
 ```
 
@@ -337,7 +347,7 @@ Finally, this step is very similar to the fifth step. The biggest difference occ
 
 Repeat the experiment:
 ```bash
-kubectl exec experiment-controller -- bash bin/stress.sh --duration 400 500:1500:1000
+kubectl exec experiment-controller-0 -- bash bin/stress.sh --duration 400 500:1500:1000
 ```
 And open grafana to see when a second cassandra Pod is added.
 ```bash
