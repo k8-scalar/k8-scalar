@@ -20,6 +20,7 @@ spec:
                 operator: In
                 values:
                 - experiment-controller
+            topologyKey: "kubernetes.io/hostname" 
       containers:
       - name: experiment-controller
         image: t138/experiment-3
