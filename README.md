@@ -328,7 +328,7 @@ open http://192.168.99.100:30345/
 ## (6) Implement an elastic scaling policy that monitors the resource usage
 This step requires some custom development in the Riemann component. Extend Riemann's configuration with a custom scaling strategy. We recommend checking out http://riemann.io/ to get familiar with the way that events are processed. While Riemann has a slight learning curve, the configuration has access to a Clojure, which is a complete programming language. While out of scope for the provided examplar, new strategies should most often combine events of the same deployment or statefulset by folding them. The image should be build and uploaded to the repository in a similar fashion as demonstrated in step (3).
 
-This example experiment has created an [ARBA image with three scaling strategies](development/riemann/etc/riemann.config) as defined in Table 1 of the related paper. The ARBA service will be deployed with as configuration to use one of these strategies (i.e Strategy 2 of Table 1: `scale if CPU usage > 67% of CPU usage limit`). See [operations/arba/values.yaml](operations/arba/values.yaml).
+This example experiment has created an [ARBA image with three scaling strategies](development/riemann/etc/riemann.config) as defined in Table 1 of the related paper. The ARBA service will be deployed with as configuration to use one of these strategies (i.e Strategy 2 of Table 1: `scale if CPU usage > 67% of CPU usage limit`). See [operations/arba/values.yaml](operations/arba/values.yaml). You can change this strategy without having to build a new Docker image of ARBA.
 
 ## (7) Deploy the default Riemann-based autoscaler
 
