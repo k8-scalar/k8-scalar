@@ -200,7 +200,13 @@ helm install ${k8_scalar_dir}/operations/cassandra-cluster
 
 ## (3) Determine and implement desired workload type for the deployed database in Scalar
 This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](development/scalar/src/be/kuleuven/distrinet/scalar/requests). Afterwards we want to build the application and copy the resulting jar:
+
+For this tutorial we will perform these steps on the minikube vm: 
 ```bash
+# Login on the minikube vm and clone the k8-scalar project
+minikube ssh
+git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
+
 # Extend User with operations for your database in the directory below
 cd ${k8_scalar_dir}/development/scalar/src/be/kuleuven/distrinet/scalar/users
 vim ${myDatabase}User.java # Cfr CassandraWriteUser.java
@@ -225,6 +231,9 @@ docker build -t ${myRepository}/experiment-controller ${k8_scalar_dir}/developme
 # overwrite in following command MyRepository_DOCKERHUB_PASSWRD with your secret password: 
 # docker login -u ${myRepository} -p MyRepository_DOCKERHUB_PASSWRD  
 docker push ${myRepository}/experiment-controller
+
+#leave the minikube vm
+exit
 ```
 
 Scalar is a fully distributed, extensible load testing tool with a numerous features. I recommend checking out https://distrinet.cs.kuleuven.be/software/scalar/ for more information.
