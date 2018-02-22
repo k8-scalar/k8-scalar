@@ -1,9 +1,5 @@
 # Features of scalar
 
-## Operations features
-
-The following operational features are supported by scalar
-
 ### Configuration of workload profile
 To configure a particular oscillating workload profile, Scalar supports the following configuration options:
 
@@ -63,7 +59,7 @@ These strategies are determined at run-time. The following existing strategies h
  1500; 2000; 20
  ```
 
-In this file, th enormalized values of 0/90, 10/90, 60/90/ and 20/90 requests have a think time of respectively between 0 and 500ms, 
+In this file, the enormalized values of 0/90, 10/90, 60/90/ and 20/90 requests have a think time of respectively between 0 and 500ms, 
 500 and 1000ms, 1000 and 1500ms.
 
   * UniformThinkTimeStrategy, generates think times according to a random uniform distribution of which the `mean` is configured in experiments.properties, 
@@ -74,9 +70,70 @@ In this file, th enormalized values of 0/90, 10/90, 60/90/ and 20/90 requests ha
 To add a think time strategy, define a subclass of the `ThinkTimeStrategy` and  `ThinkTimeStrategyFactory` classes
 of the package `be.kuleuven.distrinet.scalar.users.scheduling`.
 
+### Configuring a distributed Scalar experiment with multiple Scalar nodes
 
  
-### Sypport for testing mult-tenant applications
+To start up a Scalar experiment with multiple Scalar nodes, you need to specify the number of scalar nodes in [experiment.properties](../../development/scalar/conf/experiment.properties):
+
+```
+# Scalar cluster size. The master load generator will wait until this many nodes 
+# (including the master) report ready.
+scalar_minimal_cluster_size=3
+```
+
+Currently, this feature is not yet fully integrated with Kubernetes, so you cannot use the experiment-controller Helm chart for this. Instead you need to configure the `ClusterStarter` plugin that will create Scalar instances on different VMs. 
+
+Secondly, you need to activate the ClusterStarter plugn in [platform.properties](../../development/scalar/conf/experiment.properties) to actually start the 3 instances. 
+
+```
+## PLUGIN CONFIGURATION
+plugins=\
+	be.kuleuven.distrinet.scalar.plugin.ExperimentalPropertiesLoader,\
+	be.kuleuven.distrinet.scalar.plugin.ExperimentalResultsPublisher,\
+  	be.kuleuven.distrinet.scalar.plugin.SummaryGenerator,\
+  	be.kuleuven.distrinet.scalar.plugin.RequestReporter,\
+   be.kuleuven.distrinet.scalar.plugin.ClusterStarter
+#	be.kuleuven.distrinet.scalar.plugin.GnuPlotGenerator,\
+#	be.kuleuven.distrinet.scalar.plugin.HazelcastMonitor,\
+#	be.kuleuven.distrinet.scalar.plugin.ClusterMonitor,\
+#	be.kuleuven.distrinet.scalar.plugin.NodeMonitor, \
+#   be.kuleuven.distrinet.scalar.plugin.StabilityMonitor
+```
+
+Secondly, you need to configure the clusterstarter plugin in the same `platform.properties` file as follows:
+
+```
+# ClusterStarter config
+########################
+#
+# The list of nodes that form the Scalar cluster. Can be just "localhost", or can be
+# a comma separated list of hostnames. Leave empty for autodiscovery.
+scalar_cluster_nodes=localhost,host2,host3
+
+# The user account to use to access the other cluster nodes over ssh.
+cluster_starter_username=ec2-user
+
+# The private keyfile to use to access the other cluster nodes over ssh.
+cluster_starter_key=~/.ssh/id_rsa
+
+# Where scalar.jar can be found (or can be installed if not present) on the
+# other cluster nodes. End with a path separator (i.e., / on unix).
+cluster_starter_local_working_dir=/home/ec2-user/
+cluster_starter_remote_working_dir=/home/ec2-user/
+cluster_starter_scalar_jar=scalar.jar
+
+# Whether to upload the jar first, before starting.
+cluster_starter_upload_jar=false
+
+# Connection timeout in seconds for starting other Scalar nodes.
+cluster_starter_connect_timeout=10
+```
+
+In the future, we'll envision that the experiment-controller statefulset is automatically scaled to 3 instances and that the different Scalar containers auto-discover themselves. You can already scale the statefulset manually by setting the `replicas` field of [experiment-controller-statefulset.yaml file](../../operations/experiment-controller/templates/experiment-controller-statefulset.yaml) to 3 and leave the `scalar_cluster_nodes` field empty, so Scalar will auto-discover the running instances.
+
+
+
+### Support for testing multi-tenant applications
 Suppose you have an application that is used by differnt customers and different customer prefer to use different combinations of features.
 Such an application supports typically a configuration interface that allows customers to activate the desired feature. 
 In order to test the scaleability of every combination of features, you can configure Scalar to automate this in the `featuremapping.conf` file. For each feature it can be specified how Scalar must activate or deactivate a feature
@@ -127,7 +184,7 @@ java -jar target/scalar-1.0.0.jar conf/platform.properties conf/experiment.prope
 To include Scalar in your own Maven project, you can use the `scalar-project-pom.xml` as a template 
 The source code does also include unit tests that coverage most of Scalar's functionality 
 
-To develop a particular workload type, you have to design different subclasses of the `be.kuleuven.distrinet.scalar.core.User` and `be.kuleuven.distrinet.scalar.core.Request classes`. 
+To develop a particular workload type, you have to design different subclasses of the `be.kuleuven.distrinet.scalar.core.User` and `be.kuleuven.distrinet.scalar.core.Request classes`.  The [following paper](./heyman_preuveneers_joosen.pdf) illustrates in detail how to implemnt such User and Request classes
 
 ### Rich user behavior and interactions
 It is possible to implement all kinds of interactions between Users via a DataProvider. Consider the example of a system administrator User of the SaaS application who approves a request of a customer User to create a new tenant. In a real life system. the approval action will generate an email with a URL to  verify the account creation. This URL is a piece of data that the customer User needs to perform the email verification.
@@ -155,3 +212,4 @@ if (_useTenantID) {
 }
 
 ```
+### Customizable via plugins
