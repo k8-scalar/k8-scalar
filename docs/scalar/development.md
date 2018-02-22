@@ -22,5 +22,5 @@ The source code does also include unit tests that coverage most of Scalar's func
 
 To develop a particular workload type, you have to design different subclasses of the `be.kuleuven.distrinet.scalar.core.User` and `be.kuleuven.distrinet.scalar.core.Request classes`.  
 The [following paper](./heyman_preuveneers_joosen.pdf) illustrates in detail how to implemnt such User and Request classes
-You can also take a look at the implementation of the Cassandra..User and Cassandra..Request classes [here](development/scalar/src/be/kuleuven/distrinet/scalar/
+You can also take a look at the implementation of the Cassandra..User and Cassandra..Request classes [here](../../development/scalar/src/be/kuleuven/distrinet/scalar/
 )
