@@ -214,20 +214,3 @@ feature_model_config=SomeFeature,SomeOtherFeature
 ```
 Then, Scalar will create during the start of the experiment also an object of the `be.preuveneers.mobicent.scalar.config.MobiCentFeatureConfig` class but invoke the method `disableLogging()`.
 
-## Development features
-
-### Prerequisites
-Open the project in Eclipse. Click on project -> Configure -> Convert to Maven project. All dependencies are managed via Maven
-To execute a dummy Scalar experiment on your local machine, you can start Scalar with the default `experiment.properties` and `platform.properties` 
-configuration files. Start the Jave class Launcher.class in Eclipse with as command-line arguments `conf/platform.properties` and `conf/experiment.properties`.
-
-
-You also compile the Scalar code at the command line with `mvn package`.  You execute the dummy Scalar experiment as 
-```
-java -jar target/scalar-1.0.0.jar conf/platform.properties conf/experiment.properties
-```
-To include Scalar in your own Maven project, you can use the `scalar-project-pom.xml` as a template 
-The source code does also include unit tests that coverage most of Scalar's functionality 
-
-To develop a particular workload type, you have to design different subclasses of the `be.kuleuven.distrinet.scalar.core.User` and `be.kuleuven.distrinet.scalar.core.Request classes`.  The [following paper](./heyman_preuveneers_joosen.pdf) illustrates in detail how to implemnt such User and Request classes
-
