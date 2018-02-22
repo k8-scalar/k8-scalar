@@ -1,7 +1,7 @@
 ## Disclaimer for external users
 
 We are still in the process of making the code of Scalar publicly available. 
-Right now, in order to compile a Scalar experiment you first need to to add the (scalar.jar)[../../development/scalar/target/original-scalar-1.0.0.jar)
+Right now, in order to compile a Scalar experiment you first need to to add the [scalar-1.0.0.jar](../../development/scalar/target/)
  as a Maven dependency in the [pom.xml file](../..development/scalar/pom.xml). 
 
 JavaDoc documentation is available at https://distrinet.cs.kuleuven.be/software/scalar/scalar-doc/index.html
