@@ -1,4 +1,4 @@
-# Features of scalar
+## Features of scalar
 
 ### Configuration of workload profile
 To configure a particular oscillating workload profile, Scalar supports the following configuration options:
@@ -70,6 +70,57 @@ In this file, the enormalized values of 0/90, 10/90, 60/90/ and 20/90 requests h
 To add a think time strategy, define a subclass of the `ThinkTimeStrategy` and  `ThinkTimeStrategyFactory` classes
 of the package `be.kuleuven.distrinet.scalar.users.scheduling`.
 
+### Customizable via plugins
+It is possible to extend Scalar with additional functionality by means of plugins.
+The currently available plugins are listed in the [platform.properties file](../../development/scalar/conf/experiment.properties).
+
+
+```
+## PLUGIN CONFIGURATION
+plugins=\
+	be.kuleuven.distrinet.scalar.plugin.ExperimentalPropertiesLoader,\
+	be.kuleuven.distrinet.scalar.plugin.ExperimentalResultsPublisher,\
+  	be.kuleuven.distrinet.scalar.plugin.SummaryGenerator,\
+  	be.kuleuven.distrinet.scalar.plugin.RequestReporter
+#     be.kuleuven.distrinet.scalar.plugin.ClusterStarter
+#	be.kuleuven.distrinet.scalar.plugin.GnuPlotGenerator,\
+#	be.kuleuven.distrinet.scalar.plugin.HazelcastMonitor,\
+#	be.kuleuven.distrinet.scalar.plugin.ClusterMonitor,\
+#	be.kuleuven.distrinet.scalar.plugin.NodeMonitor, \
+#   be.kuleuven.distrinet.scalar.plugin.StabilityMonitor
+
+```
+
+
+### Rich user behavior and interactions
+It is possible to implement all kinds of interactions between Users via a DataProvider. Consider the example of a system administrator User of the SaaS application who approves a request of a customer User to create a new tenant. In a real life system. the approval action will generate an email with a URL to  verify the account creation. This URL is a piece of data that the customer User needs to perform the email verification.
+
+The [following paper](./heyman_preuveneers_joosen.pdf) illustrates in detail how to configure and use a DataProvider for implementing such real-life User interactions.
+
+
+### Custom experiment.properties
+It is also possible to add custom properties to configure the experment.
+Suppose you want to test the application of a particular customer, also referred to as tenant. 
+
+You can then add for example the following two properties to `experiment.properties` :
+
+```
+use_tenant_id: true
+tenant_id: 23246
+```
+
+and let a User class implementation retrieve the values of these two properties as follows:
+
+```
+_useTenantID = data().getAsBoolean("use_tenant_id");
+if (_useTenantID) { 
+  int tenantID = data().getAsInt("tenant_id");
+}
+
+```
+
+
+
 ### Configuring a distributed Scalar experiment with multiple Scalar nodes
 
  
@@ -82,8 +133,7 @@ scalar_minimal_cluster_size=3
 ```
 
 Currently, this feature is not yet fully integrated with Kubernetes, so you cannot use the experiment-controller Helm chart for this. Instead you need to configure the `ClusterStarter` plugin that will create Scalar instances on different VMs. 
-
-Secondly, you need to activate the ClusterStarter plugn in [platform.properties](../../development/scalar/conf/experiment.properties) to actually start the 3 instances. 
+To use this plugin, you need to activate the ClusterStarter plugn in the [platform.properties file](../../development/scalar/conf/experiment.properties). Secondly, you need to configure the clusterstarter plugin in the same platform.properties file. See an extract of required configuration for this file below :
 
 ```
 ## PLUGIN CONFIGURATION
@@ -98,11 +148,7 @@ plugins=\
 #	be.kuleuven.distrinet.scalar.plugin.ClusterMonitor,\
 #	be.kuleuven.distrinet.scalar.plugin.NodeMonitor, \
 #   be.kuleuven.distrinet.scalar.plugin.StabilityMonitor
-```
 
-Secondly, you need to configure the clusterstarter plugin in the same `platform.properties` file as follows:
-
-```
 # ClusterStarter config
 ########################
 #
@@ -129,8 +175,7 @@ cluster_starter_upload_jar=false
 cluster_starter_connect_timeout=10
 ```
 
-In the future, we'll envision that the experiment-controller statefulset is automatically scaled to 3 instances and that the different Scalar containers auto-discover themselves. You can already scale the statefulset manually by setting the `replicas` field of [experiment-controller-statefulset.yaml file](../../operations/experiment-controller/templates/experiment-controller-statefulset.yaml) to 3 and leave the `scalar_cluster_nodes` field empty, so Scalar will auto-discover the running instances.
-
+In the future, we'll envision that the experiment-controller statefulset is automatically scaled to 3 instances and that the different Scalar containers auto-discover themselves. You can already manually try this out by setting the `replicas` field of [experiment-controller-statefulset.yaml file](../../operations/experiment-controller/templates/experiment-controller-statefulset.yaml) to 3. The cluster starter plugin then does not need to be activated.
 
 
 ### Support for testing multi-tenant applications
@@ -186,30 +231,3 @@ The source code does also include unit tests that coverage most of Scalar's func
 
 To develop a particular workload type, you have to design different subclasses of the `be.kuleuven.distrinet.scalar.core.User` and `be.kuleuven.distrinet.scalar.core.Request classes`.  The [following paper](./heyman_preuveneers_joosen.pdf) illustrates in detail how to implemnt such User and Request classes
 
-### Rich user behavior and interactions
-It is possible to implement all kinds of interactions between Users via a DataProvider. Consider the example of a system administrator User of the SaaS application who approves a request of a customer User to create a new tenant. In a real life system. the approval action will generate an email with a URL to  verify the account creation. This URL is a piece of data that the customer User needs to perform the email verification.
-
-The [following paper](./heyman_preuveneers_joosen.pdf) illustrates in detail how to configure and use a DataProvider for implementing such real-life User interactions.
-
-
-### Custom experiment.properties
-It is also possible to add custom properties to configure the experment.
-Suppose you want to test the application of a particular customer, also referred to as tenant. 
-
-You can then add for example the following two properties to `experiment.properties` :
-
-```
-use_tenant_id: true
-tenant_id: 23246
-```
-
-and let a User class implementation retrieve the values of these two properties as follows:
-
-```
-_useTenantID = data().getAsBoolean("use_tenant_id");
-if (_useTenantID) { 
-  int tenantID = data().getAsInt("tenant_id");
-}
-
-```
-### Customizable via plugins
