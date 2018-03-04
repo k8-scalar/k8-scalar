@@ -51,6 +51,12 @@ Note2: The snippets contain environment variables which should be self-declarati
 
 
 ### For Mac OS:
+Install [Homebrew](https://brew.sh/) if not yet installed:
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+
 install kubectl, minikube and helm client
 ```bash
 # Install VirtualBox
