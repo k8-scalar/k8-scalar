@@ -69,22 +69,9 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.1/minik
 minikube start --cpus 4 --memory 8192
 
 ```
-On windows 10 we experienced a bootstrapping race-condition:
-We get an authorization error when running `kubectl get nodes` while all appropriate credentials are actually correctly configured:
+Wait until the minikube worker node is ready. You can check the readiness of the worker node by running the following command:
 
 ```
-$ kubectl.exe get nodes
-error: You must be logged in to the server (Unauthorized)
-```
-What helps is to wait some time, switch to the minikube kubectl context, and
-open the ./minikube/config file
-
-```
-$ kubectl config use-context minikube
-Switched to context "minikube".
-
-$vi ./.minikube/config
-
 $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
 minikube   Ready     <none>    21m       v1.9.0
@@ -150,7 +137,7 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/wi
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=$PATH:`pwd`
 minikube start --cpus 4 --memory 8192
 ```
-It takes several minutes on our Windows 10 machine before the Kubernetes worker node gets ready.
+It takes several minutes on our Windows 10 machine before the Kubernetes worker node gets ready. Execute the following command to see when the minikube worker node is ready. 
 ```
 $ kubectl.exe get nodes
 error: You must be logged in to the server (Unauthorized)
