@@ -1,7 +1,7 @@
 # K8-Scalar
 For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. 
 
-# Evaluating autoscalers for container-orchestrated database clusters
+# I. Evaluating autoscalers for container-orchestrated database clusters
 This tutorial provides more practical know-how for the related paper. Nine steps allow us to effectively implement and evaluate elastic scaling strategies for specific database and workload types.
 
 The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on your local machine, then you can run directly the bash scripts that are provided by this tutorial. This tutorial installs [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). 
@@ -367,7 +367,7 @@ kubectl get statefulset cassandra
 
 ## (9) Repeat steps 7 and 8 until you have found an elastic scaling policy that works for this workload
 
-# I. Infrastructure
+# II. Infrastructure
 You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account. Moreover, to install the monitoring system in kubeadm, you need to install the monitoring-core-rbac chart instead of the monitoring-core chart.
 
 ```
@@ -385,7 +385,7 @@ This is just for demonstrating purposes as the resources provided by a single la
 You can, however, follow the same exact steps on a multi-node cluster.
 For a more accurate reproduction scenario, we suggest adding labels to each node and add them as constraints to the YAML files of the relevant Kubernetes objects via a [nodeSelector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector). As such different Kubernetes objects such as experiment-controller and the cassandra instance will not be created on the same node, as presented in the related paper.
 
-# II. Operations
+# III. Operations
 ## Experiment configuration  
 The experiment has a mandatory configuration to allow communication with the cluster, and an optional configuration to fine-tune experiment parameters. Also, do not forget to use your own repository name in Kubernetes resource declaration files when uploading custom images.
 
@@ -455,7 +455,7 @@ Several Kubernetes resources can optionally be fine-tuned. Application configura
 
 Finally, the resource requests and limits of the Cassandra pod can also be adjusted. These files can be found in the `operations` subdirectory, e.g. the Cassandra YAML file can be found in [operations/cassandra-cluster/templates](operations/cassandra-cluster/templates/cassandra-statefulset.yaml). For this MiniKube tutorial we have set for resource Requests lower than the resource limits in comparison to the configuration of Cassandra instances in the [scientifically evaluated experiments of the associated paper](experiments/LMaaS)
 
-# III. Development
+# IV. Development
 The goal of this section is to explain how to modify the K8-Scalar examplar to experiment with other types of autoscalers and other types of services.
 
 In order to replace the default ARBA autoscaler with another autoscaler,
