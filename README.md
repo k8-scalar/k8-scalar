@@ -236,7 +236,7 @@ docker push ${myRepository}/experiment-controller
 exit
 ```
 
-Scalar is a fully distributed, extensible load testing tool with a numerous features. I recommend checking out https://distrinet.cs.kuleuven.be/software/scalar/ for more information.
+Scalar is a fully distributed, extensible load testing tool with a numerous features. Have a look at the [Scalar documentation](../docs/scalar).
 
 ## (4) Deploying experiment-controller
 Before deploying, check out the [Operations section](README.md#operations) below in this document for performing the necessary Kubernetes secret management and resource configuration. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
