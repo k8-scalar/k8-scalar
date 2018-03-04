@@ -13,7 +13,8 @@ The setup of a Kubernetes cluster depends on the underlying platform. The _infra
 
 **System requirements**
   * Your local machine should support VT-x virtualization
-  * One local VM with minimmaly 4 virtual CPU cores and 8GB virtual memory must be able to run on your machine in order to run 2 Cassandra instances of each 4GB memory. 
+  * One local VM with minimmaly 4 virtual CPU cores and 8GB virtual memory must be able to run on your machine in order to run 2 Cassandra instances of each 4GB memory 
+  * To run a minikube cluster only, a VM with 1 CPU core and 2GB is memory is sufficient but the cassandra instances will not fit.
  
 **Disclaimer**
 This local minikube-based setup is not suitable for running scientific experiments. If you want accurate results for the example experiment on a single machine, your could try a minikube VM of 16 virtual CPU cores and 32 GB of virtual memory. But we have never tested this. Moreover Minikube only supports kubernetes clusters with one worker node (i.e. the minikube VM). it is better to run the different components of the K8-Scalar architecture on different VMs as illustrated in Section 3 of the related paper. See the __Infrastructure__ section at the end of this README file for some advice on how to control the placement of Pods across VMs.  
@@ -236,7 +237,7 @@ docker push ${myRepository}/experiment-controller
 exit
 ```
 
-Scalar is a fully distributed, extensible load testing tool with a numerous features. Have a look at the [Scalar documentation](../docs/scalar).
+Scalar is a fully distributed, extensible load testing tool with a numerous features. Have a look at the [Scalar documentation](docs/scalar).
 
 ## (4) Deploying experiment-controller
 Before deploying, check out the [Operations section](README.md#operations) below in this document for performing the necessary Kubernetes secret management and resource configuration. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
@@ -366,7 +367,7 @@ kubectl get statefulset cassandra
 
 ## (9) Repeat steps 7 and 8 until you have found an elastic scaling policy that works for this workload
 
-# Infrastructure
+# I. Infrastructure
 You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account. Moreover, to install the monitoring system in kubeadm, you need to install the monitoring-core-rbac chart instead of the monitoring-core chart.
 
 ```
@@ -384,7 +385,7 @@ This is just for demonstrating purposes as the resources provided by a single la
 You can, however, follow the same exact steps on a multi-node cluster.
 For a more accurate reproduction scenario, we suggest adding labels to each node and add them as constraints to the YAML files of the relevant Kubernetes objects via a [nodeSelector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector). As such different Kubernetes objects such as experiment-controller and the cassandra instance will not be created on the same node, as presented in the related paper.
 
-# Operations
+# II. Operations
 ## Experiment configuration  
 The experiment has a mandatory configuration to allow communication with the cluster, and an optional configuration to fine-tune experiment parameters. Also, do not forget to use your own repository name in Kubernetes resource declaration files when uploading custom images.
 
@@ -454,7 +455,7 @@ Several Kubernetes resources can optionally be fine-tuned. Application configura
 
 Finally, the resource requests and limits of the Cassandra pod can also be adjusted. These files can be found in the `operations` subdirectory, e.g. the Cassandra YAML file can be found in [operations/cassandra-cluster/templates](operations/cassandra-cluster/templates/cassandra-statefulset.yaml). For this MiniKube tutorial we have set for resource Requests lower than the resource limits in comparison to the configuration of Cassandra instances in the [scientifically evaluated experiments of the associated paper](experiments/LMaaS)
 
-# Development
+# III. Development
 The goal of this section is to explain how to modify the K8-Scalar examplar to experiment with other types of autoscalers and other types of services.
 
 In order to replace the default ARBA autoscaler with another autoscaler,
