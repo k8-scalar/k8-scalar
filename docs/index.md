@@ -1,4 +1,6 @@
-# Scope
+# K8-Scalar: a workbench to compare autoscalers of container-orchestrated services
+
+## Scope
 
 The K8-Scalar artifact is an easy-to-use and extensible workbench
 exemplar for implementing and evaluating different self-adaptive
@@ -73,7 +75,7 @@ scholarly paper:
     which is lost because the student did not commit the research data
     to our research data repository.
 
-# Content
+## Content
 
 The artifact is stored and publicly available on GitHub at the following
 URL: <https://github.com/k8-scalar/k8-scalar>. The current release
@@ -195,16 +197,7 @@ includes:
 
 4.  The `docs` directory containing the documentation of Scalar.
 
-# Getting the artifact
-
-The artifact endorsed by the Artifact Evaluation Committee is available
-free of charge on the Dagstuhl Research Online Publication Server
-(DROPS). In addition, the artifact is also available at:
-<https://github/k8-scalar/k8-scalar>. The above mentioned hands-on
-tutorial is available at
-<https://github.com/k8-scalar/k8-scalar/blob/master/README.md>.
-
-# Tested platforms
+## Tested platforms
 
 K8-Scalar runs on multiple platforms: Linux VMs, Linux bare metal, OS X,
 and Windows. It has been tested and used extensively on Linux Ubuntu
