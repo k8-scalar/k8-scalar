@@ -1,5 +1,3 @@
-\maketitle
-
 # Scope
 
 The K8-Scalar artifact is an easy-to-use and extensible workbench
@@ -241,10 +239,3 @@ The artifact is available under the Apache License version 2.0 ([
 http://www.apache.org/licenses/LICENSE-2.0](
 http://www.apache.org/licenses/LICENSE-2.0).
 
-# MD5 sum of the artifact
-
-f7a3f4aa8cc0f64c8b8f0b162bda8816
-
-# Size of the artifact
-
-0.19 GiB
