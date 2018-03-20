@@ -195,7 +195,7 @@ includes:
     presented in the scholarly paper in the `experiments/LMaaS`
     sub-directory.
 
-4.  The `docs` directory containing the documentation of Scalar.
+4.  This `docs` directory containing the documentation of K8-Scalar. See [index.md](./index.md) for the table of contents
 
 ## Tested platforms
 
