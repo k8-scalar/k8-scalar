@@ -318,6 +318,8 @@ CassandraWriteRequest (run 1, 500 users):
         99.99%  of requests handled in 7756.198ms.
 ```
 
+You can open the grafana dashboard for the visualisation of resource usage graphs. **Use HTTP and not HTTPS** for accesssing the kubernetes services.
+
 ```bash
 # Open the Grafana dashboard in your default browser and take relevant screenshots
 $ minikube ip
@@ -419,7 +421,7 @@ users:
 ```
 
 
-Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `arba-with-experiment-controller` Helm chart, i.e. `/root/.kube`. Have a look at the example config file above. The `ca.crt` certificate and the `client.crt` and `client.key` are stored in the `C:\Users\eddy\.minikube` directory of the local machine. This must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
+Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. Have a look at the example config file above. The `ca.crt` certificate and the `client.crt` and `client.key` are stored in the `C:\Users\eddy\.minikube` directory of the local machine. This must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
 
 **Windows**
 ```
