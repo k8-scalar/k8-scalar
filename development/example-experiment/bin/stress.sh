@@ -130,7 +130,7 @@ run() {
 	local duration=$2
 
 	setup_run $user_peak_load $duration
-	java -jar /exp/lib/scalar-1.0.0.jar /exp/etc/platform.properties /tmp/experiment.properties >&/dev/null
+	java -jar /exp/lib/scalar-1.0.0.jar /exp/etc/platform.properties /tmp/experiment.properties >> /exp/var/raw-data
 	teardown_run $user_peak_load
 }
 teardown_experiment() {
