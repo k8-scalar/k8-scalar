@@ -117,10 +117,11 @@ teardown_run() {
 	rm /tmp/experiment.properties
 
 	# Remove unneeded run files.
-	rm -f logfile-*.txt residence-times--tmp-experiment-properties.dat mythreaddump.txt
+	#rm -f logfile-*.txt residence-times--tmp-experiment-properties.dat mythreaddump.txt
 
 	# Gather results
 	mv results--tmp-experiment-properties.dat /exp/var/results/run-${user_peak_load}.dat
+        mv residence-times--tmp-experiment-properties.dat /exp/var/results/residence-times-${user_peak_load}.dat
 
 	# Remove data added to database
 	kubectl exec $pod -- cqlsh -e "TRUNCATE scalar.logs;"
@@ -134,7 +135,7 @@ run() {
 	teardown_run $user_peak_load
 }
 teardown_experiment() {
-	return
+	mv logfile-*.txt mythreaddump.txt /exp/var/logs
 }
 
 ## MAIN
