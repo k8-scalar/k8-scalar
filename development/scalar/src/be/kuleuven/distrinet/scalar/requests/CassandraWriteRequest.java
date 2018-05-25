@@ -18,7 +18,7 @@ public class CassandraWriteRequest extends Request {
         DatastaxCassandraClient cassandra = DatastaxCassandraClient.getInstance(user().targetUrl());
         try {
             startTimer();
-            cassandra.write(log, session);
+            cassandra.write(log);
             stopTimer();
 
             done(RequestResult.SUCCEEDED);
