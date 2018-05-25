@@ -207,7 +207,7 @@ vim ${myDatabase}User.java # Cfr CassandraWriteUser.java
 
 # After building the project, copy the resulting Jar file to the experiment-controller image
 # Note source code of scalar is not yet included in this project. You have to build from the existing scalar-1-0-0.jar and use the resulting # jar file.
-mv ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/development/example-experiment/lib/scalar-1.0.0.jar
+cp ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/development/example-experiment/lib/scalar-1.0.0.jar
 ```
 Next we want to configure scalar itself. If you want to configure a linearly increasing workload profile, you don't need to do anything here. The `stress.sh` script offers a user-friendly tool for configuring such workload profile (See step 5 for more detail)
 
