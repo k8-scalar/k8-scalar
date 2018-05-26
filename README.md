@@ -93,7 +93,7 @@ install kubectl, minikube and helm client
 # Install kubectl:
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
 #Install MiniKube
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.25.0/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube with enough resources
 minikube start --cpus 4 --memory 8192
 ```
@@ -134,7 +134,7 @@ install kubectl, minikube and helm client
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.9.0/bin/windows/amd64/kubectl.exe && export PATH=$PATH:`pwd`
 
 # Install minikube
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=$PATH:`pwd`
+curl -LO https://storage.googleapis.com/minikube/releases/v0.25.0/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=$PATH:`pwd`
 minikube start --cpus 4 --memory 8192
 ```
 It takes several minutes on our Windows 10 machine before the Kubernetes worker node gets ready. Execute the following command to see when the minikube worker node is ready. 
@@ -233,7 +233,7 @@ exit
 Scalar is a fully distributed, extensible load testing tool with a numerous features. Have a look at the [Scalar documentation](docs/scalar).
 
 ## (4) Deploying experiment-controller
-**Before deploying, check out the [Operations section](README.md#operations) below in this document for performing the necessary Kubernetes secret management and resource configuration**. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
+**Before deploying, check out the [Operations section](README.md#iii-operations) below in this document for performing the necessary Kubernetes secret management and resource configuration**. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
 
 We deploy the experiment controller also a statefulset that can be scaled to multiple instances. To install the stateful set with one instance, execute the following command 
 
@@ -393,35 +393,9 @@ cp ~/.kube/config .
 cp ~/.minikube/client.crt .
 cp ~/.minikube/client.key .
 cp ~/.minikube/ca.crt .
-vim config
-#to quit vim type ":q <enter>"
 ```
 
-```
-apiVersion: v1
-clusters:
-- cluster:
-    certificate-authority: C:\Users\eddy\.minikube\ca.crt
-    server: https://192.168.99.102:8443
-  name: minikube
-contexts:
-- context:
-    cluster: minikube
-    user: minikube
-  name: minikube
-current-context: minikube
-kind: Config
-preferences: {}
-users:
-- name: minikube
-  user:
-    as-user-extra: {}
-    client-certificate: C:\Users\eddy\.minikube\client.crt
-    client-key: C:\Users\eddy\.minikube\client.key
-```
-
-
-Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. Have a look at the example config file above. The `ca.crt` certificate and the `client.crt` and `client.key` are stored in the `C:\Users\eddy\.minikube` directory of the local machine. This must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
+Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directory `C:\Users\eddy\.minikube` directory of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
 
 **Windows**
 ```
