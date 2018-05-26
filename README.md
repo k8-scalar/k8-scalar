@@ -233,7 +233,7 @@ exit
 Scalar is a fully distributed, extensible load testing tool with a numerous features. Have a look at the [Scalar documentation](docs/scalar).
 
 ## (4) Deploying experiment-controller
-**Before deploying, check out the [Operations section](README.md#operations) below in this document for performing the necessary Kubernetes secret management and resource configuration**. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
+**Before deploying, check out the [Operations section](README.md#III. Operations) below in this document for performing the necessary Kubernetes secret management and resource configuration**. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
 
 We deploy the experiment controller also a statefulset that can be scaled to multiple instances. To install the stateful set with one instance, execute the following command 
 
@@ -393,35 +393,9 @@ cp ~/.kube/config .
 cp ~/.minikube/client.crt .
 cp ~/.minikube/client.key .
 cp ~/.minikube/ca.crt .
-vim config
-#to quit vim type ":q <enter>"
 ```
 
-```
-apiVersion: v1
-clusters:
-- cluster:
-    certificate-authority: C:\Users\eddy\.minikube\ca.crt
-    server: https://192.168.99.102:8443
-  name: minikube
-contexts:
-- context:
-    cluster: minikube
-    user: minikube
-  name: minikube
-current-context: minikube
-kind: Config
-preferences: {}
-users:
-- name: minikube
-  user:
-    as-user-extra: {}
-    client-certificate: C:\Users\eddy\.minikube\client.crt
-    client-key: C:\Users\eddy\.minikube\client.key
-```
-
-
-Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. Have a look at the example config file above. The `ca.crt` certificate and the `client.crt` and `client.key` are stored in the `C:\Users\eddy\.minikube` directory of the local machine. This must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
+Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directory `C:\Users\eddy\.minikube` directory of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
 
 **Windows**
 ```
