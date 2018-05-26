@@ -137,7 +137,7 @@ run() {
 	teardown_run $user_peak_load
 }
 teardown_experiment() {
-	mv logfile-*.txt mythreaddump.txt /exp/var/logs
+	mv *.txt /exp/var/logs
 }
 
 ## MAIN
