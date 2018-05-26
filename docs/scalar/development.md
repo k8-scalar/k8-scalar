@@ -12,7 +12,7 @@ mvn install:install-file
    -Dpackaging=jar
 ```
    
-JavaDoc documentation is available [here](../../development/scalar/doc] and here https://distrinet.cs.kuleuven.be/software/scalar/scalar-doc/index.html
+JavaDoc documentation is available [here](../../development/scalar/doc) 
 
 ## Scalar development workflow
 Open the project in Eclipse. Click on project -> Configure -> Convert to Maven project. All dependencies are managed via Maven
