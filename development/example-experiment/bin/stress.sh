@@ -122,6 +122,8 @@ teardown_run() {
 	# Gather results
 	mv results--tmp-experiment-properties.dat /exp/var/results/run-${user_peak_load}.dat
         mv residence-times--tmp-experiment-properties.dat /exp/var/results/residence-times-${user_peak_load}.dat
+ 	mv gnuplot-capacity.dat /exp/var/results/gnuplot-capacity-${user_peak_load}.dat
+        mv gnuplot-heatmap.dat /exp/var/results/gnuplot-heatmap-${user_peak_load}.dat
 
 	# Remove data added to database
 	kubectl exec $pod -- cqlsh -e "TRUNCATE scalar.logs;"
