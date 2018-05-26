@@ -289,6 +289,9 @@ $ minikube ssh
 $ cd /data/results/results
 $ ls
 run-1500.dat  run-500.dat
+
+#OR: SCP the /data/results directory from minikube to a local directory of your machine:
+$ scp -r -i $(minikube ssh-key) docker@$(minikube ip):/data/results .
 ```
 ```bash
 $vi run-500.dat
@@ -317,6 +320,7 @@ CassandraWriteRequest (run 1, 500 users):
         99.9%   of requests handled in 6851.968ms.
         99.99%  of requests handled in 7756.198ms.
 ```
+
 
 You can open the grafana dashboard for the visualisation of resource usage graphs. **Use HTTP and not HTTPS** for accesssing the kubernetes services.
 
