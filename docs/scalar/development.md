@@ -2,7 +2,7 @@
 
 We are still in the process of making the code of Scalar publicly available. 
 Right now, in order to compile a Scalar experiment you first need to to add the [scalar-1.0.0.jar](../../development/scalar/)
-to your Maven repository by executing the following command in the `development/scalar` directory:
+to your Maven repository by executing the following command in the `development/scalar` directory in your local git repository of k8-scalar
 ```
 mvn install:install-file
    -Dfile=scalar-1.0.0.jar
@@ -12,7 +12,7 @@ mvn install:install-file
    -Dpackaging=jar
 ```
    
-JavaDoc documentation is available [here](../../development/scalar/doc) 
+JavaDoc documentation is available in the `development/scalar/doc` directory in your local git repository of k8-scalar 
 
 ## Scalar development workflow
 Open the project in Eclipse. Click on project -> Configure -> Convert to Maven project. All dependencies are managed via Maven
