@@ -6,7 +6,7 @@ to your Maven repository by executing the following command in the `development/
 ```
 mvn install:install-file
    -Dfile=scalar-1.0.0.jar
-   -DgroupId=be.kuleuven.distrinet
+   -DgroupId=be.kuleuven.distrinet.scalar
    -DartifactId=scalar
    -Dversion=1.0.0
    -Dpackaging=jar
