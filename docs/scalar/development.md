@@ -1,10 +1,18 @@
 ## Disclaimer for external users
 
 We are still in the process of making the code of Scalar publicly available. 
-Right now, in order to compile a Scalar experiment you first need to to add the [scalar-1.0.0.jar](../../development/scalar/target/)
- as a Maven dependency in the [pom.xml file](../../development/scalar/pom.xml). 
-
-JavaDoc documentation is available at https://distrinet.cs.kuleuven.be/software/scalar/scalar-doc/index.html
+Right now, in order to compile a Scalar experiment you first need to to add the [scalar-1.0.0.jar](../../development/scalar/)
+to your Maven repository by executing the following command in the `development/scalar` directory:
+```
+mvn install:install-file
+   -Dfile=scalar-1.0.0.jar
+   -DgroupId=be.kuleuven.distrinet
+   -DartifactId=scalar
+   -Dversion=1.0.0
+   -Dpackaging=jar
+```
+   
+JavaDoc documentation is available [here](../../development/scalar/doc] and here https://distrinet.cs.kuleuven.be/software/scalar/scalar-doc/index.html
 
 ## Scalar development workflow
 Open the project in Eclipse. Click on project -> Configure -> Convert to Maven project. All dependencies are managed via Maven
