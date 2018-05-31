@@ -17,4 +17,5 @@ container-orchestrated database clusters", in Proceedings of the 13th Internatio
 
 * [Tutorial](./docs/tutorial.md)
 * [Overview](./docs/overview.md)
-* [Other documentation] (./docs/index.md)
+* [Other documentation](./docs/index.md)
+* Using K8-Scalar with other auto-scalers (to do)
