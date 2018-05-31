@@ -58,22 +58,6 @@ K8-Scalar extends Kubernetes with an advanced autoscaler for
     of a case study on using Cassandra in a Log Management-as-a-Service
     platform .
 
-  - The paper illustrates how to design, setup and analyze a series of
-    experiments to configure and evaluate the performance of a
-    Riemann-based autoscaler for a particular database (i.e.,
-    Cassandra ) and a particular workload type
-
-The artifact partially supports the following contribution of the
-scholarly paper:
-
-  - The paper validates the effectiveness of K8-scalar as a workbench
-    for accurately comparing the performance of different auto-scaling
-    strategies. This validation has been performed as part of a master
-    thesis. The artifact includes all the code for running the
-    experiments, but it does not include the collected research data,
-    which is lost because the student did not commit the research data
-    to our research data repository.
-
 ## Content
 
 The artifact is stored and publicly available on GitHub at the following
