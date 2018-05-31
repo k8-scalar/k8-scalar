@@ -25,9 +25,11 @@ This tutorial explains how to install [MiniKube](https://kubernetes.io/docs/task
 ### Prerequisites
 
  **Disclaimer**
+ 
 This local minikube-based setup is not suitable for running scientific experiments. If you want accurate results for the example experiment on a single machine, your could try a minikube VM of 16 virtual CPU cores and 32 GB of virtual memory. But we have never tested this. Moreover Minikube only supports kubernetes clusters with one worker node (i.e. the minikube VM). it is better to run the different components of the K8-Scalar architecture on different VMs as illustrated in Section 3 of the related paper. See the __Infrastructure__ section at the end of this README file for some advice on how to control the placement of Pods across VMs.  
 
 **System requirements**
+
   * Your local machine should support VT-x virtualization
   * To run a minikube cluster, a VM with 1 *virtual* CPU core and 2GB *virtual* memory is sufficient but the cassandra instances will not fit.
   * One local VM with minimally 2 virtual CPU cores and 4GB virtual memory must be able to run on your machine in order to run 1 Cassandra instance. A VM with 4 virtual CPU cores and 8GB virtual memory is required to run the entire tutorial with 2 Cassandra instances.
@@ -39,7 +41,7 @@ This local minikube-based setup is not suitable for running scientific experimen
   * Linux CentOS: sudo yum install git
   * Windows: https://git-scm.com/download/win. GitBash is by default also installed. Open a GitBash session and keep it open during the rest of the experiment
  
-**Clone the K8-scalar GitHub repository and set the k8_scalar_dir variable:** 
+**Clone the K8-scalar GitHub repository:** 
   
 ```bash
 git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
@@ -242,6 +244,7 @@ exit
 Scalar is a fully distributed, extensible load testing tool with a numerous features. Have a look at the [Scalar documentation](docs/scalar).
 
 ## (4) Deploying experiment-controller
+
 **Before deploying, check out the [Operations section](README.md#iii-operations) below in this document for performing the necessary Kubernetes secret management and resource configuration**. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
 
 We deploy the experiment controller also a statefulset that can be scaled to multiple instances. To install the stateful set with one instance, execute the following command 
