@@ -1,16 +1,19 @@
 # Tutorial
-For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. 
+For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies for container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. 
   
 ## (1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service
 
 The setup of a Kubernetes cluster depends on the underlying platform. The [Infrastructure](./README.md#ii-infrastructure) section provides some information to setup a distributed cluster. 
 This tutorial explains how to install [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). Minikube allows to setup a Kubernetes cluster with one worker node on your local machine.
 
+[Helm](https://github.com/kubernetes/helm) is utilised to deploy the distributed system of the experiment. Helm is a package manager for Kubernetes charts. These charts are packages of pre-configured Kubernetes resources. For this system, we provide three charts. A shared _monitoring-core_ is used across several experiments. This core contains _Heapster_, _Grafana_ and _InfluxDb_. The second chart provides a database cluster and the third the ARBA system with an experiment controller included.
+
+
 ### Prerequisites
 
  **Disclaimer**
  
-This local minikube-based setup is not suitable for running scientific experiments. If you want accurate results for the example experiment on a single machine, your could try a minikube VM of 16 virtual CPU cores and 32 GB of virtual memory. But we have never tested this. Moreover Minikube only supports kubernetes clusters with one worker node (i.e. the minikube VM). it is better to run the different components of the K8-Scalar architecture on different VMs as illustrated in Section 3 of the related paper. See the __Infrastructure__ section at the end of this README file for some advice on how to control the placement of Pods across VMs.  
+This local minikube-based setup is not suitable for running scientific experiments. If you want accurate results for the example experiment on a single machine, your could try a minikube VM of 16 virtual CPU cores and 32 GB of virtual memory. But we have never tested this. Moreover Minikube only supports kubernetes clusters with one worker node (i.e. the minikube VM). it is better to run the different components of the K8-Scalar architecture on different VMs as illustrated in Section 3 of the related paper. See the __Infrastructure__ section at the end of this file for some advice on how to control the placement of Pods across VMs.  
 
 **System requirements**
   * Your local machine should support VT-x virtualization
@@ -34,14 +37,12 @@ The `${k8_scalar_dir}` environment variable refers thus to the local directory o
 
 **Setup other environment variables:**
 
-The tutorial provices a number of bash scripts to demonstrate the usage of K8-Scalar, These scripts contain environment variables which should be self-declarative.
+The tutorial provides a number of bash scripts to demonstrate the usage of K8-Scalar, These scripts contain environment variables which should be self-declarative.
 
   * `${MyRepository}` = the name of the Docker repository of the customized experiment-controller image (based on Scalar). Create in 
                         advance an account for the ${MyRepository} repository at https://hub.docker.com/. In the context of this tutorial, 
-                        and all experiments from the paper are stored in the t138 repository at docker hub.
+                        all experiments from the paper are stored in the t138 repository at docker hub.
   * `${my_experiment}` = the name of the directory under `${k8_scalar_dir}` where code and data of your current experiment is stored
-
-[Helm](https://github.com/kubernetes/helm) is utilised to deploy the distributed system of the experiment. Helm is a package manager for Kubernetes charts. These charts are packages of pre-configured Kubernetes resources. For this system, we provide three charts. A shared _monitoring-core_ is used across several experiments. This core contains _Heapster_, _Grafana_ and _InfluxDb_. The second chart provides a database cluster and the third the ARBA system with an experiment controller included.
 
 
 ### For Mac OS:
