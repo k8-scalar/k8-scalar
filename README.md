@@ -12,7 +12,7 @@ science.
 # Relevant publications
 
   * Eddy Truyen, Wito Delnat, Ansar Rafique, Dimitri Van Landuyt, Wouter Joosen, "K8-Scalar: A workbench to compare autoscalers for
-container-orchestrated database clusters", in Proceedings of the 13th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS 2018), Gothenburg, Sweden. ([pdf](../docs/seams2018_CR.pdf)).
+container-orchestrated database clusters", in Proceedings of the 13th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS 2018), Gothenburg, Sweden. ([pdf](./docs/seams2018_CR.pdf)).
 
 # Tutorial
 For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. 
