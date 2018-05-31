@@ -12,24 +12,26 @@ science.
 # Relevant publications
 
   * Eddy Truyen, Wito Delnat, Ansar Rafique, Dimitri Van Landuyt, Wouter Joosen, "K8-Scalar: A workbench to compare autoscalers for
-container-orchestrated database clusters", in Proceedings of the 13th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS 2018), Gothenburg, Sweden. ([pdf](../docs/seams_CR.pdf)).
+container-orchestrated database clusters", in Proceedings of the 13th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS 2018), Gothenburg, Sweden. ([pdf](../../tree/master/docs/seams_CR.pdf)).
 
 # Tutorial
 For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. 
+  
+## (1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service
 
-The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on your local machine, then you can run directly the bash scripts that are provided by this tutorial. This tutorial installs [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). 
+The setup of a Kubernetes cluster depends on the underlying platform. The [Infrastructure](./README.md#ii-infrastructure) section provides some information to setup a distributed cluster. 
+This tutorial explains how to install [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). Minikube allows to setup a Kubernetes cluster with one worker node on your local machine.
 
+### Prerequisites
 
-
-## (0) Prerequisites
+ **Disclaimer**
+This local minikube-based setup is not suitable for running scientific experiments. If you want accurate results for the example experiment on a single machine, your could try a minikube VM of 16 virtual CPU cores and 32 GB of virtual memory. But we have never tested this. Moreover Minikube only supports kubernetes clusters with one worker node (i.e. the minikube VM). it is better to run the different components of the K8-Scalar architecture on different VMs as illustrated in Section 3 of the related paper. See the __Infrastructure__ section at the end of this README file for some advice on how to control the placement of Pods across VMs.  
 
 **System requirements**
   * Your local machine should support VT-x virtualization
   * To run a minikube cluster, a VM with 1 *virtual* CPU core and 2GB *virtual* memory is sufficient but the cassandra instances will not fit.
   * One local VM with minimally 2 virtual CPU cores and 4GB virtual memory must be able to run on your machine in order to run 1 Cassandra instance. A VM with 4 virtual CPU cores and 8GB virtual memory is required to run the entire tutorial with 2 Cassandra instances.
-  
- **Disclaimer**
-This local minikube-based setup is not suitable for running scientific experiments. If you want accurate results for the example experiment on a single machine, your could try a minikube VM of 16 virtual CPU cores and 32 GB of virtual memory. But we have never tested this. Moreover Minikube only supports kubernetes clusters with one worker node (i.e. the minikube VM). it is better to run the different components of the K8-Scalar architecture on different VMs as illustrated in Section 3 of the related paper. See the __Infrastructure__ section at the end of this README file for some advice on how to control the placement of Pods across VMs.  
+ 
 
 **Install git:** 
   * MacOS: https://git-scm.com/download/mac
@@ -43,21 +45,16 @@ This local minikube-based setup is not suitable for running scientific experimen
 git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
 ```
 
-
 **Setup other environment variables:**
+The tutorial provices a number of bash scripts to demonstrate the usage of K8-Scalar
 
-
-Note1: This tutorial contains many code snippets for MacOS, Linux or Windows. They are only tested on MacOS and Windows
-Note2: The snippets contain environment variables which should be self-declarative. Do not forget to specify them:
+These scripts contain environment variables which should be self-declarative. Do not forget to specify them:
   * `${k8_scalar_dir}` = the local directory on your system in which the k8-scalar GitHub project has been cloned
                          This environment variable is already set by executing the above snippet of the git clone
   * `${MyRepository}` = the name of the Docker repository of the customized experiment-controller image (based on Scalar). Create in 
                         advance an account for the ${MyRepository} repository at https://hub.docker.com/. In the context of this tutorial, 
                         and all experiments from the paper are stored in the t138 repository at docker hub.
   * `${my_experiment}` = the name of the directory under `${k8_scalar_dir}` where code and data of your current experiment is stored
-
-  
-## (1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service
 
 [Helm](https://github.com/kubernetes/helm) is utilised to deploy the distributed system of the experiment. Helm is a package manager for Kubernetes charts. These charts are packages of pre-configured Kubernetes resources. For this system, we provide three charts. A shared _monitoring-core_ is used across several experiments. This core contains _Heapster_, _Grafana_ and _InfluxDb_. The second chart provides a database cluster and the third the ARBA system with an experiment controller included.
 
