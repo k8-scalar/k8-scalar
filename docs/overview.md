@@ -41,15 +41,14 @@ by temporary spikes in resource usage or performance metrics. Such wrong
 scaling decisions can be very costly an actually hurt elasticity instead
 of improving it.
 
-The artifact fully supports the following contributions of the
-associated scholarly paper:
+## Building blocks
 
-  - K8-Scalar integrates and customizes Scalar , a generic platform for
+ K8-Scalar integrates and customizes Scalar , a generic platform for
     evaluating the scalability of large-scale systems, with support for
     **evaluating autoscalers for container-orchestrated database
     clusters**.
 
-  - K8-Scalar extends Kubernetes with an advanced autoscaler for
+K8-Scalar extends Kubernetes with an advanced autoscaler for
     database clusters, based on the Riemann event processor  that allows
     for simultaneous analysis of multiple metrics and composition of
     multiple event-based conditions. This Advanced Riemann-Based
