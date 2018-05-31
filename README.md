@@ -1,15 +1,27 @@
 # K8-Scalar
-For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. 
+K8-Scalar is an easy-to-use and extensible workbench
+exemplar for implementing and evaluating different self-adaptive
+approaches to autoscaling container-orchestrated services. 
 
-# I. Evaluating autoscalers for container-orchestrated database clusters
-This tutorial provides more practical know-how for the related paper. Nine steps allow us to effectively implement and evaluate elastic scaling strategies for specific database and workload types.
+The K8-Scalar artifact has been used and validated in the context of
+autoscalers for database clusters. Although autoscalers for database
+clusters  or multi-tier applications  have been researched, developing
+an effective autoscaler for databases is still an art, rather than a
+science. 
+
+# Relevant publications
+
+  * Eddy Truyen, Wito Delnat, Ansar Rafique, Dimitri Van Landuyt, Wouter Joosen, "K8-Scalar: A workbench to compare autoscalers for
+container-orchestrated database clusters", in Proceedings of the 13th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS 2018), Gothenburg, Sweden. ([pdf](../docs/seams_CR.pdf)).
+
+# Tutorial
+For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies in container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. 
 
 The setup of a Kubernetes cluster depends on the underlying platform. The _infrastructure_ section provides some references to get started. If you just want to try out the tutorial on your local machine, then you can run directly the bash scripts that are provided by this tutorial. This tutorial installs [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). 
 
 
-## Prerequisites
 
-
+## (0) Prerequisites
 
 **System requirements**
   * Your local machine should support VT-x virtualization
