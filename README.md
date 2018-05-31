@@ -1,6 +1,5 @@
 # K8-Scalar
-K8-Scalar is an easy-to-use and extensible workbench
-exemplar for implementing and evaluating different self-adaptive
+K8-Scalar is a workbench for implementing and evaluating different self-adaptive
 approaches to autoscaling container-orchestrated services. 
 
 The K8-Scalar artifact has been used and validated in the context of
