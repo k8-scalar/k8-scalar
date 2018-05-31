@@ -29,7 +29,6 @@ This tutorial explains how to install [MiniKube](https://kubernetes.io/docs/task
 This local minikube-based setup is not suitable for running scientific experiments. If you want accurate results for the example experiment on a single machine, your could try a minikube VM of 16 virtual CPU cores and 32 GB of virtual memory. But we have never tested this. Moreover Minikube only supports kubernetes clusters with one worker node (i.e. the minikube VM). it is better to run the different components of the K8-Scalar architecture on different VMs as illustrated in Section 3 of the related paper. See the __Infrastructure__ section at the end of this README file for some advice on how to control the placement of Pods across VMs.  
 
 **System requirements**
-
   * Your local machine should support VT-x virtualization
   * To run a minikube cluster, a VM with 1 *virtual* CPU core and 2GB *virtual* memory is sufficient but the cassandra instances will not fit.
   * One local VM with minimally 2 virtual CPU cores and 4GB virtual memory must be able to run on your machine in order to run 1 Cassandra instance. A VM with 4 virtual CPU cores and 8GB virtual memory is required to run the entire tutorial with 2 Cassandra instances.
@@ -47,12 +46,12 @@ This local minikube-based setup is not suitable for running scientific experimen
 git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
 ```
 
-**Setup other environment variables:**
-The tutorial provices a number of bash scripts to demonstrate the usage of K8-Scalar
+The `${k8_scalar_dir}` environment variable refers thus to the local directory on your system in which the k8-scalar GitHub project has been cloned. 
 
-These scripts contain environment variables which should be self-declarative. Do not forget to specify them:
-  * `${k8_scalar_dir}` = the local directory on your system in which the k8-scalar GitHub project has been cloned
-                         This environment variable is already set by executing the above snippet of the git clone
+**Setup other environment variables:**
+
+The tutorial provices a number of bash scripts to demonstrate the usage of K8-Scalar, These scripts contain environment variables which should be self-declarative.
+
   * `${MyRepository}` = the name of the Docker repository of the customized experiment-controller image (based on Scalar). Create in 
                         advance an account for the ${MyRepository} repository at https://hub.docker.com/. In the context of this tutorial, 
                         and all experiments from the paper are stored in the t138 repository at docker hub.
