@@ -200,7 +200,9 @@ git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/
 cd ${k8_scalar_dir}/development/scalar/src/be/kuleuven/distrinet/scalar/users
 vim ${myDatabase}User.java # Cfr CassandraWriteUser.java
 
-# After building the project, copy the resulting Jar file to the experiment-controller image
+# After building the project....
+mvn package
+#....copy the resulting Jar file to the experiment-controller image
 # Note source code of scalar is not yet included in this project. You have to build from the existing scalar-1-0-0.jar and use the resulting # jar file.
 cp ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/development/example-experiment/lib/scalar-1.0.0.jar
 ```
