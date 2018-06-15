@@ -16,7 +16,7 @@ Import the project in Eclipse as a Maven project. Depending on the Eclipse versi
   * Open the project from the directory. Then right click on the project. Click on the appearing menu: -> Configure -> Convert to Maven project. 
 
 To execute a dummy Scalar experiment on your local machine, you can start Scalar with the default `experiment.properties` and `platform.properties` 
-configuration files. Start the Java class Launcher.class in Eclipse with as command-line arguments `conf/platform.properties` and `conf/experiment.properties`.
+configuration files. Start the Java class Launcher.class in Eclipse with as command-line arguments `conf/platform.properties conf/experiment.properties`.
 
 You also compile the Scalar code at the command line with `mvn package`.  
 
