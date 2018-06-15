@@ -10,12 +10,17 @@ mvn install:install-file -Dfile=scalar-1.0.0.jar -DgroupId=be.kuleuven.distrinet
 JavaDoc documentation is available in the `development/scalar/doc` directory in your local git repository of k8-scalar 
 
 ## Scalar development workflow
-Open the project in Eclipse. Click on project -> Configure -> Convert to Maven project. All dependencies are managed via Maven
+All dependencies are managed via Maven
+Import the project in Eclipse as a Maven project. Depending on the Eclipse version, either:
+  * Import the project as a Maven project.
+  * Open the project from the directory. Then right click on the project. Click on the appearing menu: -> Configure -> Convert to Maven project. 
+
 To execute a dummy Scalar experiment on your local machine, you can start Scalar with the default `experiment.properties` and `platform.properties` 
 configuration files. Start the Jave class Launcher.class in Eclipse with as command-line arguments `conf/platform.properties` and `conf/experiment.properties`.
 
+You also compile the Scalar code at the command line with `mvn package`.  
 
-You also compile the Scalar code at the command line with `mvn package`.  You execute the dummy Scalar experiment as 
+You execute the dummy Scalar experiment as 
 ```
 java -jar target/scalar-1.0.0.jar conf/platform.properties conf/experiment.properties
 ```
