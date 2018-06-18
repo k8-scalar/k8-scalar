@@ -19,3 +19,6 @@ container-orchestrated database clusters", in Proceedings of the 13th Internatio
 * [Overview](./docs/overview.md)
 * [Other documentation](./docs/index.md)
 * Using K8-Scalar with other auto-scalers (to do)
+
+# Help
+* If you experience troubles with setting up k8-scalar, we are at [Slack](https://k8-scalar.slack.com). In case of a bug or feature request, add an [Issue](https://github.com/k8-scalar/k8-scalar/issues)
