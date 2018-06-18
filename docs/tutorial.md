@@ -208,7 +208,7 @@ cp ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/
 ```
 Next we want to configure scalar itself. If you want to configure a linearly increasing workload profile, you don't need to do anything here. The `stress.sh` script offers a user-friendly tool for configuring such workload profile (See step 5 for more detail).
 
-If you want to configure another kind of workload profile, like an oscillating workload profile, have a look at the [Operations section](tutorial.md#iii.Operations).
+If you want to configure another kind of workload profile, like an oscillating workload profile, have a look at the [Step 8](tutorial.md##8-test-another-scaling-policy).
 
 
 ```
@@ -373,7 +373,8 @@ or requests the number of replicas of the statefulset:
 kubectl get statefulset cassandra
 ```
 
-If you want to test another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](../development/scalar/conf/experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](./scalar/features.md).
+### Test another workload profile
+If you want to test the scaling policy with another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](../development/scalar/conf/experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](./scalar/features.md).
 
 The easiest way to change the experiment.properties file is to start a bash session inside the experiment-controller-0 Pod and edit the `etc/experiment.properties` file
 
@@ -387,7 +388,7 @@ vi etc/experiment.properties
 #run the experiment
 java -jar lib/scalar-1.0.0.jar platform.properties experiment.properties > var/log/console_output.log e> var/log/error_output.log
 ```
-
+You can also inspect residence-times and run data as explained in the Step 5. The only difference is that all run-data and residence times is now stored in one file. 
 
 ## (9) Repeat steps 7 and 8 until you have found an elastic scaling policy that works for this workload
 
