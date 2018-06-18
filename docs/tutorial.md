@@ -202,23 +202,11 @@ vim ${myDatabase}User.java # Cfr CassandraWriteUser.java
 
 # After building the project....
 mvn package
-#....copy the resulting Jar file to the experiment-controller image
-# Note source code of scalar is not yet included in this project. You have to build from the existing scalar-1-0-0.jar and use the resulting # jar file.
+#....copy the resulting Jar file in the lib directory of the [example-experiment](../example-experiment):
 cp ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/development/example-experiment/lib/scalar-1.0.0.jar
 ```
-Next we want to configure scalar itself. If you want to configure a linearly increasing workload profile, you don't need to do anything here. The `stress.sh` script offers a user-friendly tool for configuring such workload profile (See step 5 for more detail).
-
-If you want to configure another kind of workload profile, like an oscillating workload profile, have a look at the [Step 8](tutorial.md##8-test-another-scaling-policy).
-
-
-```
-# Configure the experiment-controller's workload
-cd ${k8_scalar_dir}/development/example-experiment/etc/
-vim experiment-template.properties # Configure user_implementations, do not modify user_implementations_prestart
-#to quit vi type ":q <enter>"
-``` 
-
-Then, build a new image for the experiment-controller
+Then, build a new image for the experiment-controller using the Dockerfile in the [example-experiment](../example-experiment).
+As Docker is already installed in the minikube VM, it can be directly perfored in the minikube VM as follows:
 ```
 docker build -t ${myRepository}/experiment-controller ${k8_scalar_dir}/development/example-experiment/
 # overwrite in following command MyRepository_DOCKERHUB_PASSWRD with your secret password: 
@@ -228,7 +216,7 @@ docker push ${myRepository}/experiment-controller
 #leave the minikube vm
 exit
 ```
-Scalar is a fully distributed, extensible load testing tool with a numerous features. Have a look at the [Scalar documentation](./scalar).
+Scalar is a fully distributed, extensible load testing tool with numerous features. Have a look at the [Scalar documentation](./scalar) for more information.
 
 ## (4) Deploying experiment-controller
 
@@ -241,12 +229,19 @@ helm install ${k8_scalar_dir}/operations/experiment-controller
 ```
 
 ## (5) Perform experiment for determining the mapping between SLA violations and resource usage metrics  
-Before starting the experiment, we recommend using the `kubectl get pods --all-namespaces` command to validate that no error occured during the deployment. Finally, we can start the experiment by executing the following command:
+Before starting the experiment, we recommend using the `kubectl get pods --all-namespaces` command to validate that no error occured during the deployment. 
+
+To determine the mapping we configure the experiment-controller pod to exercise a linearly increasing workload profile. The [stress.sh script](../development/example-experiment/bin/stress.sh] offers a user-friendly tool for configuring such workload profile. For example, the following command will tell Scalar to gradually increase the workload on the database cluster during 800 seconds:
 
 ```
 kubectl exec experiment-controller-0 -- bash bin/stress.sh --duration 400 500:1500:1000
 ```
-This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds.
+In this particular command, the workload is executed as a series of 2 Scalar runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. 
+In order to find the specific workload volume, when the number of SLO violations start the increase, a more fine-grained workload with more runs is needed. For example, the following command tells Scalar to increase the worload with a delta throughput of 50 additional requests per second, and thus lasts 8400 seconds with 21 runs. 
+
+```
+kubectl exec experiment-controller-0 -- bash bin/stress.sh --duration 400 500:1500:50
+```
 
 The user guide of `stress.sh` is returned when running stress.sh without any option:
 
@@ -274,8 +269,9 @@ bin/stress.sh [OPTIONS] [ARGS]
    # Executes the experiment: 10 users for first run, 20 users for second run, .., 100 users for last run.
    bin/stress.sh 10:100:10
 ```
+### Inspect the experiment's results
+Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the experiment-controller pod in the `/exp/var` directory as well as in the `/data/results` directory of the VM on which the experiment-controller pod runs. This snipper provides an easy way to copy the results to the local developer machine. 
 
-Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the experiment-controller pod in the `/exp/var` directory as well as in the `/data/results` directory of the VM on which the experiment-controller pod runs The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Of course, the second script to open grafana is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
 ```
 # Open a shell to experiment-controller pod's Scalar results
 $ kubectl exec -it experiment-controller-0 -- bash
@@ -342,6 +338,9 @@ $ minikube ip
 #open the grafana dashboard in your favorite browser
 open http://192.168.99.100:30345/
 ```
+The Kubernetes cluster exposes thus the Grafana dashboard at node port 30345. Of course, the above script to open grafana is only valid when trying out the flow on MiniKube. For realistic clusters, you can access the grafana service at port 30345 on any Kubernetes node.
+
+To see the resource usage graphs of the cassandra pod, Open the Pods dashboard page, and change the Namespace from `kube-system` into `default`. Note that although a default graph for Cassandra is provided for each resource type, you can also write your own detailed graph views as SQL like queries. To write such queries,  left-click on the area of the graph of interest; then click _Edit_ in the appeared pop-up menu. Grafana documentation can be found [here](http://docs.grafana.org/v4.1/guides/basic_concepts/).
 
 ## (6) Implement an elastic scaling policy
 This step requires some custom development in the Riemann component. Extend Riemann's configuration with a custom scaling strategy. We recommend checking out http://riemann.io/ to get familiar with the way that events are processed. While Riemann has a slight learning curve, the configuration has access to a Clojure, which is a complete programming language. While out of scope for the provided examplar, new strategies should most often combine events of the same deployment or statefulset by folding them. The image should be build and uploaded to the repository in a similar fashion as demonstrated in step (3).
@@ -384,11 +383,14 @@ kubectl exec -it experiment-controller-0 -- bash
 
 #edit experiment.properties file
 vi etc/experiment.properties
+```
 
+To run the experiment, you need to start Scalar using `java`:
+```
 #run the experiment
 java -jar lib/scalar-1.0.0.jar platform.properties experiment.properties > var/log/console_output.log e> var/log/error_output.log
 ```
-You can also inspect residence-times and run data as explained in the Step 5. The only difference is that all run-data and residence times is now stored in one file. 
+After the experiment is finished, you can inspect run-data as explained in Step 5. The only difference is that all run-data is now stored in one file. 
 
 ## (9) Repeat steps 7 and 8 until you have found an elastic scaling policy that works for this workload
 
