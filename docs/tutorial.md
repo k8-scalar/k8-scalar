@@ -3,7 +3,7 @@ For this K8-Scalar 101, we will go over the steps to implement and evaluate elas
   
 ## (1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service
 
-The setup of a Kubernetes cluster depends on the underlying platform. The [Infrastructure](./README.md#ii-infrastructure) section provides some information to setup a distributed cluster. 
+The setup of a Kubernetes cluster depends on the underlying platform. The [Infrastructure](./tutorial.md#ii-infrastructure) section provides some information to setup a distributed cluster. 
 This tutorial explains how to install [MiniKube](https://kubernetes.io/docs/tasks/tools/install-minikube/). Minikube allows to setup a Kubernetes cluster with one worker node on your local machine.
 
 [Helm](https://github.com/kubernetes/helm) is utilised to deploy the distributed system of the experiment. Helm is a package manager for Kubernetes charts. These charts are packages of pre-configured Kubernetes resources. For this system, we provide three charts. A shared _monitoring-core_ is used across several experiments. This core contains _Heapster_, _Grafana_ and _InfluxDb_. The second chart provides a database cluster and the third the ARBA system with an experiment controller included.
@@ -188,7 +188,7 @@ helm install ${k8_scalar_dir}/operations/cassandra-cluster
 ```
 
 ## (3) Determine and implement desired workload type for the deployed database in Scalar
-This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](development/scalar/src/be/kuleuven/distrinet/scalar/requests). Afterwards we want to build the application and copy the resulting jar:
+This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](../development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](../development/scalar/src/be/kuleuven/distrinet/scalar/requests). Afterwards we want to build the application and copy the resulting jar:
 
 For this tutorial we will perform these steps on the minikube vm: 
 ```bash
@@ -208,7 +208,7 @@ cp ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/
 ```
 Next we want to configure scalar itself. If you want to configure a linearly increasing workload profile, you don't need to do anything here. The `stress.sh` script offers a user-friendly tool for configuring such workload profile (See step 5 for more detail)
 
-If you want to configure another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](development/scalar/conf/experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](./scalar/features.md).
+If you want to configure another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](../development/scalar/conf/experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](./scalar/features.md).
 ```
 # Configure the experiment-controller's workload
 cd ${k8_scalar_dir}/development/example-experiment/etc/
@@ -231,7 +231,7 @@ Scalar is a fully distributed, extensible load testing tool with a numerous feat
 
 ## (4) Deploying experiment-controller
 
-**Before deploying, check out the [Operations section](README.md#iii-operations) below in this document for performing the necessary Kubernetes secret management and resource configuration**. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
+**Before deploying, check out the [Operations section](tutorial.md#iii-operations) below in this document for performing the necessary Kubernetes secret management and resource configuration**. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
 
 We deploy the experiment controller also a statefulset that can be scaled to multiple instances. To install the stateful set with one instance, execute the following command 
 
