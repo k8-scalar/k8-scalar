@@ -208,7 +208,7 @@ cp ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/
 ```
 Next we want to configure scalar itself. If you want to configure a linearly increasing workload profile, you don't need to do anything here. The `stress.sh` script offers a user-friendly tool for configuring such workload profile (See step 5 for more detail)
 
-If you want to configure another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](development/scalar/conf/experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](docs/scalar/features.md).
+If you want to configure another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](development/scalar/conf/experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](./scalar/features.md).
 ```
 # Configure the experiment-controller's workload
 cd ${k8_scalar_dir}/development/example-experiment/etc/
@@ -227,7 +227,7 @@ docker push ${myRepository}/experiment-controller
 exit
 ```
 
-Scalar is a fully distributed, extensible load testing tool with a numerous features. Have a look at the [Scalar documentation](docs/scalar).
+Scalar is a fully distributed, extensible load testing tool with a numerous features. Have a look at the [Scalar documentation](./scalar).
 
 ## (4) Deploying experiment-controller
 
@@ -335,7 +335,7 @@ open http://192.168.99.100:30345/
 ## (6) Implement an elastic scaling policy that monitors the resource usage
 This step requires some custom development in the Riemann component. Extend Riemann's configuration with a custom scaling strategy. We recommend checking out http://riemann.io/ to get familiar with the way that events are processed. While Riemann has a slight learning curve, the configuration has access to a Clojure, which is a complete programming language. While out of scope for the provided examplar, new strategies should most often combine events of the same deployment or statefulset by folding them. The image should be build and uploaded to the repository in a similar fashion as demonstrated in step (3).
 
-This example experiment has created an [ARBA image with three scaling strategies](development/riemann/etc/riemann.config) as defined in Table 1 of the related paper. The ARBA service will be deployed with as configuration to use one of these strategies (i.e Strategy 2 of Table 1: `scale if CPU usage > 67% of CPU usage limit`). See [operations/arba/values.yaml](operations/arba/values.yaml). You can change this strategy without having to build a new Docker image of ARBA.
+This example experiment has created an [ARBA image with three scaling strategies](../development/riemann/etc/riemann.config) as defined in Table 1 of the related paper. The ARBA service will be deployed with as configuration to use one of these strategies (i.e Strategy 2 of Table 1: `scale if CPU usage > 67% of CPU usage limit`). See [operations/arba/values.yaml](../operations/arba/values.yaml). You can change this strategy without having to build a new Docker image of ARBA.
 
 ## (7) Deploy the default Riemann-based autoscaler
 
@@ -365,7 +365,7 @@ kubectl get statefulset cassandra
 ## (9) Repeat steps 7 and 8 until you have found an elastic scaling policy that works for this workload
 
 # II. Infrastructure
-You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account. Moreover, to install the monitoring system in kubeadm, you need to install the monitoring-core-rbac chart instead of the monitoring-core chart.
+You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account. Moreover, to install the monitoring system in kubeadm, you need to install the [monitoring-core-rbac chart](../operations/monitoring-core-rbac) instead of the monitoring-core chart.
 
 ```
 kubectl create -f ${k8_scalar_dir}/development/helm/helm.yaml
@@ -424,7 +424,7 @@ kubectl create secret generic kubeconfig --from-file . --namespace=default
 ## Configuration of other Kubernetes objects 
 Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which it should scale. 
 
-Finally, the resource requests and limits of the Cassandra pod can also be adjusted. These files can be found in the `operations` subdirectory, e.g. the Cassandra YAML file can be found in [operations/cassandra-cluster/templates](operations/cassandra-cluster/templates/cassandra-statefulset.yaml). For this MiniKube tutorial we have set for resource Requests lower than the resource limits in comparison to the configuration of Cassandra instances in the [scientifically evaluated experiments of the associated paper](experiments/LMaaS)
+Finally, the resource requests and limits of the Cassandra pod can also be adjusted. These files can be found in the `operations` subdirectory, e.g. the Cassandra YAML file can be found in [operations/cassandra-cluster/templates](../operations/cassandra-cluster/templates/cassandra-statefulset.yaml). For this MiniKube tutorial we have set for resource Requests lower than the resource limits in comparison to the configuration of Cassandra instances in the [scientifically evaluated experiments of the associated paper](../experiments/LMaaS)
 
 # IV. Development
 The goal of this section is to explain how to modify the K8-Scalar examplar to experiment with other types of autoscalers and other types of services.
