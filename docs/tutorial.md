@@ -29,7 +29,7 @@ This local minikube-based setup is not suitable for running scientific experimen
  
 **Clone the K8-scalar GitHub repository:** 
   
-```bash
+```
 git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
 ```
 
@@ -73,7 +73,7 @@ minikube   Ready     <none>    21m       v1.9.0
 ```
 
 Install Helm
-```
+```bash
 # Install Helm client:
 curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-darwin-amd64.tar.gz && tar xvzf helm-v2.8.0-darwin-amd64.tar.gz && chmod +x ./darwin-amd64/helm && sudo mv ./darwin-amd64/helm /usr/local/bin/helm
 # Install Helm server on Kubernetes cluster
@@ -110,7 +110,7 @@ minikube   Ready     <none>    21m       v1.9.0
 ```
 
 Install Helm
-```
+```bash
 # Install Helm client
 curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-linux-amd64.tar.gz && tar xvzf helm-v2.8.0-linux-amd64.tar.gz && chmod +x ./linux-amd64/helm && sudo mv ./linux-amd64/helm /usr/local/bin/helm
 # Install Helm server on Kubernetes cluster
@@ -150,7 +150,7 @@ minikube   Ready     <none>    21m       v1.9.0
 ```
 
 Install Helm
-```
+```bash
 # Install Helm client
 curl -LO https://kubernetes-helm.storage.googleapis.com/helm-v2.8.0-windows-amd64.tar.gz && tar xvzf helm-v2.8.0-windows-amd64.tar.gz && export PATH=$PATH:`pwd`/windows-amd64/
 # Install Helm server on Kubernetes cluster
@@ -161,12 +161,12 @@ helm init
 Now with Kubernetes and Helm installed, you should be able to install services on Kubernetes using Helm.
 
 Let us add the monitoring capabilities of Heapstwe to the cluster using Helm. We install the _monitoring-core_ chart by the following command. This chart includes instantiated templates for the following Kubernetes services: Heapster, Grafana and the InfluxDb. 
-```bash
+```
 helm install ${k8_scalar_dir}/operations/monitoring-core
 ```
 
 To check if all services are running execute the following command to see if all Pods of these services are running
-```bash
+```
 $ kubectl get pods --namespace=kube-system
 NAME                                    READY     STATUS    RESTARTS   AGE
 heapster-76647b5d6c-ln7lp               1/1       Running   0          6m
@@ -183,7 +183,7 @@ tiller-deploy-7594bf7b76-598xv          1/1       Running   0          7m
 
 ## (2) Setup a Database Cluster
 This _cassandra-cluster_ chart uses a modified image which resolves a missing dependency in one of Google Cassandra's image. Of course, this chart can be replaced with a different database technology. Do mind that Scalar will have to be modified for the experiment with implementations of desired workload generators for the Cassandra database. The next step will provide more information about this modification.
-```bash 
+``` 
 helm install ${k8_scalar_dir}/operations/cassandra-cluster
 ```
 
@@ -191,7 +191,7 @@ helm install ${k8_scalar_dir}/operations/cassandra-cluster
 This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](../development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](../development/scalar/src/be/kuleuven/distrinet/scalar/requests). Afterwards we want to build the application and copy the resulting jar:
 
 For this tutorial we will perform these steps on the minikube vm: 
-```bash
+```
 # Login on the minikube vm and clone the k8-scalar project
 minikube ssh
 git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
@@ -206,9 +206,11 @@ mvn package
 # Note source code of scalar is not yet included in this project. You have to build from the existing scalar-1-0-0.jar and use the resulting # jar file.
 cp ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/development/example-experiment/lib/scalar-1.0.0.jar
 ```
-Next we want to configure scalar itself. If you want to configure a linearly increasing workload profile, you don't need to do anything here. The `stress.sh` script offers a user-friendly tool for configuring such workload profile (See step 5 for more detail)
+Next we want to configure scalar itself. If you want to configure a linearly increasing workload profile, you don't need to do anything here. The `stress.sh` script offers a user-friendly tool for configuring such workload profile (See step 5 for more detail).
 
-If you want to configure another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](../development/scalar/conf/experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](./scalar/features.md).
+If you want to configure another kind of workload profile, like an oscillating workload profile, have a look at the [Operations section](tutorial.md#iii.Operations).
+
+
 ```
 # Configure the experiment-controller's workload
 cd ${k8_scalar_dir}/development/example-experiment/etc/
@@ -216,8 +218,8 @@ vim experiment-template.properties # Configure user_implementations, do not modi
 #to quit vi type ":q <enter>"
 ``` 
 
-Finally, build a new image for the experiment-controller
-```bash
+Then, build a new image for the experiment-controller
+```
 docker build -t ${myRepository}/experiment-controller ${k8_scalar_dir}/development/example-experiment/
 # overwrite in following command MyRepository_DOCKERHUB_PASSWRD with your secret password: 
 # docker login -u ${myRepository} -p MyRepository_DOCKERHUB_PASSWRD  
@@ -226,7 +228,6 @@ docker push ${myRepository}/experiment-controller
 #leave the minikube vm
 exit
 ```
-
 Scalar is a fully distributed, extensible load testing tool with a numerous features. Have a look at the [Scalar documentation](./scalar).
 
 ## (4) Deploying experiment-controller
@@ -235,14 +236,14 @@ Scalar is a fully distributed, extensible load testing tool with a numerous feat
 
 We deploy the experiment controller also a statefulset that can be scaled to multiple instances. To install the stateful set with one instance, execute the following command 
 
-```bash
+```
 helm install ${k8_scalar_dir}/operations/experiment-controller
 ```
 
 ## (5) Perform experiment for determining the mapping between SLA violations and resource usage metrics  
 Before starting the experiment, we recommend using the `kubectl get pods --all-namespaces` command to validate that no error occured during the deployment. Finally, we can start the experiment by executing the following command:
 
-```bash
+```
 kubectl exec experiment-controller-0 -- bash bin/stress.sh --duration 400 500:1500:1000
 ```
 This command will tell Scalar to gradually increase the workload on the database cluster. The workload is executed as a series of runs. The duration of a single run is set at 400 seconds. The workload starts at a run of 500 requests per second and increases up to 1500 with an increment of 1000 requests per second. For these arguments, the experiment will consist thus of 2 runs and last 800 seconds.
@@ -275,7 +276,7 @@ bin/stress.sh [OPTIONS] [ARGS]
 ```
 
 Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the experiment-controller pod in the `/exp/var` directory as well as in the `/data/results` directory of the VM on which the experiment-controller pod runs The Kubernetes cluster exposes a Grafana dashboard at port 30345. Some default graphs are provided, but you can also write your own queries. This snipper provides an easy way to copy the results to the local developer machine. Of course, the second script to open grafana is only valid when trying out the flow on MiniKube. For realistic clusters, you should determine the IP of any Kubernetes node.
-```bash
+```
 # Open a shell to experiment-controller pod's Scalar results
 $ kubectl exec -it experiment-controller-0 -- bash
 root@experiment-controller:/exp/var# cd results/
@@ -291,7 +292,7 @@ run-1500.dat  run-500.dat
 #OR: SCP the /data/results directory from minikube to a local directory of your machine:
 $ scp -r -i $(minikube ssh-key) docker@$(minikube ip):/data/results .
 ```
-```bash
+```
 $vi run-500.dat
 Experiment consisting of 1 runs and 1 request types:
         CassandraWriteRequest
@@ -319,29 +320,39 @@ CassandraWriteRequest (run 1, 500 users):
         99.99%  of requests handled in 7756.198ms.
 ```
 
-
-You can open the grafana dashboard for the visualisation of resource usage graphs. **Use HTTP and not HTTPS** for accesssing the kubernetes services.
+In order to see all runs in sequential order you can execute a for loop as follows:
 
 ```bash
+for i in `seq 1000 500 1500`; do cat run-$i.dat; done | more
+```
+
+In order to see the time when a run finished, execute a simple `ls`:
+
+```bash
+ls -l run-*.dat
+```
+In order to map a specific run to the resource usage graphs of Grafana, you need to log the time when the previous run has ended and the run of interested ended. Then you'll need to map these two timestamps to the grafana charts for the cassandra pod. 
+
+You can open the grafana dashboard for the visualisation of resource usage graphs as follows (**Use HTTP and not HTTPS** for accesssing the grafana dashboard):
+
+```
 # Open the Grafana dashboard in your default browser and take relevant screenshots
 $ minikube ip
 192.168.99.100
+#open the grafana dashboard in your favorite browser
 open http://192.168.99.100:30345/
 ```
 
-
-
-
-## (6) Implement an elastic scaling policy that monitors the resource usage
+## (6) Implement an elastic scaling policy
 This step requires some custom development in the Riemann component. Extend Riemann's configuration with a custom scaling strategy. We recommend checking out http://riemann.io/ to get familiar with the way that events are processed. While Riemann has a slight learning curve, the configuration has access to a Clojure, which is a complete programming language. While out of scope for the provided examplar, new strategies should most often combine events of the same deployment or statefulset by folding them. The image should be build and uploaded to the repository in a similar fashion as demonstrated in step (3).
 
-This example experiment has created an [ARBA image with three scaling strategies](../development/riemann/etc/riemann.config) as defined in Table 1 of the related paper. The ARBA service will be deployed with as configuration to use one of these strategies (i.e Strategy 2 of Table 1: `scale if CPU usage > 67% of CPU usage limit`). See [operations/arba/values.yaml](../operations/arba/values.yaml). You can change this strategy without having to build a new Docker image of ARBA.
+This example experiment has created an [Riemann-based auto-scaler with three scaling strategies](../development/riemann/etc/riemann.config) as defined in Table 1 of the [related paper](./SEAMS2018_CR.pdf). The ARBA service will be deployed with as configuration to use one of these strategies (i.e Strategy 2 of Table 1: `scale if CPU usage > 67% of CPU usage limit`). See [operations/arba/values.yaml](../operations/arba/values.yaml). You can change this strategy without having to build a new Docker image of ARBA.
 
 ## (7) Deploy the default Riemann-based autoscaler
 
 To deploy the k8s-scalar's default ARBA autoscaler using Helm, execute the following script
 
-```bash
+```
 helm install ${k8_scalar_dir}/operations/arba
 ```
 
@@ -362,10 +373,26 @@ or requests the number of replicas of the statefulset:
 kubectl get statefulset cassandra
 ```
 
+If you want to test another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](../development/scalar/conf/experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](./scalar/features.md).
+
+The easiest way to change the experiment.properties file is to start a bash session inside the experiment-controller-0 Pod and edit the `etc/experiment.properties` file
+
+```
+#open bash session
+kubectl exec -it experiment-controller-0 -- bash
+
+#edit experiment.properties file
+vi etc/experiment.properties
+
+#run the experiment
+java -jar lib/scalar-1.0.0.jar platform.properties experiment.properties > var/log/console_output.log e> var/log/error_output.log
+```
+
+
 ## (9) Repeat steps 7 and 8 until you have found an elastic scaling policy that works for this workload
 
 # II. Infrastructure
-You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services [(tutorial)](https://kubernetes.io/docs/getting-started-guides/aws/) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account. Moreover, to install the monitoring system in kubeadm, you need to install the [monitoring-core-rbac chart](../operations/monitoring-core-rbac) instead of the monitoring-core chart.
+You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services ([tutorial](https://kubernetes.io/docs/getting-started-guides/aws/)) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account. Moreover, to install the monitoring system in kubeadm, you need to install the [monitoring-core-rbac chart](../operations/monitoring-core-rbac) instead of the monitoring-core chart.
 
 ```
 kubectl create -f ${k8_scalar_dir}/development/helm/helm.yaml
@@ -383,9 +410,7 @@ You can, however, follow the same exact steps on a multi-node cluster.
 For a more accurate reproduction scenario, we suggest adding labels to each node and add them as constraints to the YAML files of the relevant Kubernetes objects via a [nodeSelector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector). As such different Kubernetes objects such as experiment-controller and the cassandra instance will not be created on the same node, as presented in the related paper.
 
 # III. Operations
-## Experiment configuration  
-The experiment has a mandatory configuration to allow communication with the cluster, and an optional configuration to fine-tune experiment parameters. Also, do not forget to use your own repository name in Kubernetes resource declaration files when uploading custom images.
-
+## Creating secrets to enable access to Kubernetes API for autoscaler pod.   
 The autoscaler interacts directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. The next snippet creates the required keys for a MiniKube cluster. First, prepare a directory that contains all the required files. 
 
 ```bash
@@ -425,6 +450,8 @@ kubectl create secret generic kubeconfig --from-file . --namespace=default
 Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which it should scale. 
 
 Finally, the resource requests and limits of the Cassandra pod can also be adjusted. These files can be found in the `operations` subdirectory, e.g. the Cassandra YAML file can be found in [operations/cassandra-cluster/templates](../operations/cassandra-cluster/templates/cassandra-statefulset.yaml). For this MiniKube tutorial we have set for resource Requests lower than the resource limits in comparison to the configuration of Cassandra instances in the [scientifically evaluated experiments of the associated paper](../experiments/LMaaS)
+
+
 
 # IV. Development
 The goal of this section is to explain how to modify the K8-Scalar examplar to experiment with other types of autoscalers and other types of services.
