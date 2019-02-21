@@ -10,10 +10,15 @@ mvn install:install-file -Dfile=scalar-1.0.0.jar -DgroupId=be.kuleuven.distrinet
 JavaDoc documentation is available in the `development/scalar/doc` directory in your local git repository of k8-scalar 
 
 ## Scalar development workflow
+
+Scalar requires the installation of the Java Development Kit (JDK) version 1.8. Installing the Java Runtime Environment (JRE) only is not enough.
+
 All dependencies are managed via Maven
 Import the project in Eclipse as a Maven project. Depending on the Eclipse version, either:
   * Import the project as a Maven project.
   * Open the project from the directory. Then right click on the project. Click on the appearing menu: -> Configure -> Convert to Maven project. 
+
+
 
 To execute a dummy Scalar experiment on your local machine, you can start Scalar with the default `experiment.properties` and `platform.properties` 
 configuration files. Start the Java class Launcher.class in Eclipse with as command-line arguments `conf/platform.properties conf/experiment.properties`.
