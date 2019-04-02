@@ -457,7 +457,7 @@ Finally, the following command will create the secret. You will have to create t
 kubectl create secret generic kubeconfig --from-file . --namespace=kube-system
 
 #The same secret for the experiment-controller that runs in default namespace
-kubectl create secret generic kubeconfig --from-file . --namespace=default
+kubectl create secret generic kubeconfig --from-file . 
 ```
 
 ## Configuration of other Kubernetes objects 
