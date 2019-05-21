@@ -20,3 +20,5 @@ spec:
       volumes:
       - name: influxdb-storage
         emptyDir: {}
+      nodeSelector:
+        monitoringNode: "yes"
