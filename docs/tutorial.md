@@ -399,14 +399,14 @@ You need to have a Kubernetes cluster, and the kubectl command-line tool must be
 
 To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account. Short, you have to execute the following commands
 
-```
-kubectl create serviceaccount --namespace kube-system tiller
-kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
-helm init --service-account tiller
-```
 
+```
+kubectl create -f ${k8_scalar_dir}/development/helm/helm.yaml
+helm init --service-account helm
+```
 
 Moreover, to install the monitoring system in kubeadm, you need to install the [monitoring-core-rbac chart](../operations/monitoring-core-rbac) instead of the monitoring-core chart. The K8s configuration expects that a node is explicitly labeled as a `monitoringNode` do deploy the heapster service, which is the central core of the monitoring system. So in order to ensure that the monitoring system will  deploy, execute the following command before or right after deploying the helm chart:
+
 
 ```
 kubectl label node <node name> monitoringNode="yes"
