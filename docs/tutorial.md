@@ -384,11 +384,13 @@ kubectl exec -it experiment-controller-0 -- bash
 #edit experiment.properties file
 vi etc/experiment.properties
 ```
+Before running the experiment, it is necessary to check if the experiment-controller and Cassandra pods are appropriately setup. The /bin/stress.sh file automatically executes the appropriate setup instructions. So the most easy way to appropriate setup the Pods is to run a dummy version of stress.sh. For example, `/bin/stress.sh --duration 0 1:2:1` does the trick.
 
-To run the experiment, you need to start Scalar using `java`:
+To run the actual experiment, you need to start Scalar using `java`:
+
 ```
 #run the experiment
-java -jar lib/scalar-1.0.0.jar platform.properties experiment.properties > var/log/console_output.log e> var/log/error_output.log
+java -jar lib/scalar-1.0.0.jar etc/platform.properties etc/experiment.properties > var/log/console_output.log e> var/log/error_output.log
 ```
 After the experiment is finished, you can inspect run-data as explained in Step 5. The only difference is that all run-data is now stored in one file. 
 
