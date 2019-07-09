@@ -390,7 +390,7 @@ Before running the experiment, it is necessary to check if the experiment-contro
 To run the actual experiment, you need to start Scalar using `java`:
 ```
 #run the experiment
-java -jar lib/scalar-1.0.0.jar etc/platform.properties etc/experiment.properties > var/log/console_output.log e> var/log/error_output.log
+java -jar lib/scalar-1.0.0.jar etc/platform.properties etc/experiment.properties > var/console_output.log e> var/error_output.log &
 ```
 After the experiment is finished, you can inspect run-data as explained in Step 5. The only difference is that all run-data is now stored in one file. 
 
