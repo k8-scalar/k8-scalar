@@ -385,7 +385,7 @@ kubectl exec -it experiment-controller-0 -- bash
 vi etc/experiment.properties
 ```
 
-Before running the experiment, it is necessary to check if the experiment-controller and Cassandra pods are appropriately setup. The /bin/stress.sh file automatically executes the appropriate setup instructions. So the most easy way to appropriate setup the Pods is to run a dummy version of stress.sh. For example, `/bin/stress.sh --duration 0 1:2:1` does the trick.
+Before running the experiment, it is necessary to check if the experiment-controller and Cassandra pods are appropriately setup. The /bin/stress.sh file automatically executes the appropriate setup instructions. So the most easy way to appropriate setup the Pods is to run a dummy version of stress.sh. For example, `kubectl exec -it experiment-controller-0 bash bin/stress.sh --duration 1 1:2:1` does the trick.
 
 To run the actual experiment, you need to start Scalar using `java`:
 ```
