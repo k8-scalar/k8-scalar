@@ -17,8 +17,14 @@ public class DatastaxCassandraClient {
 
     protected DatastaxCassandraClient(String hosts) {
         String[] cassandra_hosts = hosts.split(" ");
-
+        System.out.print("Connecting to: " + cassandra_hosts[0]);
+        for (int i=1; i < cassandra_hosts.length; i++) {
+            System.out.print(", " + cassandra_hosts[i]);
+        }
+        System.out.println("");
+        QueryOptions qo = new QueryOptions().setConsistencyLevel(ConsistencyLevel.ONE);
         cluster = Cluster.builder()
+        	.withQueryOptions(qo)
             .addContactPoints(cassandra_hosts)
             .withPort(CASSANDRA_PORT)
             .build();
