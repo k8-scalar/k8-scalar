@@ -3,7 +3,7 @@ package be.kuleuven.distrinet.scalar.requests;
 import be.kuleuven.distrinet.scalar.cassandra.DatastaxCassandraClient;
 import be.kuleuven.distrinet.scalar.core.User;
 import be.kuleuven.distrinet.scalar.exceptions.RequestException;
-
+import be.kuleuven.distrinet.scalar.users.CassandraReadUser;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -13,7 +13,7 @@ public class CassandraReadRequest extends Request {
     }
 
     public void doRequest() throws RequestException {
-        DatastaxCassandraClient cassandra = DatastaxCassandraClient.getInstance(user().targetUrl());
+    	 DatastaxCassandraClient cassandra = ((CassandraReadUser)user()).getCassandraClient();
         try {
             startTimer();
             cassandra.readAllLogs();

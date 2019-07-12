@@ -1,0 +1,94 @@
+## LOAD PROFILE
+#
+# The load profile varies between the min and max numbers of concurrent users. It
+# starts low, then ramps up to a peak which is sustained for a specific time, and
+# then gradually ramps down again to the minimum load. Both ramping up and down is
+# done linearly. Therefore, the effective load, in function of time, looks something
+# like this:
+#            ____
+#           /    \
+#          /      \
+#     ____/        \_______
+#
+# The number of concurrent users for peak load, per Scalar instance.
+user_peak_load=10,20
+# The fraction of concurrent users used for warm up (i.e., in the interval [0,1]). 
+user_warmup_fraction=1
+# The initial period of minimum load.
+user_warmup_duration=1
+# The duration of the ramping up period.
+user_ramp_up_duration=0
+# The duration of the peak load.
+user_peak_duration=1
+# The duration of the ramping down period.
+user_ramp_down_duration=0
+# The final cool down period of minimum load.
+user_cooldown_duration=0
+# How long to wait between multiple consecutive runs?
+user_wait_inbetween_runs=0
+# Scalar cluster size. The master load generator will wait until this many nodes 
+# (including the master) report ready.
+scalar_minimal_cluster_size=2
+#
+# Wait for user input (i.e., for the user to press ENTER) before starting?
+scalar_wait_for_user_input=false
+
+## GENERAL USER CONFIGURATION
+#
+# The think time strategy factory to use. This class will be used to create think time strategies,
+# which are used by user objects to calculate the "think time", i.e., time to wait between two
+# iterations of their main loop.
+think_time_strategy_factory=ConstantThinkTimeStrategyFactory
+think_time=1000
+#think_time=dist/think_times.csv
+
+## USER CONFIGURATION
+#
+# List all the implementations of user behaviour here, in a comma separated list. All listed names
+# are expected to correspond to names of classes that extend be.kuleuven.distrinet.trafficgenerator.users.User,
+# and be in the be.kuleuven.distrinet.trafficgenerator.users package.
+#
+# For every user, specify the fraction of total users that need to be created with that implementation.
+# E.g., adding "TestUser=0.1" ensures that 10% of all users are TestUsers. The default value is 0.
+#
+# WARNING: Please ensure that all fractions add up to 1. If not, your traffic composition will probably
+# not be what you intended. 
+#
+user_implementations=be.kuleuven.distrinet.scalar.users.TestUser,\
+					 be.kuleuven.distrinet.scalar.users.RemoteTestUser,\
+				     be.kuleuven.distrinet.scalar.users.DistributedTestUser
+#
+# RemoteTestUsers access one of the host_urls with a HEAD request, which allows to benchmark the underlying
+# application container and network connectivity.
+be.kuleuven.distrinet.scalar.users.RemoteTestUser=0
+remote_test_user_method=GET
+#
+# DistributedTestUsers put and get values in the distributed data store, allowing to benchmark the underlying
+# distributed store performance.
+be.kuleuven.distrinet.scalar.users.DistributedTestUser=0
+#
+# TestUsers perform empty local requests and cause no network traffic. They can be used to benchmark the local 
+# benchmarking system, to verify whether it can comfortably host the intended amount of threads without 
+# slowdown.
+be.kuleuven.distrinet.scalar.users.TestUser=1
+#
+# Basic users have built-in support for storing account details (username/password), and generating their
+# own incremental username/password combinations by appending a number to a prefix string.
+#
+# User account to log in with.
+login_account=mytester#ID#
+# Password of the user account to log in with.
+login_password=mytester#ID#
+# Maximum user id. If this is a number > 0, the user id will be inserted in the login_account and login_password string
+# at position #ID# (i.e., it will replace the string #ID# with the actual chosen id number).
+# Every user will pick a random account from this sequence to log in with.
+max_user_id=1000
+#
+# Users also support picking a target URL to access, and potentially emulating "sticky" load balancing
+# (i.e., returning to the same URL, or picking a random new URL every time).
+#
+# URLs of the host systems to be benchmarked. Separate multiple URLs with a , . These are accessible in user
+# objects by calling 'host()'.
+target_urls=http://ronse.labo1:8080/TestService/testing
+# Whether to emulate "sticky load balancing", i.e., stick to the same target url.
+sticky_balancing=true

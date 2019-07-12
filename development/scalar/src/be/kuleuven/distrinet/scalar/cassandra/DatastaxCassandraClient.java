@@ -14,6 +14,8 @@ public class DatastaxCassandraClient {
     private static int TOTAL_READS = 0;
 
     private static DatastaxCassandraClient instance = null;
+    
+    protected Session session = null;
 
     protected DatastaxCassandraClient(String hosts) {
         String[] cassandra_hosts = hosts.split(" ");
@@ -28,6 +30,8 @@ public class DatastaxCassandraClient {
             .addContactPoints(cassandra_hosts)
             .withPort(CASSANDRA_PORT)
             .build();
+        
+        session = cluster.connect();
 
 //        createSchema();
 
@@ -40,11 +44,11 @@ public class DatastaxCassandraClient {
         }
         return instance;
     }
-
-    private Cluster cluster;
+    
+   private Cluster cluster;
 
     public void createSchema() {
-        Session session = cluster.connect();
+   //     Session session = cluster.connect();
 
         try {
             session.execute("CREATE KEYSPACE IF NOT EXISTS scalar WITH replication " +
@@ -56,14 +60,15 @@ public class DatastaxCassandraClient {
                     "message text" +
                     ");");
         } finally {
-            session.close();
+            //session.close();
+        	System.out.println("[CASSANDRA] Created schema.");
         }
 
-        System.out.println("[CASSANDRA] Created schema.");
+        
     }
 
     public void write(Log aLog) {
-        Session session = cluster.connect();
+       // Session session = cluster.connect();
         try {
             session.execute("INSERT INTO scalar.logs (id, timestamp, message) " +
                 "VALUES (" +
@@ -72,7 +77,7 @@ public class DatastaxCassandraClient {
                 "'" + aLog.getMessage() + "'" +
                 ");");
         } finally {
-            session.close();
+            //session.close();
             System.out.println("[CASSANDRA] writes: " + TOTAL_WRITES++);
         }
     }
@@ -80,7 +85,7 @@ public class DatastaxCassandraClient {
     public Set<Log> readAllLogs() {
         Set<Log> result = new HashSet<Log>();
 
-        Session session = cluster.connect();
+        //Session session = cluster.connect();
         try {
             ResultSet rows = session.execute("SELECT * FROM scalar.logs;");
             for (Row row : rows) {
@@ -91,7 +96,7 @@ public class DatastaxCassandraClient {
                 result.add(new Log(logId, date, message));
             }
         } finally {
-            session.close();
+          //  session.close();
             System.out.println("[CASSANDRA] reads: " + TOTAL_READS++);
         }
 

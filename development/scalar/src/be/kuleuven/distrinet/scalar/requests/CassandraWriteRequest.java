@@ -4,6 +4,7 @@ import be.kuleuven.distrinet.scalar.cassandra.DatastaxCassandraClient;
 import be.kuleuven.distrinet.scalar.core.User;
 import be.kuleuven.distrinet.scalar.exceptions.RequestException;
 import java.time.LocalDateTime;
+import be.kuleuven.distrinet.scalar.users.CassandraWriteUser;
 
 public class CassandraWriteRequest extends Request {
     public CassandraWriteRequest(User usr) {
@@ -13,9 +14,11 @@ public class CassandraWriteRequest extends Request {
     public void doRequest() throws RequestException {
         Log log = createLog();
 
-        user().targetUrl();
+//        user().targetUrl();
 
-        DatastaxCassandraClient cassandra = DatastaxCassandraClient.getInstance(user().targetUrl());
+//        DatastaxCassandraClient cassandra = DatastaxCassandraClient.getInstance(user().targetUrl());
+        
+        DatastaxCassandraClient cassandra = ((CassandraWriteUser)user()).getCassandraClient();
         try {
             startTimer();
             cassandra.write(log);
