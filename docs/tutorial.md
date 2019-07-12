@@ -188,7 +188,9 @@ helm install ${k8_scalar_dir}/operations/cassandra-cluster
 ```
 
 ## (3) Determine and implement desired workload type for the deployed database in Scalar
-This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](../development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](../development/scalar/src/be/kuleuven/distrinet/scalar/requests). Afterwards we want to build the application and copy the resulting jar:
+This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](../development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](../development/scalar/src/be/kuleuven/distrinet/scalar/requests). These classes use the Datastax driver for Cassandra. When using the datastax driver, [the rules linked here](https://www.datastax.com/dev/blog/4-simple-rules-when-using-the-datastax-drivers-for-cassandra) must be adhered to!
+
+Afterwards we want to build the application and copy the resulting jar:
 
 For this tutorial we will perform these steps on the minikube vm: 
 ```
