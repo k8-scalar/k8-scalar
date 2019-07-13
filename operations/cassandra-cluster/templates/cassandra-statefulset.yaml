@@ -11,6 +11,16 @@ spec:
         app: cassandra
         technology: cassandra
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - experiment-controller
+            topologyKey: "kubernetes.io/hostname"      
       containers:
       - name: cassandra
         image: t138/cassandra
