@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Creates a cassandra cluster with stateful sets and uses static provising for persistent volume
+name: cassandra-persistent-cluster
+version: 1.0.0
