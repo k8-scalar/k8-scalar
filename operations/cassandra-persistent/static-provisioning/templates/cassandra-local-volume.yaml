@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: cassandra-data
+  labels:
+    type: local
+    app: cassandra
+spec:
+  capacity:
+    storage: 4Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/cassandra-data
+  persistentVolumeReclaimPolicy: Recycle
