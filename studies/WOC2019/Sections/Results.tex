@@ -1,5 +1,4 @@
-In this section, the Kubernetes mechanisms for resource management are evaluated through a series of experiments. The first experiment aims to demonstrate the effects requests and limits. In the second experiment, a pod is added to the cluster and the effects of different request and limit configurations are evaluated. The impact of bursty workloads is described in the third experiment. The remainder of the experiments describe the effects of adding an HPA to the cluster.
-
+In this section, the Kubernetes mechanisms for resource management are evaluated through a series of experiments. 
 
 \subsection{Experiment 1: Determining the effects of request and limit configurations}
 If there is just one pod scheduled on a node, and if that pod has no limits set, then it should be able to use all of the nodes resources. The goal of this experiment is to validate this hypothesis using a  Cassandra application.
@@ -18,7 +17,7 @@ Figure \ref{fig:lat-cas-li} shows the 95th percentile latencies of the requests.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.90\columnwidth]{Images/Experiments/CPU/Latencies/lat-exp1-3.PNG}
+\includegraphics[width=0.90\columnwidth]{Images/Experiments/CPU/Latencies/lat-exp1-2.PNG}
 \caption{95th percentile latencies during Experiment 1. At around 400 requests per second, the proposed SLO is violated.}
 \label{fig:lat-cas-li} 
 \end{figure}
@@ -287,3 +286,8 @@ Figure \ref{fig:lat-saas-li} shows the 95th percentile latencies recorded during
 \caption{CPU usage during Experiment 7. The resource utilization of the node increases by adding a low priority pod without heavily impacting the amount of resources to which the high priority pod has access.}
 \label{fig:cpu-saas-lpp-hpa-li}
 \end{figure}
+
+\subsection{Threats to validity}
+Some of the conclusions drawn from the experiments results may only be valid for the specific setup used in this paper. The performed experiments considered an environment with two user applications: one high priority application and one low priority application. Setting suitable requests and limits can, however, become a complex task if multiple pods with each different priorities are scheduled on the same node.
+
+The type of test applications used can also impact the experiment results. The artificial SaaS application has a very short start-up time, making it well suited to be horizontally scaled. This may not be the case for other applications. Furthermore, this paper assumed that empty nodes were available for new replicas to be scheduled on. In practice, nodes may need to be acquired from IaaS providers and configured to the specific environment before they are ready to host applications. This could further increase the start-up time of new replicas. 
