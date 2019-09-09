@@ -16,28 +16,30 @@ All the experiments are run on a Kubernetes cluster deployed on the DistriNet pr
 \label{tools}
 
 Running the experiments requires various tools to send a customizable load to the test applications, as well as to monitor the application's performance and the resource usage of all the nodes and pods. 
+%
+%\subsubsection{Resource monitoring}
+To monitor the resources in the cluster, a combination of Heapster~\citep{heapster}, InfluxDB~\citep{influxdb} and Grafana~\citep{grafana} is employed. 
+%Heapster collects each node's metrics through the kubelet node agent~\citep{kubelet}~\citep{heapster-influxdb-grafana}. The collected data is written to InfluxDB. InfluxDB is a time-series database, a database optimized for time-stamped or time series data~\citep{timeseriesdb}. Grafana is a metric dashboard and graph editor which supports, among others, InfluxDB~\citep{grafana-github}. 
 
-\subsubsection{Resource monitoring}
-To monitor the resources in the cluster, a combination of Heapster~\citep{heapster}, InfluxDB~\citep{influxdb} and Grafana~\citep{grafana} is employed. Heapster collects each node's metrics through the kubelet node agent~\citep{kubelet}~\citep{heapster-influxdb-grafana}. The collected data is written to InfluxDB. InfluxDB is a time-series database, a database optimized for time-stamped or time series data~\citep{timeseriesdb}. Grafana is a metric dashboard and graph editor which supports, among others, InfluxDB~\citep{grafana-github}. 
-
-\subsubsection{Experiment controller}
-To run and monitor the experiments, K8-Scalar~\citep{scalar} is used. K8-Scalar is an extensible workbench exemplar for implementing and evaluating different self-adaptive approaches to autoscaling container-orchestrated services~\citep{scalar-github-overview}. K8-Scalar can be customized to test a specific system by implementing Java user and request classes fit for that system. Multiple users may be implemented, for example one user which performs CPU-intensive requests and one which performs memory-intensive requests.
-
-When preparing an experiment, the distribution of the types of users can be specified, for example 95\% of the users executing memory intensive requests and 5\% executing CPU intensive requests. Furthermore, the exact workload profile can be described using a template, part of which is shown in listing \ref{listing:profile}. An experiment in K8-Scalar consists of multiple runs, and the peak load for each of these runs must be provided. A run in turn consists of a ramp-up phase, a peak load phase and a ramp-down phase. The duration of all of these phases can be configured. In between runs, there can also be constant low load phases. Ramping up and down is done linearly. Besides sending the requests, K8-Scalar monitors the time needed by the tested applications to process these requests~\citep{scalar}.
-
-\lstset{caption={Load profile example},label=listing:profile}
-\begin{lstlisting}[float]
-## LOAD PROFILE
-user_peak_load=500,1000,1500
-user_warmup_fraction=1
-user_warmup_duration=0
-user_ramp_up_duration=0
-user_peak_duration=400
-user_ramp_down_duration=0
-user_cooldown_duration=0
-user_wait_inbetween_runs=0
-\end{lstlisting}
-
+%\subsubsection{Experiment controller}
+To run and monitor the experiments, K8-Scalar~\citep{scalar} is used. K8-Scalar is an extensible workbench exemplar for implementing and evaluating different self-adaptive approaches to autoscaling container-orchestrated services~\citep{scalar-github-overview}. 
+%K8-Scalar can be customized to test a specific system by implementing Java user and request classes fit for that system. Multiple users may be implemented, for example one user which performs CPU-intensive requests and one which performs memory-intensive requests. When preparing an experiment, the distribution of the types of users can be specified, for example 95\% of the users executing memory intensive requests and 5\% executing CPU intensive requests. Furthermore, the exact workload profile can be described using a template.
+%, part of which is shown in listing \ref{listing:profile}
+%An experiment in K8-Scalar consists of multiple runs, and the peak load for each of these runs must be provided. A run in turn consists of a ramp-up phase, a peak load phase and a ramp-down phase. The duration of all of these phases can be configured. In between runs, there can also be constant low load phases. Ramping up and down is done linearly. Besides sending the requests, K8-Scalar monitors the time needed by the tested applications to process these requests~\citep{scalar}.
+%
+%\lstset{caption={Load profile example},label=listing:profile}
+%\begin{lstlisting}[float]
+%## LOAD PROFILE
+%user_peak_load=500,1000,1500
+%user_warmup_fraction=1
+%user_warmup_duration=0
+%user_ramp_up_duration=0
+%user_peak_duration=400
+%user_ramp_down_duration=0
+%user_cooldown_duration=0
+%user_wait_inbetween_runs=0
+%\end{lstlisting}
+%
 \subsection{Deployed applications}
 \label{test-apps}
 
