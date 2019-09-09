@@ -6,8 +6,8 @@ All the experiments are run on a Kubernetes cluster deployed on the DistriNet pr
 
 \begin{figure}
 \centering
-\includegraphics[width=0.75\columnwidth]{Images/Setup/Cluster.pdf}
-\caption{Cluster setup}
+\includegraphics[width=0.85\columnwidth]{Images/Setup/Cluster.pdf}
+\caption{Test cluster setup}
 \label{fig:cluster} 
 \end{figure}
 
@@ -44,13 +44,13 @@ To run and monitor the experiments, K8-Scalar~\citep{scalar} is used. K8-Scalar 
 \label{test-apps}
 
 \subsubsection{LMaaS: Log Management as a Service}
-In accordance with the K8-Scalar paper~\citep{scalar}, a Log Management-as-a-Service (LMaaS) application based on Cassandra is selected as the first high priority application with which to evaluate the Kubernetes mechanics in a CPU intensive environment. The main service offered by the application is real-time aggregation and storage of log files. Only write operations are examined in this paper, as they are CPU intensive. The main QoS requirement for the application is thus the latency of write requests. Cassandra well-suited as for the experiments as its design is optimized for write-heavy workloads.~\citep{scalar}.
+In accordance with the K8-Scalar paper~\citep{scalar}, Cassandra based application is selected as the first high priority test application. Only write operations are examined in this paper, as they are CPU intensive. The main QoS requirement for the application is thus the latency of write requests. Cassandra is well-suited for the experiments as its design is optimized for write-heavy workloads.~\citep{scalar}.
 
 \subsubsection{Artificial SaaS application}
 \label{setup:saas-app}
-A second high priority application is also experimented with to to verify whether the experimental results are valid for more than just one application. An artificial SaaS application developed at KU Leuven~\citep{saas-app} is selected for this purpose. The main benefit of this SaaS application is that the stressed resource is easily configurable through the application's REST interface. For example, if a CPU intensive workload needs to be tested, the memory intensity of the application can be set to zero by executing a simple REST command at runtime. 
+An artificial SaaS application developed at KU Leuven~\citep{saas-app} is selected for as a second high priority test application. The main benefit of this SaaS application is that the stressed resource is easily configurable through the application's REST interface. For example, if a CPU intensive workload needs to be tested, the memory intensity of the application can be set to zero by executing a simple REST command at runtime. 
 
 \subsubsection{Low priority application}
 \label{setup:lpp}
 %The application shown in Figure \ref{fig:cpu-app-python} is deployed as t
-The low priority application is used for testing the effects of co-locating pods. It is CPU-intensive by executing a multiplication in an infinite loop. If sufficient resources are free, this application continually uses one full CPU since it is single threaded. The main benefit of this application is that its exact CPU usage is known and roughly constant.
+The low priority application used for testing the effects of co-locating pods executes a multiplication in an infinite loop. If sufficient resources are free, this application continually uses one full CPU since it is single threaded. The main benefit of this application is that its exact CPU usage is known and roughly constant.
