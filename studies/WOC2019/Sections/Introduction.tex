@@ -1,4 +1,3 @@
-\subsection{Context}
 Cloud computing has become increasingly popular since its introduction and is expected to keep growing in the years to come~~\citep{Statista.com}. Companies tend to move their resources to the cloud rather than keeping them on their own infrastructure as it offers numerous advantages (i.e.~~\citep{AhmadiM.2018Caao}). SaaS providers aim to provide their services as cost-efficiently as possible. In this regard, they face the continuous challenge of utilizing only a minimal amount of resources while still meeting their customers' requirements, in order to reduce the cost. One way to reduce the amount of resources needed is by locating multiple applications on the same node. This entails new challenges, such as determining how to divide over-provisioned resources among the deployed applications, and how to handle resource contention in general. 
 
 Kubernetes is a popular open source framework for managing containerized applications in a distributed environment, providing basic mechanisms for deployment, maintenance and scaling of applications~\citep{kubernetes_github}. It also offers several useful features for resource management. 
@@ -7,18 +6,25 @@ The resources used by a container can be limited, for example, by setting its so
 
 %So far, research on resource management in container-based environments has been rather scarce, as it is still relatively new compared to VM-based environments~\citep{Al-DhuraibiYahya2018EiCC}~\citep{CoutinhoEmanuel2015Eicc}. 
 Kubernetes is evolving rapidly. Meanwhile, both documentation and research are struggling to keep up with its development, especially since most research is aimed towards custom scaling techniques (i.e.~\citep{hyscale}~\citep{caravel}). As a result, identifying the optimal way to manage resources in Kubernetes can be a difficult task. Multiple questions may arise when configuring a Kubernetes cluster, such as how to choose suitable requests and limits, on which nodes to locate certain pods and how to configure an autoscaler. 
-The goal of this paper is therefore to research how different Kubernetes features can be leveraged to cost-effectively manage resources in the framework while also meeting SLOs in the presence of dynamically evolving workloads. 
-
-This paper evaluates the effects of simulating vertical scaling through the use of requests and limits and co-locating high-priority and low-priority pods, horizontal scaling using the default Kubernetes HPA, and a combination of both, in different environments. A test application deployed on a Kubernetes cluster is subjected to multiple experiments to illustrate the impact of different configurations.
-
+The goal of this paper is therefore to research how different Kubernetes features can be leveraged to cost-effectively manage resources in the framework while also meeting SLOs in the presence of dynamically evolving workloads. More concretely, we aim to provide answers to the following questions:
 \begin{itemize}
-    \item \textbf{Requests and limits}
-    The impact of different request and limit configurations is examined by deploying another, low priority pod on the same node as the main application's pod. This impact is described by providing answers to two questions: first, how are resources divided among these pods; second, what is the impact of the co-location on the performance of the higher priority pod?     
-		\item \textbf{The Kubernetes HPA}
-    If the user load rises to a point where SLAs get violated even if lower priority pods get throttled or evicted, applications may need to be scaled to provide the desired services. The performance impact of adding the default Kubernetes horizontal autoscaler to a cluster is illustrated. Furthermore, the effects of combining the autoscaler with the request and limit mechanisms, are described.
+    \item What is the impact of different request and limit configurations?
+    \item Does co-locating a high priority pod with a low priority pod affect the performance of the high priority pod?
+    \item What is the performance impact of scaling an application using the HPA?
 \end{itemize}
 
 Different configurations may result in different performance gains (or losses) depending on the environment. For example, the user load may be very bursty, in which case using the oversubscription concepts or the HPA may not always lead to the expected results. Hence, the aforementioned impacts of the different mechanisms will be tested for both linearly increasing and bursty workloads. In this paper, however, only CPU intensive workloads will be examined. Scaling memory bound systems is less common as performing a static optimization of needed memory often suffices. Furthermore, Kubernetes does not offer support for configuring network and disk resources.
+
+% This paper evaluates the effects of simulating vertical scaling through the use of requests and limits and co-locating high-priority and low-priority pods, horizontal scaling using the default Kubernetes HPA, and a combination of both, in different environments. A test application deployed on a Kubernetes cluster is subjected to multiple experiments to illustrate the impact of different configurations.
+
+% \begin{itemize}
+%     \item \textbf{Requests and limits}
+%     The impact of different request and limit configurations is examined by deploying another, low priority pod on the same node as the main application's pod. This impact is described by providing answers to two questions: first, how are resources divided among these pods; second, what is the impact of the co-location on the performance of the higher priority pod?     
+% 		\item \textbf{The Kubernetes HPA}
+%     If the user load rises to a point where SLAs get violated even if lower priority pods get throttled or evicted, applications may need to be scaled to provide the desired services. The performance impact of adding the default Kubernetes horizontal autoscaler to a cluster is illustrated. Furthermore, the effects of combining the autoscaler with the request and limit mechanisms, are described.
+% \end{itemize}
+
+% Different configurations may result in different performance gains (or losses) depending on the environment. For example, the user load may be very bursty, in which case using the oversubscription concepts or the HPA may not always lead to the expected results. Hence, the aforementioned impacts of the different mechanisms will be tested for both linearly increasing and bursty workloads. In this paper, however, only CPU intensive workloads will be examined. Scaling memory bound systems is less common as performing a static optimization of needed memory often suffices. Furthermore, Kubernetes does not offer support for configuring network and disk resources.
 
 %\subsection{Research questions}
 %This paper aims to provide insight into how different Kubernetes features can be employed to meet SLA requirements cost-efficiently. The Kubernetes features show potential to be effective tools for adaptive resource management and server consolidation purposes. Specifically, this paper intends to provide clear answers to the following questions:
