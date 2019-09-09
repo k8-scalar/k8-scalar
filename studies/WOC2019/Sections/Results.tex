@@ -37,20 +37,20 @@ Figure \ref{fig:lat-cas-li} shows the 95th percentile latencies of the requests.
 \label{fig:cpu-cas-li} 
 \end{figure}
 
-It should be verified that the experiment controller has sufficient resources to run the experiments. Preliminary tests show that the experiment-controller is CPU bound. Figure \ref{fig:cpu-scalar} shows the experiment controller's CPU usage during the experiment described above. A peak in CPU usage can be examined at the start of each run, but these peaks stay well below the available amount of CPU in the node. The experiment controller should thus not be the bottleneck during the experiments. \\
-
-\begin{figure}
-\centering
-\includegraphics[width=0.80\columnwidth]{Images/Experiments/CPU/Grafana/cpu-scalar.PNG}
-\caption{Experiment controller CPU usage during Experiment 1. The node's CPU usage never reaches its capacity.}
-\label{fig:cpu-scalar} 
-\end{figure}
+%It should be verified that the experiment controller has sufficient resources to run the experiments. Preliminary tests show that the experiment-controller is CPU bound. Figure \ref{fig:cpu-scalar} shows the experiment controller's CPU usage during the experiment described above. A peak in CPU usage can be examined at the start of each run, but these peaks stay well below the available amount of CPU in the node. The experiment controller should thus not be the bottleneck during the experiments.
+%
+%\begin{figure}
+%\centering
+%\includegraphics[width=0.80\columnwidth]{Images/Experiments/CPU/Grafana/cpu-scalar.PNG}
+%\caption{Experiment controller CPU usage during Experiment 1. The node's CPU usage never reaches its capacity.}
+%\label{fig:cpu-scalar} 
+%\end{figure}
 
 \subsection{Experiment 2: Determining the effects of co-locating a high and low priority application}
-The goal of this experiment is to answer whether it is possible to increase cost-efficiency by using the Kubernetes oversubscription mechanisms described in section \ref{background:oversubscription}. Through two tests, we illustrate the effects of different request configurations when a high and low priority pod are co-located on a node.
+The goal of this experiment is to answer whether it is possible to increase cost-efficiency by using the Kubernetes oversubscription mechanisms described in Section \ref{background:oversubscription}. Through two tests, we illustrate the effects of different request configurations when a high and low priority pod are co-located on a node.
 
 \subsubsection{Setup}
-Figure \ref{fig:experiment2} shows the high-level setup. Compared to the first experiment, the application described in section \ref{setup:lpp} is added to the cluster as a low priority pod. The experiment consists of two separate tests. During the first one, the Cassandra application and the low priority pod each have a CPU request of \textit{500m}. For the second test, Cassandra has a CPU request of \textit{1500m} while the low priority pod has a CPU request of only \textit{10m}. The workload applied is the same as the one applied during Experiment 1. During the first test, both pods should receive an equal amount of CPU cycles. The results of the the test should indicate significantly higher 95th percentile latencies when compared to the results from Experiment 1, because the Cassandra pod cannot use all of the resources on the node. During the second test, Cassandra's performance should only be affected slightly as a result of the aforementioned \textit{cpu-shares} mechanism.
+Figure \ref{fig:experiment2} shows the high-level setup. Compared to the first experiment, the application described in Section \ref{setup:lpp} is added to the cluster as a low priority pod. The experiment consists of two separate tests. During the first one, the Cassandra application and the low priority pod each have a CPU request of \textit{500m}. For the second test, Cassandra has a CPU request of \textit{1500m} while the low priority pod has a CPU request of only \textit{10m}. The workload applied is the same as the one applied during Experiment 1. During the first test, both pods should receive an equal amount of CPU cycles. The results of the the test should indicate significantly higher 95th percentile latencies when compared to the results from Experiment 1, because the Cassandra pod cannot use all of the resources on the node. During the second test, Cassandra's performance should only be affected slightly as a result of the aforementioned \textit{cpu-shares} mechanism.
 
 \begin{figure}
 \centering
@@ -60,7 +60,7 @@ Figure \ref{fig:experiment2} shows the high-level setup. Compared to the first e
 \end{figure}
 
 \subsubsection{Results}
-Figure \ref{fig:cpu-cas-lpp-li} shows the CPU usage of both the Cassandra pod and the low priority pod during the first test, when their requests are equal. It shows that the available CPU is split equally between both pods. As expected, Figure \ref{fig:lat-cas-lpp-li} illustrates that the SLO posed earlier gets violated at about half the amount of requests per second when compared to Experiment 1. \\
+Figure \ref{fig:cpu-cas-lpp-li} shows the CPU usage of both the Cassandra pod and the low priority pod during the first test, when their requests are equal. It shows that the available CPU is split equally between both pods. As expected, Figure \ref{fig:lat-cas-lpp-li} illustrates that the SLO posed earlier gets violated at about half the amount of requests per second when compared to Experiment 1.
 
 \begin{figure}
 \centering
@@ -76,7 +76,7 @@ Figure \ref{fig:cpu-cas-lpp-li} shows the CPU usage of both the Cassandra pod an
 \label{fig:lat-cas-lpp-li}
 \end{figure}
 
-During the second test, the Cassandra pod should receive the vast majority of the available CPU when it needs to process a high workload. Figure \ref{fig:cpu-cas-lpp-li-2} shows the worker node's CPU usage during this test. As the amount of CPU needed by the Cassandra pod increases, the amount of CPU available to the low priority pod decreases, which is according to expectations. The 95th percentile latencies are shown in Figure \ref{fig:lat-cas-lpp-li-2}. The proposed SLO is breached between 350 and 400 requests per second. This is slightly lower when compared to the Experiment 1, where SLO violations started occurring at about 400 requests per second. \\
+During the second test, the Cassandra pod should receive the vast majority of the available CPU when it needs to process a high workload. Figure \ref{fig:cpu-cas-lpp-li-2} shows the worker node's CPU usage during this test. As the amount of CPU needed by the Cassandra pod increases, the amount of CPU available to the low priority pod decreases, which is according to expectations. The 95th percentile latencies are shown in Figure \ref{fig:lat-cas-lpp-li-2}. The proposed SLO is breached between 350 and 400 requests per second. This is slightly lower when compared to the Experiment 1, where SLO violations started occurring at about 400 requests per second.
 
 \begin{figure}
 \centering
@@ -148,7 +148,7 @@ Figure \ref{fig:cpu-cas-hpa-li} shows the CPU usage of the primary Cassandra pod
 \end{figure}
 
 \subsection{Experiment 5: Determining the effects of the Kubernetes HPA on the SaaS application performance}
-The previous experiment is redone with the artificial SaaS application (introduced in section \ref{setup:saas-app}) replacing Cassandra. Through two tests, this experiment verifies whether the performance of the SaaS application increases after a replica is added, or if it encounters the same scalability issues in Kubernetes as Cassandra.  
+The previous experiment is redone with the artificial SaaS application (introduced in Section \ref{setup:saas-app}) replacing Cassandra. Through two tests, this experiment verifies whether the performance of the SaaS application increases after a replica is added, or if it encounters the same scalability issues in Kubernetes as Cassandra.  
 
 \subsubsection{Setup}
 The SLO posed for the SaaS application is equal to the one posed for the Cassandra application in Experiment 1. Two separate tests are run. The first one subjects the SaaS application to a linearly increasing workload to see how much requests one replica can handle. The SaaS application is configured so that it processes the requests in a CPU intensive manner. Its CPU request is set to 1.5 CPU. The setup is depicted in Figure \ref{fig:experiment5.1}. The linearly increasing workload applied to the SaaS application starts at 50 requests per second and increases with 50 requests per second each 600 seconds, up to 300 requests per second. For the second test, the HPA is added to the cluster and linearly increasing workload is again applied to the SaaS application. The workload now rises up to 600 requests per second instead of up to 300. Again, 110\% is selected as the point of scaling for the HPA. A new worker node is made available for the HPA to schedule a new replica of the SaaS application on, as shown in Figure \ref{fig:experiment5.2}. 
@@ -156,7 +156,7 @@ The SLO posed for the SaaS application is equal to the one posed for the Cassand
 \begin{figure}
 \centering
 \includegraphics[width=0.55\columnwidth]{Images/Experiments/Experiment_1_SaaS.pdf}
-\caption{Experiment 5.1 setup. The SaaS application replaces Cassandra.}
+\caption{The setup for experiment 5.1 and 5.2. The SaaS application replaces Cassandra.}
 \label{fig:experiment5.1}
 \end{figure}
 
@@ -184,8 +184,6 @@ Figure \ref{fig:lat-saas-li} shows the 95th percentile of latencies during the f
 \caption{Worker node CPU usage during the first test of Experiment 5. The resources of the node are fully used up at 150 requests per second. Since the SaaS application cannot acquire the resources needed to process 200 requests per second, the SLO gets violated.}
 \label{fig:cpu-saas-li}
 \end{figure}
-
-\newpage
 
 Figure \ref{fig:lat-saas-hpa-li} shows the latencies during the second test of this experiment. These illustrate that the SaaS application is able to process 250 requests per second without violating the SLO. This slightly less than double the 150 requests per second which the SaaS application can process without the HPA. Hence, there is still some overhead associated with having multiple replicas of the SaaS application, but it is relatively small compared to the overhead detected when scaling Cassandra in Kubernetes. Figure \ref{fig:cpu-cas-hpa-li-2} confirms that the workload is distributed over the replicas.
 
@@ -224,7 +222,7 @@ The goal of this experiment is to test how the Kubernetes HPA performs when the 
 The setup for this experiment is the same as the one used during the second test of the previous experiment, shown in Figure \ref{fig:experiment5.2}. A bursty workload is applied to the SaaS application. This workload consists of five minutes of 60 requests per second followed by a one minute peak of 250 requests per second. This pattern is repeated 20 times.  
 
 \subsubsection{Results}
-Figure \ref{fig:cpu-saas-hpa-bursty} show the worker node's CPU usages during this experiment. The graphs illustrate that during the first couple of bursts, no scaling happens. This is unexpected. The 95th percentile latencies also report SLA violations during these bursts. One possible explanation is that the HPA does not poll the resource usage during the burst and thus does not notice the burst. This is, however, not the case, since the HPA queries the resource utilization every 15 seconds by default, and a burst lasts for 60 seconds. The HPA's algorithm details~\citep{hpa-algorithm-details} proved insufficient to find the cause of this behavior.\\
+Figure \ref{fig:cpu-saas-hpa-bursty} show the worker node's CPU usages during this experiment. The graphs illustrate that during the first couple of bursts, no scaling happens. This is unexpected. The 95th percentile latencies also report SLA violations during these bursts. One possible explanation is that the HPA does not poll the resource usage during the burst and thus does not notice the burst. This is, however, not the case, since the HPA queries the resource utilization every 15 seconds by default, and a burst lasts for 60 seconds. The HPA's algorithm details~\citep{hpa-algorithm-details} proved insufficient to find the cause of this behavior.
 
 
 \begin{figure}
@@ -251,11 +249,11 @@ Another observation made from this experiment's results is that the HPA does not
 
 \[ desiredReplicas = ceil[currentReplicas\ *\ (\ currentValue\ /\ desiredValue\ )] \]
 
-The \textit{desiredValue} was set to \textit{110\%} of the request, so approximately \textit{1650m}. The \textit{currentValue} is calculated by ``taking the average of the given metric across all pods in the HorizontalPodAutoscaler's scale target''~\citep{hpa-algorithm-details}. In between bursts, figures \ref{fig:cpu-saas-hpa-bursty-2-1} and \ref{fig:cpu-saas-hpa-bursty-2-2} show that this value is around \textit{500m}. Given these values, the number of desired replicas is one.\\
+The \textit{desiredValue} was set to \textit{110\%} of the request, so approximately \textit{1650m}. The \textit{currentValue} is calculated by ``taking the average of the given metric across all pods in the HorizontalPodAutoscaler's scale target''~\citep{hpa-algorithm-details}. In between bursts, figures \ref{fig:cpu-saas-hpa-bursty-2-1} and \ref{fig:cpu-saas-hpa-bursty-2-2} show that this value is around \textit{500m}. Given these values, the number of desired replicas is one.
 
-It is possible that the HPA does not scale down the SaaS application due to the default \textit{downscale stabilization} parameter of the HPA algorithm being five minutes~\citep{hpa-cooldown-delay}. This parameter specifies a period of time during which the HPA considers all recommendations before scaling down. In other words, the HPA only scales down if its decision to scale down has not changed for five minutes. The downtime during each burst in this experiment was set to exactly five minutes. Since the HPA should not scale down during a burst, this could lead to the HPA not scaling down at all. Combined with the knowledge that the metrics get queried only every 15 seconds, this could also explain why the HPA did scale down during the 11th and 14th burst. \\
+It is possible that the HPA does not scale down the SaaS application due to the default \textit{downscale stabilization} parameter of the HPA algorithm being five minutes~\citep{hpa-cooldown-delay}. This parameter specifies a period of time during which the HPA considers all recommendations before scaling down. In other words, the HPA only scales down if its decision to scale down has not changed for five minutes. The downtime during each burst in this experiment was set to exactly five minutes. Since the HPA should not scale down during a burst, this could lead to the HPA not scaling down at all. Combined with the knowledge that the metrics get queried only every 15 seconds, this could also explain why the HPA did scale down during the 11th and 14th burst.
 
-To verify these assumptions, another test is run in which the downtime between each burst is set to 7 minutes. The other experiment parameters remain unchanged. Figure \ref{fig:cpu-saas-hpa-bursty-2} show the CPU usage of the two worker nodes. During this test, the HPA scaled up the SaaS application during the first burst, but did not scale it down until after the test was completed.  \\
+To verify these assumptions, another test is run in which the downtime between each burst is set to 7 minutes. The other experiment parameters remain unchanged. Figure \ref{fig:cpu-saas-hpa-bursty-2} show the CPU usage of the two worker nodes. During this test, the HPA scaled up the SaaS application during the first burst, but did not scale it down until after the test was completed. 
 
 \begin{figure}
 \centering
