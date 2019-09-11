@@ -23,7 +23,7 @@ spec:
             topologyKey: "kubernetes.io/hostname" 
       containers:
       - name: experiment-controller
-        image: sverreydt/experiment-controller-test:latest 
+        image:  decomads/experiment-controller-cassandra-saas 
         volumeMounts:
         - name: kubeconfig
           mountPath: /root/.kube
