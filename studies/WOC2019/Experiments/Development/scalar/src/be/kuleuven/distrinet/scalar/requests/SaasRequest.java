@@ -19,27 +19,27 @@ public class SaaSRequest extends Request {
     }
 
     public void doRequest() throws RequestException {
-        try {
-        	HttpClient httpClient = new DefaultHttpClient();
+    	HttpClient httpClient = new DefaultHttpClient();
+    	try {
         	HttpGet httpGetRequest = new HttpGet("http://10.103.25.118/request/0");
             startTimer();
             HttpResponse httpResponse = httpClient.execute(httpGetRequest);
             stopTimer();
             
-            if (httpResponse.getStatusLine() == "200") {
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
             	done(RequestResult.SUCCEEDED);
             } else {
             	System.out.println("### Write request failed, http response:");
-            	System.out.println(httpResponse.getStatusLine() + ": " httpResponse.getLocale())
+            	System.out.println(httpResponse.getStatusLine().getStatusCode() + ": " + httpResponse.getLocale());
                 System.out.println(httpResponse.getEntity());
-                done(RequestResult.FAILED)
+                done(RequestResult.FAILED);
             }
         } catch (Exception e) {
             System.out.println("### Write request failed, reason:");
             e.printStackTrace();
             done(RequestResult.FAILED);
         } finally {
-        httpClient.getConnectionManager().shutdown();
+            httpClient.getConnectionManager().shutdown();
       }
     }
 }
