@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: saas-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: saas-app
+      labels:
+        app: saas-app
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: role
+                operator: In
+                values:
+                - cassandra-primary
+      containers:
+      - name: saas-app
+        image: sverreydt/saas-app
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+          requests:
+            memory: "1Gi"
+            cpu: 1500m
+      nodeSelector:
+        priority: "high"

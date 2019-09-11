@@ -1,0 +1,118 @@
+{ "results": "
+
+Experiment consisting of 10 runs and 1 request types:
+	SaasRequest
+
+
+Load,          Duration,      Troughput,     Capacity,      Slow requests, Timing accuracy
+------------------------------------------------------------------------------------------
+50,            600s,          29269,         48.782,        0%,            1.141ms        
+100,           600s,          58066,         96.777,        0%,            0.401ms        
+150,           600s,          87777,         146.295,       0%,            0.269ms        
+200,           600s,          116670,        194.45,        0%,            0.188ms        
+250,           600s,          144656,        241.093,       0%,            0.234ms        
+300,           600s,          167177,        278.628,       0%,            0.202ms        
+350,           600s,          170147,        283.578,       0%,            0.26ms         
+400,           600s,          171960,        286.6,         0%,            0.249ms        
+450,           600s,          171411,        285.685,       0%,            0.216ms        
+500,           600s,          172076,        286.793,       0%,            0.241ms        
+
+
+Breakdown of residence times for SaasRequest requests:
+
+Load,          Min,           Max,           Mean,          Std. dev.,     Shape,         Scale          (successful)   (failed)       (error)        (conn_problem) (timed_out)    (redirected)   (no_result)    
+50             11.896         621.653        24.145         14.755         2.678          9.016          29269          0              0              0              0              0              0              
+100            11.692         161.424        32.358         19.755         2.683          12.061         58068          0              0              0              0              0              0              
+150            10.807         195.606        24.536         16.552         2.197          11.166         87779          0              0              0              0              0              0              
+200            10.816         324.6          27.666         18.792         2.167          12.765         116675         0              0              0              0              0              0              
+250            10.943         437.578        35.903         24.817         2.093          17.153         144664         0              0              0              0              0              0              
+300            11.052         623.39         75.595         58.831         1.651          45.784         167191         0              0              0              0              0              0              
+350            10.941         1806.112       218.916        235.555        0.864          253.459        170204         0              0              0              0              0              0              
+400            10.931         928.003        222.96         217.826        1.048          212.809        172024         0              0              0              0              0              0              
+450            10.878         871.496        223.704        225.568        0.984          227.448        171475         0              0              0              0              0              0              
+500            10.84          899.397        222.866        210.997        1.116          199.761        172140         0              0              0              0              0              0              
+
+
+Percentiles of sampled residence times (only an approximation if residence_times_sample_fraction is set):
+
+SaasRequest (run 1, 50 users):
+	50.0%	of requests handled in 22.924ms.
+	90.0%	of requests handled in 33.042ms.
+	95.0%	of requests handled in 38.352ms.
+	99.0%	of requests handled in 56.336ms.
+	99.9%	of requests handled in 174.4ms.
+	99.99%	of requests handled in 580.713ms.
+
+SaasRequest (run 2, 100 users):
+	50.0%	of requests handled in 25.333ms.
+	90.0%	of requests handled in 60.832ms.
+	95.0%	of requests handled in 73.284ms.
+	99.0%	of requests handled in 102.87ms.
+	99.9%	of requests handled in 134.182ms.
+	99.99%	of requests handled in 154.286ms.
+
+SaasRequest (run 3, 150 users):
+	50.0%	of requests handled in 17.794ms.
+	90.0%	of requests handled in 46.099ms.
+	95.0%	of requests handled in 61.064ms.
+	99.0%	of requests handled in 88.591ms.
+	99.9%	of requests handled in 115.805ms.
+	99.99%	of requests handled in 142.296ms.
+
+SaasRequest (run 4, 200 users):
+	50.0%	of requests handled in 20.751ms.
+	90.0%	of requests handled in 51.249ms.
+	95.0%	of requests handled in 66.163ms.
+	99.0%	of requests handled in 100.818ms.
+	99.9%	of requests handled in 143.281ms.
+	99.99%	of requests handled in 216ms.
+
+SaasRequest (run 5, 250 users):
+	50.0%	of requests handled in 27.712ms.
+	90.0%	of requests handled in 69.932ms.
+	95.0%	of requests handled in 86.455ms.
+	99.0%	of requests handled in 124.13ms.
+	99.9%	of requests handled in 176.789ms.
+	99.99%	of requests handled in 232.956ms.
+
+SaasRequest (run 6, 300 users):
+	50.0%	of requests handled in 58.031ms.
+	90.0%	of requests handled in 158.382ms.
+	95.0%	of requests handled in 197.105ms.
+	99.0%	of requests handled in 274.388ms.
+	99.9%	of requests handled in 366.826ms.
+	99.99%	of requests handled in 404.363ms.
+
+SaasRequest (run 7, 350 users):
+	50.0%	of requests handled in 106.65ms.
+	90.0%	of requests handled in 649.634ms.
+	95.0%	of requests handled in 724.91ms.
+	99.0%	of requests handled in 807.87ms.
+	99.9%	of requests handled in 868.069ms.
+	99.99%	of requests handled in 991.806ms.
+
+SaasRequest (run 8, 400 users):
+	50.0%	of requests handled in 132.43ms.
+	90.0%	of requests handled in 591.709ms.
+	95.0%	of requests handled in 707.432ms.
+	99.0%	of requests handled in 795.159ms.
+	99.9%	of requests handled in 858.032ms.
+	99.99%	of requests handled in 909.575ms.
+
+SaasRequest (run 9, 450 users):
+	50.0%	of requests handled in 117.606ms.
+	90.0%	of requests handled in 624.676ms.
+	95.0%	of requests handled in 708.431ms.
+	99.0%	of requests handled in 781.498ms.
+	99.9%	of requests handled in 833.843ms.
+	99.99%	of requests handled in 859.157ms.
+
+SaasRequest (run 10, 500 users):
+	50.0%	of requests handled in 133.119ms.
+	90.0%	of requests handled in 573.799ms.
+	95.0%	of requests handled in 684.301ms.
+	99.0%	of requests handled in 777.29ms.
+	99.9%	of requests handled in 837.535ms.
+	99.99%	of requests handled in 873.423ms.
+
+" }
