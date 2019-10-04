@@ -1,0 +1,78 @@
+{ "results": "
+
+Experiment consisting of 6 runs and 1 request types:
+	SaaSRequest
+
+
+Load,          Duration,      Troughput,     Capacity,      Slow requests, Timing accuracy
+------------------------------------------------------------------------------------------
+50,            600s,          29259,         48.765,        0%,            1.48ms         
+100,           600s,          58754,         97.923,        0%,            1.646ms        
+150,           600s,          88403,         147.338,       0.001%,        2.435ms        
+200,           600s,          117316,        195.527,       0.001%,        0.58ms         
+250,           600s,          131214,        218.69,        0%,            0.282ms        
+300,           600s,          131255,        218.758,       0%,            0.262ms        
+
+
+Breakdown of residence times for SaaSRequest requests:
+
+Load,          Min,           Max,           Mean,          Std. dev.,     Shape,         Scale          (successful)   (failed)       (error)        (conn_problem) (timed_out)    (redirected)   (no_result)    
+50             10.701         773.871        24.126         24.777         0.948          25.445         29259          0              0              0              0              0              0              
+100            9.924          160.916        19.85          12.054         2.712          7.32           58755          0              0              0              0              0              0              
+150            9.845          120.056        17.068         8.133          4.404          3.875          88405          0              0              0              0              0              0              
+200            9.847          258.566        21.86          15.696         1.94           11.27          117321         0              0              0              0              0              0              
+250            9.888          1029.965       141.994        160.906        0.779          182.338        131239         0              0              0              0              0              0              
+300            9.965          1855.736       291.936        312.93         0.87           335.434        131319         0              0              0              0              0              0              
+
+
+Percentiles of sampled residence times (only an approximation if residence_times_sample_fraction is set):
+
+SaaSRequest (run 1, 50 users):
+	50.0%	of requests handled in 16.69ms.
+	90.0%	of requests handled in 41.995ms.
+	95.0%	of requests handled in 58.577ms.
+	99.0%	of requests handled in 97.268ms.
+	99.9%	of requests handled in 336.189ms.
+	99.99%	of requests handled in 707.311ms.
+
+SaaSRequest (run 2, 100 users):
+	50.0%	of requests handled in 15.672ms.
+	90.0%	of requests handled in 31.527ms.
+	95.0%	of requests handled in 42.363ms.
+	99.0%	of requests handled in 72.902ms.
+	99.9%	of requests handled in 115.559ms.
+	99.99%	of requests handled in 145.622ms.
+
+SaaSRequest (run 3, 150 users):
+	50.0%	of requests handled in 14.666ms.
+	90.0%	of requests handled in 24.722ms.
+	95.0%	of requests handled in 30.777ms.
+	99.0%	of requests handled in 52.444ms.
+	99.9%	of requests handled in 88.715ms.
+	99.99%	of requests handled in 113.11ms.
+
+SaaSRequest (run 4, 200 users):
+	50.0%	of requests handled in 16.012ms.
+	90.0%	of requests handled in 37.722ms.
+	95.0%	of requests handled in 51.407ms.
+	99.0%	of requests handled in 87.465ms.
+	99.9%	of requests handled in 152.372ms.
+	99.99%	of requests handled in 239.836ms.
+
+SaaSRequest (run 5, 250 users):
+	50.0%	of requests handled in 70.779ms.
+	90.0%	of requests handled in 391.966ms.
+	95.0%	of requests handled in 496.008ms.
+	99.0%	of requests handled in 668.296ms.
+	99.9%	of requests handled in 799.886ms.
+	99.99%	of requests handled in 976.597ms.
+
+SaaSRequest (run 6, 300 users):
+	50.0%	of requests handled in 145.649ms.
+	90.0%	of requests handled in 828.092ms.
+	95.0%	of requests handled in 963.307ms.
+	99.0%	of requests handled in 1070.249ms.
+	99.9%	of requests handled in 1113.034ms.
+	99.99%	of requests handled in 1141.022ms.
+
+" }
