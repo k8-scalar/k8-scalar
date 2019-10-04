@@ -1,0 +1,25 @@
+apiServer:
+  extraArgs:
+    authorization-mode: Node,RBAC
+    runtime-config: "api/all=true"
+  timeoutForControlPlane: 4m0s
+apiVersion: kubeadm.k8s.io/v1beta1
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controlPlaneEndpoint: ""
+controllerManager:
+  extraArgs:
+    horizontal-pod-autoscaler-use-rest-clients: "false"
+dns:
+  type: CoreDNS
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: k8s.gcr.io
+kind: ClusterConfiguration
+kubernetesVersion: v1.14.7
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.244.0.0/16
+  serviceSubnet: 10.96.0.0/12
+scheduler: {}
