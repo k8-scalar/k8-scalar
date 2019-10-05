@@ -1,0 +1,268 @@
+{ "results": "
+
+Experiment consisting of 25 runs and 1 request types:
+	SaaSRequest
+
+
+Load,          Duration,      Troughput,     Capacity,      Slow requests, Timing accuracy
+------------------------------------------------------------------------------------------
+10,            120s,          1167,          9.725,         0%,            0.922ms        
+20,            120s,          2339,          19.492,        0%,            0.691ms        
+30,            120s,          3512,          29.267,        0%,            0.472ms        
+40,            120s,          4684,          39.033,        0%,            0.347ms        
+50,            120s,          5855,          48.792,        0%,            0.307ms        
+60,            120s,          7045,          58.708,        0%,            0.216ms        
+70,            120s,          8218,          68.483,        0%,            0.272ms        
+80,            120s,          9401,          78.342,        0%,            0.228ms        
+90,            120s,          10552,         87.933,        0%,            0.205ms        
+100,           120s,          11753,         97.942,        0%,            0.527ms        
+110,           120s,          12927,         107.725,       0%,            0.344ms        
+120,           120s,          14032,         116.933,       0%,            0.245ms        
+130,           120s,          15035,         125.292,       0%,            0.453ms        
+140,           120s,          15697,         130.808,       0%,            0.248ms        
+150,           120s,          15977,         133.142,       0%,            0.216ms        
+160,           120s,          15828,         131.9,         0%,            0.39ms         
+170,           120s,          16037,         133.642,       0%,            0.263ms        
+180,           120s,          16110,         134.25,        0%,            0.241ms        
+190,           120s,          16094,         134.117,       0.006%,        0.229ms        
+200,           120s,          16281,         135.675,       0%,            0.33ms         
+210,           120s,          16056,         133.8,         0%,            0.387ms        
+220,           120s,          15988,         133.233,       0%,            0.258ms        
+230,           120s,          16136,         134.467,       0%,            0.294ms        
+240,           120s,          16257,         135.475,       0%,            0.262ms        
+250,           120s,          16170,         134.75,        0%,            0.331ms        
+
+
+Breakdown of residence times for SaaSRequest requests:
+
+Load,          Min,           Max,           Mean,          Std. dev.,     Shape,         Scale          (successful)   (failed)       (error)        (conn_problem) (timed_out)    (redirected)   (no_result)    
+10             11.075         602.314        27.204         33.587         0.656          41.469         1167           0              0              0              0              0              0              
+20             10.953         118.906        23.195         15.997         2.102          11.032         2340           0              0              0              0              0              0              
+30             10.79          125.546        23.884         17.146         1.94           12.308         3512           0              0              0              0              0              0              
+40             10.707         208.221        22.109         17.814         1.54           14.353         4685           0              0              0              0              0              0              
+50             10.417         199.354        23.001         19.493         1.392          16.519         5856           0              0              0              0              0              0              
+60             10.148         184.874        20.938         15.236         1.888          11.087         7050           0              0              0              0              0              0              
+70             10.115         152.569        20.631         14.528         2.017          10.23          8219           0              0              0              0              0              0              
+80             9.976          247.678        20.253         15.722         1.659          12.205         9406           0              0              0              0              0              0              
+90             10.087         201.325        22.265         18.365         1.47           15.149         10553          0              0              0              0              0              0              
+100            10.051         154.534        19.303         12.333         2.45           7.88           11757          0              0              0              0              0              0              
+110            10.013         235.649        20.315         17.339         1.373          14.799         12928          0              0              0              0              0              0              
+120            9.935          233.451        25.145         23.846         1.112          22.614         14035          0              0              0              0              0              0              
+130            9.906          401.842        35.914         44.882         0.64           56.089         15039          0              0              0              0              0              0              
+140            9.983          686.765        68.915         91.882         0.563          122.504        15711          0              0              0              0              0              0              
+150            10.019         774.738        125.116        154.061        0.66           189.702        15987          0              0              0              0              0              0              
+160            9.991          1150.371       211.059        255.325        0.683          308.876        15864          0              0              0              0              0              0              
+170            9.915          1504.125       270.029        322.065        0.703          384.127        16070          0              0              0              0              0              0              
+180            9.966          1678.322       338            385.401        0.769          439.449        16160          0              0              0              0              0              0              
+190            9.949          1895.004       409.988        491.827        0.695          590            16146          0              0              0              0              0              0              
+200            9.983          1903.923       452.133        470.955        0.922          490.561        16340          0              0              0              0              0              0              
+210            9.869          1967.825       476.036        519.538        0.84           567.015        16120          0              0              0              0              0              0              
+220            10.067         1932.759       478.988        493.5          0.942          508.453        16052          0              0              0              0              0              0              
+230            9.977          1867.887       474.278        470.41         1.017          466.573        16200          0              0              0              0              0              0              
+240            10.04          1876.621       470.373        461.295        1.04           452.392        16321          0              0              0              0              0              0              
+250            9.963          1889.464       473.764        510.652        0.861          550.413        16234          0              0              0              0              0              0              
+
+
+Percentiles of sampled residence times (only an approximation if residence_times_sample_fraction is set):
+
+SaaSRequest (run 1, 10 users):
+	50.0%	of requests handled in 21.09ms.
+	90.0%	of requests handled in 42.191ms.
+	95.0%	of requests handled in 62.578ms.
+	99.0%	of requests handled in 102.808ms.
+	99.9%	of requests handled in 601.199ms.
+	99.99%	of requests handled in 602.314ms.
+
+SaaSRequest (run 2, 20 users):
+	50.0%	of requests handled in 18.282ms.
+	90.0%	of requests handled in 34.789ms.
+	95.0%	of requests handled in 60.795ms.
+	99.0%	of requests handled in 95.693ms.
+	99.9%	of requests handled in 114.423ms.
+	99.99%	of requests handled in 118.906ms.
+
+SaaSRequest (run 3, 30 users):
+	50.0%	of requests handled in 17.29ms.
+	90.0%	of requests handled in 47.79ms.
+	95.0%	of requests handled in 65.33ms.
+	99.0%	of requests handled in 89.962ms.
+	99.9%	of requests handled in 118.796ms.
+	99.99%	of requests handled in 125.546ms.
+
+SaaSRequest (run 4, 40 users):
+	50.0%	of requests handled in 16.145ms.
+	90.0%	of requests handled in 38.802ms.
+	95.0%	of requests handled in 60.102ms.
+	99.0%	of requests handled in 94.659ms.
+	99.9%	of requests handled in 174.472ms.
+	99.99%	of requests handled in 208.221ms.
+
+SaaSRequest (run 5, 50 users):
+	50.0%	of requests handled in 17.042ms.
+	90.0%	of requests handled in 36.435ms.
+	95.0%	of requests handled in 66.828ms.
+	99.0%	of requests handled in 109.057ms.
+	99.9%	of requests handled in 174.48ms.
+	99.99%	of requests handled in 199.354ms.
+
+SaaSRequest (run 6, 60 users):
+	50.0%	of requests handled in 16.88ms.
+	90.0%	of requests handled in 30.133ms.
+	95.0%	of requests handled in 49.841ms.
+	99.0%	of requests handled in 95.435ms.
+	99.9%	of requests handled in 137.877ms.
+	99.99%	of requests handled in 184.874ms.
+
+SaaSRequest (run 7, 70 users):
+	50.0%	of requests handled in 16.504ms.
+	90.0%	of requests handled in 30.351ms.
+	95.0%	of requests handled in 49.502ms.
+	99.0%	of requests handled in 88.522ms.
+	99.9%	of requests handled in 124.615ms.
+	99.99%	of requests handled in 152.569ms.
+
+SaaSRequest (run 8, 80 users):
+	50.0%	of requests handled in 16.074ms.
+	90.0%	of requests handled in 29.556ms.
+	95.0%	of requests handled in 45.831ms.
+	99.0%	of requests handled in 91.555ms.
+	99.9%	of requests handled in 178.231ms.
+	99.99%	of requests handled in 247.678ms.
+
+SaaSRequest (run 9, 90 users):
+	50.0%	of requests handled in 16.355ms.
+	90.0%	of requests handled in 39.007ms.
+	95.0%	of requests handled in 61.951ms.
+	99.0%	of requests handled in 100.959ms.
+	99.9%	of requests handled in 172.289ms.
+	99.99%	of requests handled in 200.682ms.
+
+SaaSRequest (run 10, 100 users):
+	50.0%	of requests handled in 15.649ms.
+	90.0%	of requests handled in 28.884ms.
+	95.0%	of requests handled in 42.39ms.
+	99.0%	of requests handled in 76.332ms.
+	99.9%	of requests handled in 119.642ms.
+	99.99%	of requests handled in 154.437ms.
+
+SaaSRequest (run 11, 110 users):
+	50.0%	of requests handled in 15.181ms.
+	90.0%	of requests handled in 32.613ms.
+	95.0%	of requests handled in 50.57ms.
+	99.0%	of requests handled in 99.527ms.
+	99.9%	of requests handled in 186.885ms.
+	99.99%	of requests handled in 234.007ms.
+
+SaaSRequest (run 12, 120 users):
+	50.0%	of requests handled in 16.062ms.
+	90.0%	of requests handled in 53.207ms.
+	95.0%	of requests handled in 77.543ms.
+	99.0%	of requests handled in 125.858ms.
+	99.9%	of requests handled in 194.094ms.
+	99.99%	of requests handled in 233.101ms.
+
+SaaSRequest (run 13, 130 users):
+	50.0%	of requests handled in 17.557ms.
+	90.0%	of requests handled in 81.243ms.
+	95.0%	of requests handled in 119.248ms.
+	99.0%	of requests handled in 249.486ms.
+	99.9%	of requests handled in 368.671ms.
+	99.99%	of requests handled in 397.291ms.
+
+SaaSRequest (run 14, 140 users):
+	50.0%	of requests handled in 27.718ms.
+	90.0%	of requests handled in 175.317ms.
+	95.0%	of requests handled in 271.832ms.
+	99.0%	of requests handled in 480.595ms.
+	99.9%	of requests handled in 621.406ms.
+	99.99%	of requests handled in 683.866ms.
+
+SaaSRequest (run 15, 150 users):
+	50.0%	of requests handled in 58.494ms.
+	90.0%	of requests handled in 367.438ms.
+	95.0%	of requests handled in 486.929ms.
+	99.0%	of requests handled in 648.897ms.
+	99.9%	of requests handled in 717.138ms.
+	99.99%	of requests handled in 773.522ms.
+
+SaaSRequest (run 16, 160 users):
+	50.0%	of requests handled in 81.69ms.
+	90.0%	of requests handled in 634.916ms.
+	95.0%	of requests handled in 766.703ms.
+	99.0%	of requests handled in 971.975ms.
+	99.9%	of requests handled in 1092.369ms.
+	99.99%	of requests handled in 1143.267ms.
+
+SaaSRequest (run 17, 170 users):
+	50.0%	of requests handled in 121.64ms.
+	90.0%	of requests handled in 767.826ms.
+	95.0%	of requests handled in 1004.363ms.
+	99.0%	of requests handled in 1260.483ms.
+	99.9%	of requests handled in 1417.566ms.
+	99.99%	of requests handled in 1501.485ms.
+
+SaaSRequest (run 18, 180 users):
+	50.0%	of requests handled in 151.826ms.
+	90.0%	of requests handled in 960.776ms.
+	95.0%	of requests handled in 1121.344ms.
+	99.0%	of requests handled in 1397.959ms.
+	99.9%	of requests handled in 1643.557ms.
+	99.99%	of requests handled in 1677.355ms.
+
+SaaSRequest (run 19, 190 users):
+	50.0%	of requests handled in 158.623ms.
+	90.0%	of requests handled in 1265.488ms.
+	95.0%	of requests handled in 1477.424ms.
+	99.0%	of requests handled in 1711.89ms.
+	99.9%	of requests handled in 1860.965ms.
+	99.99%	of requests handled in 1889.839ms.
+
+SaaSRequest (run 20, 200 users):
+	50.0%	of requests handled in 273.741ms.
+	90.0%	of requests handled in 1176.823ms.
+	95.0%	of requests handled in 1504.404ms.
+	99.0%	of requests handled in 1784.73ms.
+	99.9%	of requests handled in 1883.759ms.
+	99.99%	of requests handled in 1900.54ms.
+
+SaaSRequest (run 21, 210 users):
+	50.0%	of requests handled in 256.933ms.
+	90.0%	of requests handled in 1341.177ms.
+	95.0%	of requests handled in 1627.196ms.
+	99.0%	of requests handled in 1866.333ms.
+	99.9%	of requests handled in 1909.613ms.
+	99.99%	of requests handled in 1962.764ms.
+
+SaaSRequest (run 22, 220 users):
+	50.0%	of requests handled in 267.647ms.
+	90.0%	of requests handled in 1335.488ms.
+	95.0%	of requests handled in 1532.612ms.
+	99.0%	of requests handled in 1755.714ms.
+	99.9%	of requests handled in 1871.87ms.
+	99.99%	of requests handled in 1921.838ms.
+
+SaaSRequest (run 23, 230 users):
+	50.0%	of requests handled in 301.74ms.
+	90.0%	of requests handled in 1210.9ms.
+	95.0%	of requests handled in 1467.513ms.
+	99.0%	of requests handled in 1720.24ms.
+	99.9%	of requests handled in 1818.295ms.
+	99.99%	of requests handled in 1866.369ms.
+
+SaaSRequest (run 24, 240 users):
+	50.0%	of requests handled in 302.806ms.
+	90.0%	of requests handled in 1238.633ms.
+	95.0%	of requests handled in 1397.894ms.
+	99.0%	of requests handled in 1723.674ms.
+	99.9%	of requests handled in 1829.226ms.
+	99.99%	of requests handled in 1874.113ms.
+
+SaaSRequest (run 25, 250 users):
+	50.0%	of requests handled in 218.059ms.
+	90.0%	of requests handled in 1321.596ms.
+	95.0%	of requests handled in 1552.581ms.
+	99.0%	of requests handled in 1752.785ms.
+	99.9%	of requests handled in 1848.132ms.
+	99.99%	of requests handled in 1887.012ms.
+
+" }
