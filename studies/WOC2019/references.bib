@@ -1,4 +1,4 @@
-@book{adams1995hitchhiker,
+﻿@book{adams1995hitchhiker,
   title={The Hitchhiker's Guide to the Galaxy},
   author={Adams, D.},
   isbn={9781417642595},
@@ -26,6 +26,14 @@
   howpublished = {\url{https://searchitchannel.techtarget.com/definition/service-level-objective}},
   note = {Accessed: 2019-06-24},
   author = {Margaret Rouse}
+}
+
+@misc{autoscaling-design-proposals,
+	title = {Kubernetes Design Documents and Proposals},
+	howpublished = {\url{https://github.com/kubernetes/community/tree/master/contributors/design-proposals/}},
+	language = {en},
+	note = {Accessed: 2019-10-09},
+	author = {Cloud Native Computing Foundation},
 }
 
 @article{SLO2,
@@ -130,7 +138,6 @@ note = {Accessed: 2018-11-19},
 
 @misc{openstack,
   author = {OpenStack Foundation},
-  title = {{OpenStack}},
   howpublished = "\url{https://www.openstack.org/}",
   note = {Accessed: 2019-08-13}
 }
@@ -389,10 +396,9 @@ language = {eng},
 }
 
 @inproceedings{scalar,
-author = {Delnat, Wito and Truyen, Eddy and Rafique, Ansar and Van Landuyt, Dimitri and Joosen, Wouter},
+author = {Delnat, Wito and Truyen, Eddy and Rafique, Ansar and Van Landuyt, Dimitri, Joosen, Wouter},
 keywords = {Databases ; Containers ; Measurement ; Load Management ; Standards ; Testing ; Gold ; Container Orchestration ; Autoscaling ; Experimentation Exemplar},
 abstract = {<p>Although a considerable amount of research exists on auto-scaling of database clusters, the design of an effective auto-scaling strategy requires fine-grained tailoring towards the specific application scenario. This paper presents an easy-to-use and extensible workbench exemplar, named K8-Scalar (Kube-Scalar), which allows researchers to implement and evaluate different self-adaptive approaches to autoscaling container-orchestrated services. The workbench is based on Docker, a popular technology for easing the deployment of containerized software that also has been positioned as an enabler for reproducible research. The workbench also relies on a container orchestration framework: Kubernetes (K8s), the de-facto industry standard for orchestration and monitoring of elastically scalable container-based services. Finally, it integrates and extends Scalar, a generic testbed for evaluating the scalability of large-scale systems with support for evaluating the performance of autoscalers for database clusters. The paper discusses (i) the architecture and implementation of K8-Scalar and how a particular autoscaler can be plugged in, (ii) sketches the design of a Riemann-based autoscaler for database clusters, (iii) illustrates how to design, setup and analyze a series of experiments to configure and evaluate the performance of this autoscaler for a particular database (i.e., Cassandra) and a particular workload type, and (iv) validates the effectiveness of K8-Scalar as a workbench for accurately comparing the performance of different auto-scaling strategies.</p>},
-pages = {33--39},
 publisher = {ACM},
 booktitle = {2018 IEEE/ACM 13th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS)},
 isbn = {9781450357159},
@@ -543,7 +549,6 @@ keywords = {Science & Technology},
 url = {$$Uhttps://lirias.kuleuven.be/retrieve/536942$$Dsac2019-1798.pdf [freely available]},
 abstract = {The most preferred approach in the literature on service-level objectives for multi-tenant databases is to group tenants according to their SLA class in separate database processes and find optimal co-placement of tenants across a cluster of nodes. To implement performance isolation between co-located database processes, request scheduling is preferred over hypervisor-based virtualization that introduces a significant performance overhead. A relevant question is whether the more light-weight container technology such as Docker is a viable alternative for running high-end performance database workloads. Moreover, the recent uprise and industry adoption of container orchestration (CO) frameworks for the purpose of automated placement of cloud-based applications raises the question what is the additional performance overhead of CO frameworks in this context. In this paper, we evaluate the performance overhead introduced by Docker engine and two representative CO frameworks, Docker Swarm and Kubernetes, when running and managing a CPU-bound Cassandra workload in OpenStack. Firstly, we have found that Docker engine deployments that run in host mode exhibit negligible performance overhead in comparison to native OpenStack deployments. Secondly, we have found that virtual IP networking introduces a substantial overhead in Docker Swarm and Kubernetes due to virtual network bridges when compared to Docker engine deployments. This demands for service networking approaches that run in true host mode but offer support for network isolation between containers. Thirdly, volume plugins for persistent storage have a large impact on the overall resource model of a database workload; more specifically, we show that a CPU-bound Cassandra workload changes into an I/O-bound workload in both Docker Swarm and Kubernetes because their local volume plugins introduce a disk I/O performance bottleneck that does not appear in Docker engine deployments. These findings imply that solved placement decisions for native or Docker engine deployments cannot be reused for Docker Swarm and Kubernetes.},
 journal = {https://doi.org/10.1145/3297280.3297536},
-pages = {156--159},
 volume = {Part F147772},
 publisher = {ACM},
 year = {2019},

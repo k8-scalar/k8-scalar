@@ -13,11 +13,11 @@ First, the expected performance of the Cassandra application is described in an 
 The Cassandra application is deployed on the second worker node with a CPU and memory request of respectively \textit{1500m} and \textit{2GiB}. No limits are set. In this experiment, the experiment controller sends an increasing amount of requests to the Cassandra application, starting at 100 requests per second up to 600 requests per second, increasing with 50 requests per second every 600 seconds. 
 
 \paragraph{Results.}
-Figure \ref{fig:lat-cas-li} shows the 95th percentile latencies of the requests, as reported by the experiment controller. At around 400 requests per second, the SLO is violated. Figure \ref{fig:cpu-cas-li} shows the CPU usage of Cassandra and the second worker node. It illustrates that at around the same amount of requests per second, the node uses all of its available CPU, as 2.0K millicores equals 2 CPUs. This validates that the bottleneck is indeed the CPU. Furthermore, Figure \ref{fig:cpu-cas-li} shows that the Cassandra application is able to use almost all of the overprovisioned resources. This in in line with expectations, as the resources on the node are only contended by the Cassandra application.
+Figure \ref{fig:lat-cas-li} shows the 95th percentile latencies of the requests, as reported by the experiment controller. At around 400 requests per second, the SLO is violated. Figure \ref{fig:cpu-cas-li} shows the CPU usage of Cassandra and the second worker node. It illustrates that at around the same amount of requests per second, the node uses all of its available CPU, as 2.0K millicores equals 2 CPUs. This validates that the bottleneck is indeed the CPU. Furthermore, Figure \ref{fig:cpu-cas-li} shows that the Cassandra application is able to use almost all of the overprovisioned resources. This in line with expectations, as the resources on the node are only contended by the Cassandra application.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.72\columnwidth]{Images/Experiments/CPU/Latencies/lat-exp1-2.PNG}
+\includegraphics[width=0.75\columnwidth]{Images/Experiments/CPU/Latencies/lat-exp1-2.PNG}
 \caption{95th percentile latencies during Experiment 1 and 2.}
 \label{fig:lat-cas-li} 
 \end{figure}
@@ -179,7 +179,7 @@ The blue and red graphs in Figure \ref{fig:lat-saas-li} show the latencies recor
 \hfill
 \begin{subfigure}[b]{\columnwidth}
 \centering
-\includegraphics[width=0.75\columnwidth]{Images/Experiments/CPU/Grafana/cpu-saas-hpa-li-2.PNG}
+\includegraphics[width=0.70\columnwidth]{Images/Experiments/CPU/Grafana/cpu-saas-hpa-li-2.PNG}
 \caption{Third worker node CPU usage.}
 \label{fig:cpu-saas-hpa-li-2}
 \end{subfigure}
@@ -246,7 +246,8 @@ To verify this, another test is run where the downtime between each burst is set
 \label{fig:cpu-saas-hpa-bursty-2}
 \end{figure}
 
-Neither these experimental results nor the official documentation about the HPA~\citep{hpa-algorithm-details} clarify how the HPA decides when to scale an application. Discovering the cause of this unexpected behavior is left for future work. The results show, however, that the HPA is unfit to process bursty workloads effectively.
+Neither these experimental results nor the official documentation about the HPA~\citep{hpa-algorithm-details} clarify how the HPA decides when to scale an application. Discovering the cause of this unexpected behavior is left for future work. Kubernetes is, however, evolving rapidly, so this may be fixed in the future. Concretely, the Kubernetes design proposals~\citep{autoscaling-design-proposals} list several improvements which may be implemented in future versions, several of them related to autoscaling. 
+%%The results show, however, that the HPA is unfit to process bursty workloads effectively.
 
 
 \subsection{Experiment 7: Determining the effects of combining the Kubernetes HPA with the presence of a low priority pod}
@@ -267,19 +268,21 @@ The green graph in Figure \ref{fig:lat-saas-li} shows the latencies recorded dur
 %\end{figure}
 %
 %
+\centering
 \begin{figure}
 \centering
-\begin{subfigure}[b]{0.9\columnwidth}
+\begin{subfigure}[b]{\columnwidth}
 \centering
 \includegraphics[width=0.75\columnwidth]{Images/Experiments/CPU/Grafana/cpu-saas-lpp-hpa-li-1.PNG}
-\caption{First worker node's CPU usage.}
+\caption{Second worker node's CPU usage.}
 \label{fig:cpu-saas-lpp-hpa-li-1}
 \end{subfigure}
 \hfill
-\begin{subfigure}[b]{0.9\columnwidth}
+\centering
+\begin{subfigure}[b]{\columnwidth}
 \centering
 \includegraphics[width=0.75\columnwidth]{Images/Experiments/CPU/Grafana/cpu-saas-lpp-hpa-li-2.PNG}
-\caption{First worker node's CPU usage.}
+\caption{Third worker node's CPU usage.}
 \label{fig:cpu-saas-lpp-hpa-li-2}
 \end{subfigure}
 \hfill
