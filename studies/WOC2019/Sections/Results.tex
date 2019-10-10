@@ -246,7 +246,7 @@ To verify this, another test is run where the downtime between each burst is set
 \label{fig:cpu-saas-hpa-bursty-2}
 \end{figure}
 
-Neither these experimental results nor the official documentation about the HPA~\citep{hpa-algorithm-details} clarify how the HPA decides when to scale an application. Discovering the cause of this unexpected behavior is left for future work. Kubernetes is, however, evolving rapidly, so this may be fixed in the future. Concretely, the Kubernetes design proposals~\citep{autoscaling-design-proposals} list several improvements which may be implemented in future versions, several of them related to autoscaling. 
+Neither these experimental results nor the official documentation about the HPA~\citep{hpa-algorithm-details} clarify how the HPA decides when to scale an application. Furthermore, the Kubernetes design proposals~\citep{autoscaling-design-proposals}, do not list any issues relating to scaling down. Discovering the cause of this unexpected behavior is left for future work. Kubernetes is, however, evolving rapidly, so this may be fixed in the future.  
 %%The results show, however, that the HPA is unfit to process bursty workloads effectively.
 
 
@@ -268,7 +268,7 @@ The green graph in Figure \ref{fig:lat-saas-li} shows the latencies recorded dur
 %\end{figure}
 %
 %
-\centering
+%\centering
 \begin{figure}
 \centering
 \begin{subfigure}[b]{\columnwidth}
@@ -286,12 +286,12 @@ The green graph in Figure \ref{fig:lat-saas-li} shows the latencies recorded dur
 \label{fig:cpu-saas-lpp-hpa-li-2}
 \end{subfigure}
 \hfill
-\vspace*{-3mm}
+\vspace*{-5mm}
 \caption{CPU usage during Experiment 7. A new replica is added when the scaling threshold is breached, and the freed up resources are made available to the low priority application.}
 \label{fig:cpu-saas-lpp-hpa-li}
 \end{figure}
 
 \subsection{Threats to validity}
-Some of the conclusions drawn from the experiments results may only be valid for the specific setup used in this paper. The performed experiments considered an environment with two user applications: one high priority application and one low priority application. Setting suitable requests and limits can, however, become a complex task if multiple pods with each different priorities are scheduled on the same node.
+Some of the conclusions drawn from the experiments results may only be valid for the specific setup used in this paper. The experiments considered an environment with two user applications: one high priority application and one low priority application. Setting suitable requests and limits can, however, become a complex task if multiple pods with each different priorities are scheduled on the same node.
 
-The type of test applications used can also impact the experiment results. The artificial SaaS application has a very short start-up time, making it well suited to be horizontally scaled. This may not be the case for other applications. Furthermore, this paper assumed that empty nodes were available for new replicas to be scheduled on. In practice, nodes may need to be acquired from IaaS providers and configured to the specific environment before they are ready to host applications. This could further increase the start-up time of new replicas. 
+The applications used can also impact the experiment results. The artificial SaaS application has a very short start-up time, making it well suited to be horizontally scaled. This may not be the case for other applications. Furthermore, this paper assumed that empty nodes were available for new replicas to be scheduled on. In practice, nodes may need to be acquired from IaaS providers and configured to the specific environment before they are ready to host applications. This could further increase the start-up time of new replicas. 
