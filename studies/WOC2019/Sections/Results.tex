@@ -13,7 +13,7 @@ First, the expected performance of the Cassandra application is described in an 
 The Cassandra application is deployed on the second worker node with a CPU and memory request of respectively \textit{1500m} and \textit{2GiB}. No limits are set. In this experiment, the experiment controller sends an increasing amount of requests to the Cassandra application, starting at 100 requests per second up to 600 requests per second, increasing with 50 requests per second every 600 seconds. 
 
 \paragraph{Results.}
-Figure \ref{fig:lat-cas-li} shows the 95th percentile latencies of the requests, as reported by the experiment controller. At around 400 requests per second, the SLO is violated. Figure \ref{fig:cpu-cas-li} shows the CPU usage of Cassandra and the second worker node. It illustrates that at around the same amount of requests per second, the node uses all of its available CPU, as 2.0K millicores equals 2 CPUs. This validates that the bottleneck is indeed the CPU. Furthermore, Figure \ref{fig:cpu-cas-li} shows that the Cassandra application is able to use almost all of the overprovisioned resources. This in line with expectations, as the resources on the node are only contended by the Cassandra application.
+Figure \ref{fig:lat-cas-li} shows the 95th percentile latencies of the requests, as reported by the experiment controller. At around 400 requests per second, the SLO is violated. Figure \ref{fig:cpu-cas-li} shows the CPU usage of Cassandra and the second worker node. It illustrates that at around the same amount of requests per second, the node uses all of its available CPU. This validates that the bottleneck is indeed the CPU. Furthermore, Figure \ref{fig:cpu-cas-li} shows that the Cassandra application is able to use almost all of the overprovisioned resources. This in line with expectations, as the resources on the node are only contended by the Cassandra application.
 
 \begin{figure}
 \centering
@@ -92,6 +92,7 @@ Figure \ref{fig:cpu-cas-lpp-bursty} shows the resource utilization during this e
 \centering
 \includegraphics[width=\columnwidth]{Images/Experiments/CPU/Grafana/cpu-cas-lpp-bursty.PNG}
 \caption{Second worker node CPU usage during Experiment 3.}
+\vspace{-5mm}
 \label{fig:cpu-cas-lpp-bursty}
 \end{figure}
 
@@ -125,6 +126,7 @@ The full explanation is beyond the scope of this paper. Truyen et al.~\citep{Tru
 \hfill
 \vspace*{-7mm}
 \caption{CPU usage during Experiment 4. At 110\% of the CPU request, the given CPU threshold, a new Cassandra replica is added by the HPA. The CPU usage of the original replica does not decrease when the new replica is added, indicating scalability issues of Cassandra in Kubernetes.}
+\vspace{-4mm}
 \label{fig:cpu-cas-hpa-li}
 \end{figure}
 
@@ -132,6 +134,7 @@ The full explanation is beyond the scope of this paper. Truyen et al.~\citep{Tru
 \centering
 \includegraphics[width=0.55\columnwidth]{Images/Experiments/CPU/Latencies/lat-cas-hpa-li.PNG}
 \caption{95th percentile latencies during Experiment 4. The latencies increase rather than decrease when a replica is added.}
+\vspace{-7mm}
 \label{fig:lat-cas-hpa-li}
 \end{figure}
 
@@ -149,6 +152,7 @@ The blue and red graphs in Figure \ref{fig:lat-saas-li} show the latencies recor
 \centering
 \includegraphics[width=0.75\columnwidth]{Images/Experiments/CPU/Latencies/lat-exp5-7.PNG}
 \caption{95th percentile latencies during Experiments 5 and 7.}
+\vspace*{-5mm}
 \label{fig:lat-saas-li}
 \end{figure}
 
@@ -197,7 +201,7 @@ The goal of this experiment is to test how the Kubernetes HPA performs when the 
 The setup for this experiment is the same as the one used during the second test of the previous experiment. The bursty workload applied consists of five minutes of 60 requests per second followed by a one minute peak of 250 requests per second. This pattern is repeated 20 times.  
 
 \paragraph{Results.}
-Figure \ref{fig:cpu-saas-hpa-bursty} shows the worker node's CPU usages. The graphs illustrate that during the first couple of bursts, no scaling happens. This is unexpected since the scaling threshold is clearly breached. The latencies also report SLO violations during these bursts. One possible explanation is that the HPA does not poll the resource usage during the burst and thus does not notice the burst. This is, however, not the case, since the HPA queries the resource utilization every 15 seconds by default, and a burst lasts for 60 seconds. Another observation made from this experiment's results is that the HPA does not scale the application down after each burst. The HPA's algorithm details~\citep{hpa-algorithm-details} proved insufficient to find the cause of these inconsistent scaling decisions. 
+Figure \ref{fig:cpu-saas-hpa-bursty} shows the worker node's CPU usages. The graphs illustrate that during the first couple of bursts, no scaling happens. This is unexpected since the scaling threshold is clearly breached. The latencies also report SLO violations during these bursts. One possible explanation is that the HPA does not poll the resource usage during the burst and thus does not notice the burst. This is, however, not the case, since the HPA queries the resource utilization every 15 seconds by default, and a burst lasts for 60 seconds. Another observation made from this experiment's results is that the HPA does not scale the application down after each burst. The HPA's algorithm details~\citep{HPA} proved insufficient to find the cause of these inconsistent scaling decisions. 
 
 
 \begin{figure}
@@ -222,7 +226,7 @@ Figure \ref{fig:cpu-saas-hpa-bursty} shows the worker node's CPU usages. The gra
 \end{figure}
 
 
-It is possible that the HPA does not scale down the SaaS application since the default \textit{downscale stabilization} parameter of the HPA algorithm being five minutes~\citep{hpa-cooldown-delay}. This parameter specifies a period of time during which the HPA considers all recommendations before scaling down. In other words, the HPA only scales down if its decision to scale down has not changed for five minutes.
+It is possible that the HPA does not scale down the SaaS application since the default \textit{downscale stabilization} parameter of the HPA algorithm being five minutes~\citep{HPA}. This parameter specifies a period of time during which the HPA considers all recommendations before scaling down. In other words, the HPA only scales down if its decision to scale down has not changed for five minutes.
 To verify this, another test is run where the downtime between each burst is set to 7 minutes. The other experiment parameters remain unchanged. Figure \ref{fig:cpu-saas-hpa-bursty-2} shows the CPU usages during this test. The HPA scaled up the SaaS application during the first burst, but did not scale it down until after the test was completed. 
 
 \begin{figure}
@@ -246,10 +250,10 @@ To verify this, another test is run where the downtime between each burst is set
 \label{fig:cpu-saas-hpa-bursty-2}
 \end{figure}
 
-Neither these experimental results nor the official documentation about the HPA~\citep{hpa-algorithm-details} clarify how the HPA decides when to scale an application. Furthermore, the Kubernetes design proposals~\citep{autoscaling-design-proposals}, do not list any issues relating to scaling down. Discovering the cause of this unexpected behavior is left for future work. Kubernetes is, however, evolving rapidly, so this may be fixed in the future.  
+Neither these experimental results nor the official documentation about the HPA~\citep{HPA} clarify how the HPA decides when to scale an application. Furthermore, the Kubernetes design proposals~\citep{autoscaling-design-proposals}, do not list any issues relating to scaling down. Discovering the cause of this unexpected behavior is left for future work. Kubernetes is, however, evolving rapidly, so this may be fixed in the future.  
 %%The results show, however, that the HPA is unfit to process bursty workloads effectively.
 
-
+%\vspace*{-7mm}
 \subsection{Experiment 7: Determining the effects of combining the Kubernetes HPA with the presence of a low priority pod}
 Experiment 2 illustrated that co-locating a high and low priority pod has a minor impact on the high priority application's performance, while in increases the overall cost-efficiency. The goal of this experiment is to test whether this is still the case when the HPA is added to the cluster. 
 
@@ -286,12 +290,13 @@ The green graph in Figure \ref{fig:lat-saas-li} shows the latencies recorded dur
 \label{fig:cpu-saas-lpp-hpa-li-2}
 \end{subfigure}
 \hfill
-\vspace*{-5mm}
+\vspace*{-7mm}
 \caption{CPU usage during Experiment 7. A new replica is added when the scaling threshold is breached, and the freed up resources are made available to the low priority application.}
+\vspace{-5mm}
 \label{fig:cpu-saas-lpp-hpa-li}
 \end{figure}
 
 \subsection{Threats to validity}
 Some of the conclusions drawn from the experiments results may only be valid for the specific setup used in this paper. The experiments considered an environment with two user applications: one high priority application and one low priority application. Setting suitable requests and limits can, however, become a complex task if multiple pods with each different priorities are scheduled on the same node.
 
-The applications used can also impact the experiment results. The artificial SaaS application has a very short start-up time, making it well suited to be horizontally scaled. This may not be the case for other applications. Furthermore, this paper assumed that empty nodes were available for new replicas to be scheduled on. In practice, nodes may need to be acquired from IaaS providers and configured to the specific environment before they are ready to host applications. This could further increase the start-up time of new replicas. 
+The applications used can also impact the experiment results. The artificial SaaS application has a very short start-up time, making it well suited to be horizontally scaled. Furthermore, this paper assumed that empty nodes were available for new replicas to be scheduled on. In practice, nodes may need to be acquired from IaaS providers and configured to the specific environment before they are ready to host applications. This could further increase the start-up time of new replicas. 

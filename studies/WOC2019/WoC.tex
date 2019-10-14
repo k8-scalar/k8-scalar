@@ -13,6 +13,7 @@
 \usepackage{amsthm}
 \usepackage{subfiles}
 \usepackage{float}
+\usepackage{enumitem}
 %\usepackage{hyperref}
 
 \newtheorem*{slo}{SLO}
@@ -35,12 +36,12 @@
 \copyrightyear{2019}
 \acmYear{2019}
 \setcopyright{acmlicensed}
-\acmConference[Middleware~'19]{Middleware '19}{December 09--13, 2019}{UC Davis, CA, USA}
-\acmBooktitle{Middleware '19, December 09--13, 2019, UC Davis, CA, USA}
+\acmConference[WoC~'19]{WoC '19}{December 09--13, 2019}{UC Davis, CA, USA}
+\acmBooktitle{The Fifth International Workshop on Container Technologies and Container Clouds, co-located with Middleware 2019, December 09--13, 2019, UC Davis, CA, USA}
 \acmPrice{15.00}
 \acmDOI{}
 \settopmatter{printfolios=true,printacmref=false,printccs=false}
-\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+%\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
 
 %\newwatermark[allpages,color=red!50,angle=45,scale=1,xpos=0,ypos=0]{Confidential version available to Joerg Domaschka and Daniel Seybold}
 
@@ -125,7 +126,11 @@ Software providers face the challenge of minimizing the amount of resources used
 \label{chap:conclusion}
 \input{Sections/Conclusion}
 
-\bibliographystyle{plain}
+\section*{Acknowledgments}
+
+We thank the reviewers for their helpful comments. This research is partially funded by the Research Fund KU Leuven.
+
+\bibliographystyle{acm}
 \bibliography{references}
 
 \end{document}

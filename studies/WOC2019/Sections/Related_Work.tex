@@ -56,9 +56,8 @@ Wong et al.~\citep{hyscale} describes the (dis)advantages of vertical and horizo
 %\label{fig:hyscale1}
 %\end{figure}
 %
-Wong compares their scaling solution to the standard autoscalers in Kubernetes. A first disadvantage of Kubernetes noted by Wong is that its default scaling solutions only consider one resource when making scaling decisions. Second, Wong explains how the Kubernetes autoscalers often lead to sub-optimal configurations. 
-Wong's algorithm differs from the default Kubernetes HPA in two ways: the use of vertical scaling and the consideration of multiple metrics to make scale decisions. 
-A complete discussion of the algorithm does not fall within the scope of this paper. 
+Wong compares HyScale to the standard autoscalers in Kubernetes. A first disadvantage of Kubernetes noted by Wong is that its default scaling solutions only consider one resource when making scaling decisions. Second, Wong explains how the Kubernetes autoscalers often lead to sub-optimal configurations. 
+HyScale differs from the default Kubernetes HPA in two ways: the use of vertical scaling and the consideration of multiple metrics to make scale decisions. 
 Wong's experimental results show that HyScale outperforms Kubernetes for bursty workloads. For non-bursty workloads, their performance is similar
 ~\citep{hyscale}.
 

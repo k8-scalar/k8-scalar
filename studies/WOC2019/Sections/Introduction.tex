@@ -7,7 +7,9 @@ The resources used by a pod can be limited, e.g., by setting its so-called reque
 %So far, research on resource management in container-based environments has been rather scarce, as it is still relatively new compared to VM-based environments~\citep{Al-DhuraibiYahya2018EiCC}~\citep{CoutinhoEmanuel2015Eicc}. 
 Kubernetes is evolving rapidly. Meanwhile, both documentation and research are struggling to keep up with its development, especially since most research is aimed towards custom scaling techniques (e.g.,~\citep{hyscale}~\citep{caravel}). Little academic work is available on documenting the Kubernetes mechanisms themselves. Multiple questions may arise when configuring a Kubernetes cluster, e.g., how to choose suitable requests and limits, on which nodes to locate certain pods and how to configure an autoscaler. 
 The goal of this paper is therefore to research how different Kubernetes features can be leveraged to cost-effectively manage resources in the framework while also meeting SLOs in the presence of dynamically evolving workloads. More concretely, we aim to provide answers to the following questions:
-\begin{itemize}
+\setlist{nolistsep}
+\begin{itemize}[noitemsep]
+    \itemsep0em 
     \item What is the impact of different request and limit configurations?
     \item Does co-locating a high priority pod with a low priority pod affect the performance of the high priority pod?
     \item What is the performance impact of scaling an application using the HPA?
