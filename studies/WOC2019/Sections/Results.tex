@@ -70,7 +70,7 @@ Figure \ref{fig:cpu-cas-lpp-li-2} shows the worker node's CPU usage during the s
 %\label{fig:lat-cas-lpp-li-2}
 %\end{figure}
 
-The slight decrease in performance comes with the benefit of a higher resource utilization. Comparing the worker node's total CPU usage during Experiment 1 to the node's total CPU usage in this test, the latter shows a significantly higher resource utilization when the workload of the Cassandra pod is low.
+The slight decrease in performance comes with the benefit of a higher resource utilization. Comparing the worker node's total CPU usage during Experiment 1 to the node's total CPU usage during this test, the latter shows a significantly higher resource utilization when the workload of the Cassandra pod is low.
 
 \begin{figure}
 \centering
@@ -254,7 +254,7 @@ Neither these experimental results nor the official documentation about the HPA~
 Experiment 2 illustrated that co-locating a high and low priority pod has a minor impact on the high priority application's performance, while in increases the overall cost-efficiency. The goal of this experiment is to test whether this is still the case when the HPA is added to the cluster. 
 
 \paragraph{Setup.}
-The scaling point for the SaaS application is again set to 110\%. The application is subjected to the linearly increasing workload described earlier.
+The scaling point for the SaaS application is again set to 110\%. The application is co-located with the low priority application and subjected to the linearly increasing workload described earlier.
 
 
 \paragraph{Results.}
