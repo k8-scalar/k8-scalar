@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: mylimits
+spec:
+  limits:
+  - max:
+      cpu: 237m
+      memory: 875Mi
+    min:
+      cpu: 237m
+      memory: 875Mi
+    type: Pod
+  - default:
+      cpu: 237m
+      memory: 875Mi
+    defaultRequest:
+      cpu: 237m
+      memory: 875Mi
+    max:
+      cpu: 237m
+      memory: 875Mi
+    min:
+      cpu: 237m
+      memory: 875Mi
+    type: Container
+
