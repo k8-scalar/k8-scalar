@@ -192,10 +192,10 @@ This step requires some custom development for different database technologies. 
 
 Afterwards we want to build the application and copy the resulting jar:
 
-For this tutorial we will perform these steps on the minikube vm: 
+
 ```
-# Login on the minikube vm and clone the k8-scalar project
-minikube ssh
+# clone the k8-scalar project in a normal linux distribution or the git bash Windows app
+
 git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
 
 # Extend User with operations for your database in the directory below
