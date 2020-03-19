@@ -208,7 +208,7 @@ cp ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/
 
 #Then, build a new image for the experiment-controller using the Dockerfile in the [example-experiment](../example-experiment).
 docker build -t ${myRepository}/experiment-controller ${k8_scalar_dir}/development/example-experiment/
-# overwrite in following command MyRepository_DOCKERHUB_PASSWRD with your secret password: 
+overwrite in the following command MyRepository_DOCKERHUB_PASSWRD with your secret password: 
 # docker login -u ${myRepository} -p MyRepository_DOCKERHUB_PASSWRD  
 docker push ${myRepository}/experiment-controller
 ```
