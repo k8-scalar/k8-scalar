@@ -194,29 +194,24 @@ Afterwards we want to build the application and copy the resulting jar:
 
 
 ```
-# clone the k8-scalar project in a normal linux distribution or the git bash Windows app
-
+# clone the k8-scalar project in a normal linux distribution with Docker installed 
 git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
 
 # Extend User with operations for your database in the directory below
 cd ${k8_scalar_dir}/development/scalar/src/be/kuleuven/distrinet/scalar/users
 vim ${myDatabase}User.java # Cfr CassandraWriteUser.java
 
-# After building the project....
+# Building the project....
 mvn package
-#....copy the resulting Jar file in the lib directory of the [example-experiment](../example-experiment):
+#copy the Jar file in the lib directory of the [example-experiment](../example-experiment):
 cp ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/development/example-experiment/lib/scalar-1.0.0.jar
-```
-Then, build a new image for the experiment-controller using the Dockerfile in the [example-experiment](../example-experiment).
-As Docker is already installed in the minikube VM, it can be directly perfored in the minikube VM as follows:
-```
-docker build -t ${MyRepository}/experiment-controller ${k8_scalar_dir}/development/example-experiment/
-# overwrite in following command MyRepository_DOCKERHUB_PASSWRD with your secret password: 
+
+#Then, build a new image for the experiment-controller using the Dockerfile in the [example-experiment](../example-experiment).
+docker build -t ${myRepository}/experiment-controller ${k8_scalar_dir}/development/example-experiment/
+overwrite in the following command MyRepository_DOCKERHUB_PASSWRD with your secret password: 
 # docker login -u ${MyRepository} -p MyRepository_DOCKERHUB_PASSWRD  
 docker push ${MyRepository}/experiment-controller
 
-#leave the minikube vm
-exit
 ```
 Scalar is a fully distributed, extensible load testing tool with numerous features. Have a look at the [Scalar documentation](./scalar) for more information.
 
