@@ -1,9 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: monitoring-grafana
   namespace: kube-system
 spec:
+  selector:
+    matchLabels:
+      k8s-app: grafana
   replicas: 1
   template:
     metadata:
