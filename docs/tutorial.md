@@ -119,7 +119,7 @@ chmod 700 get_helm.sh
 
 ### For Windows:
 
-Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Make sure you install it as running under **Windows Administrator**.
 
 Open the GitBash desktop application
 
