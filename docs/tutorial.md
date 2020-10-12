@@ -417,7 +417,9 @@ cd ${k8_scalar_dir}/operations/secrets
 cp ~/.kube/config .
 ```
 **Additional instructions for Minikube**
+
 First the following keys need to be copied as well
+
 ```bash
 cp ~/.minikube/ca.crt .
 cp ~/.minikube/profiles/minikube/client.crt .
@@ -426,13 +428,14 @@ cp ~/.minikube/profiles/minikube/client.key .
 Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directories `minikube` and `minikube/profiles/minikube`  of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
 
 *Windows*
+
 ```
-#
 sed -i 's/C:\\Users\\eddy\\.minikube\\profiles\\minikube\\/\/root\/.kube\//g' ./config
 sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
 ```
 
 *Linux/MacOS*
+
 ```
 sed -i 's/Users\/eddy\/.minikube\/profiles\/minikube\//root\/.kube\//g" ./config
 sed -i 's/Users\/eddy\/.minikube\//root\/.kube\//g" ./config
