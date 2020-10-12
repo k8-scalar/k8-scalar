@@ -402,26 +402,43 @@ You can, however, follow the same exact steps on a multi-node cluster.
 For a more accurate reproduction scenario, we suggest adding more labels to each node and add them as constraints to the YAML files of the relevant Kubernetes objects via a [nodeSelector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector). As such different Kubernetes objects such as experiment-controller and the cassandra instance will not be created on the same node, as presented in the related paper.
 
 # III. Operations
-## Creating secrets to enable access to Kubernetes API for autoscaler pod.   
-The autoscaler interacts directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. The next snippet creates the required keys for a MiniKube cluster. First, prepare a directory that contains all the required files. 
+## Creating secrets to enable access to Kubernetes API for autoscaler pod.  
+The autoscaler and erperiment-controller interact directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. 
+Note the following instructions work for minikube. Instructions for other kubernetes vendors are not exactly the same. We try to differentiate the common parts for all vendors and kubernetes-specific parts 
+
+### Copying the kube config file and the secret
+
+The next snippet creates the required keys for a cluster for any vendor. First, prepare a directory that contains all the required files. 
+
 
 ```bash
 mkdir ${k8_scalar_dir}/operations/secrets
 cd ${k8_scalar_dir}/operations/secrets
 cp ~/.kube/config .
 ```
-Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directory `C:\Users\eddy\.minikube` directory of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
+**Additional instructions for Minikube**
+First the following keys need to be copied as well
+```bash
+cp ~/.minikube/ca.crt .
+cp ~/.minikube/profiles/minikube/client.crt .
+cp ~/.minikube/profiles/minikube/client.key .
+```
+Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directories `minikube` and `minikube/profiles/minikube`  of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
 
-**Windows**
+*Windows*
 ```
-#Espacing a backslash requires three backslashes in Windows Cygwin 
-sed -ie "s@C:\\\Users\\\eddy\\\.minikube\\\@/root/.kube/@g" ./config
+#
+sed -i 's/C:\\Users\\eddy\\.minikube\\profiles\\minikube\\/\/root\/.kube\//g' ./config
+sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
 ```
 
-**Linux/MacOS**
+*Linux/MacOS*
 ```
-sed -ie "s@/Users/wito/.minikube/@/root/.kube/@g" ./config
+sed -i 's/Users\/eddy\/.minikube\/profiles\/minikube\//root\/.kube\//g" ./config
+sed -i 's/Users\/eddy\/.minikube\//root\/.kube\//g" ./config
 ```
+
+### Creating the secret
 
 Finally, the following command will create the secret. You will have to create the same secret in two different namespaces.  Do note that the keys required depend on the platform that you have your cluster deployed on.
 
