@@ -126,10 +126,10 @@ Open the GitBash desktop application
 install kubectl, minikube and helm client
 ```bash
 # Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe && export PATH=$PATH:`pwd`
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
 
 # Install minikube
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=$PATH:`pwd`
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
 minikube start --cpus 4 --memory 8192
 ```
 It takes several minutes on our Windows 10 machine before the Kubernetes worker node gets ready. Execute the following command to see when the minikube worker node is ready. 
@@ -152,9 +152,8 @@ minikube   Ready     <none>    21m       v1.9.0
 Install Helm
 ```bash
 # Install Helm client
-curl -LO https://get.helm.sh/helm-v3.3.4-windows-amd64.zip && unzip helm-v3.3.4-windows-amd64.zip && export PATH=$PATH:`pwd`/windows-amd64/
+curl -LO https://get.helm.sh/helm-v3.3.4-windows-amd64.zip && unzip helm-v3.3.4-windows-amd64.zip && export PATH=`pwd`/windows-amd64/:$PATH
 ```
-
 ## Deploy Heapster monitoring service
 Now with Kubernetes and Helm installed, you should be able to install services on Kubernetes using Helm.
 
