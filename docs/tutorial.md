@@ -409,7 +409,18 @@ The autoscaler interacts directly with the Kubernetes cluster. The _kubectl_ too
 mkdir ${k8_scalar_dir}/operations/secrets
 cd ${k8_scalar_dir}/operations/secrets
 cp ~/.kube/config .
+```
+Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directory `C:\Users\eddy\.minikube` directory of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
 
+**Windows**
+```
+#Espacing a backslash requires three backslashes in Windows Cygwin 
+sed -ie "s@C:\\\Users\\\eddy\\\.minikube\\\@/root/.kube/@g" ./config
+```
+
+**Linux/MacOS**
+```
+sed -ie "s@/Users/wito/.minikube/@/root/.kube/@g" ./config
 ```
 
 Finally, the following command will create the secret. You will have to create the same secret in two different namespaces.  Do note that the keys required depend on the platform that you have your cluster deployed on.
