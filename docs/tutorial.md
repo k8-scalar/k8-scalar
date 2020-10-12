@@ -141,6 +141,10 @@ curl -LO https://get.helm.sh/helm-v3.3.4-windows-amd64.zip && unzip helm-v3.3.4-
 Now with Kubernetes and Helm installed, you should be able to install services on Kubernetes using Helm.
 
 Let us add the monitoring capabilities of Heapstwe to the cluster using Helm. We install the _monitoring-core_ chart by the following command. This chart includes instantiated templates for the following Kubernetes services: Heapster, Grafana and the InfluxDb. 
+First, check however, if there is still an old clusterrole defined named system:heapster. If it does, please remove it:
+```
+role=`kubectl get clusterrole | grep heapster | head -n1 | awk '{print $1;}'`
+kubectl delete clusterrole $role
 ```
 helm install ${k8_scalar_dir}/operations/monitoring-core --generate-name
 ```
@@ -377,15 +381,7 @@ After the experiment is finished, you can inspect run-data as explained in Step 
 # II. Infrastructure
 You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services ([tutorial](https://kubernetes.io/docs/getting-started-guides/aws/)) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. K8-scalar has been tested on kubernetes v1.9.x and v1.14.x. 
 
-To install helm in distributed cluster, you'll first need to first create a [service-account for Helm](http://jayunit100.blogspot.be/2017/07/helm-on.html) and initiate helm with this service account. Short, you have to execute the following commands
-
-
-```
-kubectl create -f ${k8_scalar_dir}/development/helm/helm.yaml
-helm init --service-account helm
-```
-
-Moreover, to install the monitoring system in kubeadm, you need to install the [monitoring-core-rbac chart](../operations/monitoring-core-rbac) instead of the monitoring-core chart. The K8s configuration expects that a node is explicitly labeled as a `monitoringNode` do deploy the heapster service, which is the central core of the monitoring system. So in order to ensure that the monitoring system will  deploy, execute the following command before or right after deploying the helm chart:
+To install the monitoring system one a specific system you need to install the [monitoring-core-distributed chart](../operations/monitoring-core-distributed) instead of the monitoring-core chart. The K8s configuration expects that a node is explicitly labeled as a `monitoringNode` do deploy the heapster service, which is the central core of the monitoring system. So in order to ensure that the monitoring system will  deploy, execute the following command before or right after deploying the helm chart:
 
 
 ```
@@ -393,7 +389,7 @@ kubectl label node <node name> monitoringNode="yes"
 ```
 
 ```
-helm install ${k8_scalar_dir}/operations/monitoring-core-rbac
+helm install ${k8_scalar_dir}/operations/monitoring-core-distributed
 ```
 
 In this tutorial, however, we will use a MiniKube deployment on our local device.
