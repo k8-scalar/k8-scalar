@@ -119,9 +119,9 @@ chmod 700 get_helm.sh
 
 ### For Windows:
 
-Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Make sure you install it as running under **Windows Administrator**.
+Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads). And reboot 
 
-Open the GitBash desktop application
+Open the GitBash desktop application. Make sure you run it as an **Administrator**. You find this option in the menu that appears when clicking on the right mouse button.
 
 install kubectl, minikube and helm client
 ```bash
@@ -132,23 +132,6 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/w
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
 minikube start --cpus 4 --memory 8192
 ```
-It takes several minutes on our Windows 10 machine before the Kubernetes worker node gets ready. Execute the following command to see when the minikube worker node is ready. 
-```
-$ kubectl.exe get nodes
-error: You must be logged in to the server (Unauthorized)
-...
-
-$ kubectl get nodes
-NAME       STATUS     ROLES     AGE       VERSION
-minikube   NotReady   <none>    4d        v1.9.0
-
-...
-
-$ kubectl get nodes
-NAME       STATUS    ROLES     AGE       VERSION
-minikube   Ready     <none>    21m       v1.9.0
-```
-
 Install Helm
 ```bash
 # Install Helm client
@@ -159,7 +142,7 @@ Now with Kubernetes and Helm installed, you should be able to install services o
 
 Let us add the monitoring capabilities of Heapstwe to the cluster using Helm. We install the _monitoring-core_ chart by the following command. This chart includes instantiated templates for the following Kubernetes services: Heapster, Grafana and the InfluxDb. 
 ```
-helm install ${k8_scalar_dir}/operations/monitoring-core
+helm install ${k8_scalar_dir}/operations/monitoring-core --generate-name
 ```
 
 To check if all services are running execute the following command to see if all Pods of these services are running
@@ -181,7 +164,7 @@ tiller-deploy-7594bf7b76-598xv          1/1       Running   0          7m
 ## (2) Setup a Database Cluster
 This _cassandra-cluster_ chart uses a modified image which resolves a missing dependency in one of Google Cassandra's image. Of course, this chart can be replaced with a different database technology. Do mind that Scalar will have to be modified for the experiment with implementations of desired workload generators for the Cassandra database. The next step will provide more information about this modification.
 ``` 
-helm install ${k8_scalar_dir}/operations/cassandra-cluster
+helm install ${k8_scalar_dir}/operations/cassandra-cluster --generate-name
 ```
 
 ## (3) Determine and implement desired workload type for the deployed database in Scalar
@@ -219,7 +202,7 @@ Scalar is a fully distributed, extensible load testing tool with numerous featur
 We deploy the experiment controller also a statefulset that can be scaled to multiple instances. To install the stateful set with one instance, execute the following command 
 
 ```
-helm install ${k8_scalar_dir}/operations/experiment-controller
+helm install ${k8_scalar_dir}/operations/experiment-controller --generate-name
 ```
 
 ## (5) Perform experiment for determining the mapping between SLA violations and resource usage metrics  
@@ -419,15 +402,46 @@ You can, however, follow the same exact steps on a multi-node cluster.
 For a more accurate reproduction scenario, we suggest adding more labels to each node and add them as constraints to the YAML files of the relevant Kubernetes objects via a [nodeSelector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector). As such different Kubernetes objects such as experiment-controller and the cassandra instance will not be created on the same node, as presented in the related paper.
 
 # III. Operations
-## Creating secrets to enable access to Kubernetes API for autoscaler pod.   
-The autoscaler interacts directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. The next snippet creates the required keys for a MiniKube cluster. First, prepare a directory that contains all the required files. 
+## Creating secrets to enable access to Kubernetes API for autoscaler pod.  
+The autoscaler and erperiment-controller interact directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. 
+Note the following instructions work for minikube. Instructions for other kubernetes vendors are not exactly the same. We try to differentiate the common parts for all vendors and kubernetes-specific parts 
+
+### Copying the kube config file and the secret
+
+The next snippet creates the required keys for a cluster for any vendor. First, prepare a directory that contains all the required files. 
+
 
 ```bash
 mkdir ${k8_scalar_dir}/operations/secrets
 cd ${k8_scalar_dir}/operations/secrets
 cp ~/.kube/config .
+```
+**Additional instructions for Minikube**
+
+First the following keys need to be copied as well
+
+```bash
+cp ~/.minikube/ca.crt .
+cp ~/.minikube/profiles/minikube/client.crt .
+cp ~/.minikube/profiles/minikube/client.key .
+```
+Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directories `minikube` and `minikube/profiles/minikube`  of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
+
+*Windows*
 
 ```
+sed -i 's/C:\\Users\\eddy\\.minikube\\profiles\\minikube\\/\/root\/.kube\//g' ./config
+sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
+```
+
+*Linux/MacOS*
+
+```
+sed -i 's/Users\/eddy\/.minikube\/profiles\/minikube\//root\/.kube\//g" ./config
+sed -i 's/Users\/eddy\/.minikube\//root\/.kube\//g" ./config
+```
+
+### Creating the secret
 
 Finally, the following command will create the secret. You will have to create the same secret in two different namespaces.  Do note that the keys required depend on the platform that you have your cluster deployed on.
 
