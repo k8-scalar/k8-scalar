@@ -146,6 +146,9 @@ First, check however, if there is still an old clusterrole defined named system:
 role=`kubectl get clusterrole | grep heapster | head -n1 | awk '{print $1;}'`
 kubectl delete clusterrole $role
 ```
+Then install the monitoring-core chart:
+
+```
 helm install ${k8_scalar_dir}/operations/monitoring-core --generate-name
 ```
 
