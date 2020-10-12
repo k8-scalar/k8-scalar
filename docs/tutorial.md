@@ -333,7 +333,7 @@ This example experiment has created an [Riemann-based auto-scaler with three sca
 To deploy the k8s-scalar's default ARBA autoscaler using Helm, execute the following script
 
 ```
-helm install ${k8_scalar_dir}/operations/arba
+helm install ${k8_scalar_dir}/operations/arba --generate-name
 ```
 
 ## (8) Test the elastic scaling policy by executing the workload and measuring the number of SLA violations
