@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      k8s-app: grafana
+      k8s-app: grafana      
   replicas: 1
   template:
     metadata:
