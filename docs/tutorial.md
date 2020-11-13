@@ -158,12 +158,11 @@ $ kubectl get pods --namespace=kube-system
 NAME                                    READY     STATUS    RESTARTS   AGE
 heapster-76647b5d6c-ln7lp               1/1       Running   0          6m
 kube-addon-manager-minikube             1/1       Running   0          17m
-kube-dns-54cccfbdf8-wstwt               3/3       Running   0          17m
-kubernetes-dashboard-77d8b98585-qqkmx   1/1       Running   0          17m
+core-dns-54cccfbdf8-wstwt               3/3       Running   0          17m
 monitoring-grafana-8fcc5f8d6-x49wv      1/1       Running   0          6m
 monitoring-influxdb-7bf9b74f99-kpvr8    1/1       Running   0          6m
 storage-provisioner                     1/1       Running   0          17m
-tiller-deploy-7594bf7b76-598xv          1/1       Running   0          7m
+...
 ```
 
 
