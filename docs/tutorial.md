@@ -400,7 +400,7 @@ You can, however, follow the same exact steps on a multi-node cluster.
 For a more accurate reproduction scenario, we suggest adding more labels to each node and add them as constraints to the YAML files of the relevant Kubernetes objects via a [nodeSelector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector). As such different Kubernetes objects such as experiment-controller and the cassandra instance will not be created on the same node, as presented in the related paper.
 
 # III. Operations
-## Creating secrets to enable access to Kubernetes API for autoscaler pod.  
+## Creating secrets to enable access to Kubernetes API for experiment-controller pod 
 The autoscaler and erperiment-controller interact directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. 
 Note the following instructions work for minikube. Instructions for other kubernetes vendors are not exactly the same. We try to differentiate the common parts for all vendors and kubernetes-specific parts 
 
