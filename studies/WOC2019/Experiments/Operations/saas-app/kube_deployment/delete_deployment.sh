@@ -1,3 +1,4 @@
+#! /bin/bash
 for sla in `ls slas` 
   do 
    namespace=`sed -e 's#.*_\(\)#\1#' <<< ${sla}`
