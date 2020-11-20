@@ -5,23 +5,23 @@ metadata:
 spec:
   limits:
   - max:
-      cpu: 237m
-      memory: 875Mi
+      cpu: 200m
+      memory: 200Mi
     min:
-      cpu: 237m
-      memory: 875Mi
+      cpu: 200m
+      memory: 200Mi
     type: Pod
   - default:
-      cpu: 237m
-      memory: 875Mi
+      cpu: 200m
+      memory: 200Mi
     defaultRequest:
-      cpu: 237m
-      memory: 875Mi
+      cpu: 200m
+      memory: 200Mi
     max:
-      cpu: 237m
-      memory: 875Mi
+      cpu: 200m
+      memory: 200Mi
     min:
-      cpu: 237m
-      memory: 875Mi
+      cpu: 200m
+      memory: 200Mi
     type: Container
 
