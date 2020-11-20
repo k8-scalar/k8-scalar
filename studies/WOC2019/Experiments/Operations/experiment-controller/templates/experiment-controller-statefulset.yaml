@@ -1,8 +1,11 @@
-apiVersion: "apps/v1beta1"
+apiVersion: "apps/v1"
 kind: StatefulSet
 metadata:
   name: experiment-controller
 spec:
+  selector:
+    matchLabels:
+      app: experiment-controller
   serviceName: experiment-controller
   replicas: 1
   template:

@@ -1,10 +1,13 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: scaler
   namespace: kube-system
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: scaler
   template:
     metadata:
       labels:
@@ -13,7 +16,7 @@ spec:
     spec:
       containers:
       - name: scaler
-        image: t138/scaler
+        image: decomads/scaler
         imagePullPolicy: Always
         volumeMounts:
         - name: kubeconfig

@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: saas
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: saas
+      labels:
+        run: saas 
+    spec:
+      containers: 
+      - name: saas
+        image: sverreydt/saas-app
+        ports: 
+        - containerPort: 5000
+      

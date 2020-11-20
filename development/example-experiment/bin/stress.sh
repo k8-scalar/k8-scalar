@@ -35,7 +35,6 @@ ARG_SINGLE_RUN_REGEX=^[0-9]*$
 
 duration=60
 pod="cassandra-0"
-
 request=125
 increment=0
 limit=125

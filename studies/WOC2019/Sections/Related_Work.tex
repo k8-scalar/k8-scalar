@@ -35,10 +35,10 @@ Caravel~\citep{caravel} is a scheduler which co-schedules stateful and stateless
 eviction of one replica results in the load being redirected to another replica. Now this replica's resource usage increases. It will in turn be prone to eviction, and so on. Another option for container orchestration frameworks is to throttle the resources of a container instead of evicting it, but this will cause a drop in performance during load peaks~\citep{caravel}.
 %Deshpande illustrates that horizontally scaling a stateless application (Nginx) only takes a few seconds, while scaling Redis, a stateful application, takes approximately 5 minutes. Still, eviction of stateful applications cannot be avoided completely, especially in an environment where a large fraction of the applications are stateful. In that case, a scheduler needs mechanisms to ensure fairness in eviction. Eviction can also be unavoidable when containers fail, are upgraded or are moved to other nodes. Furthermore, a scheduler needs to take into account past evictions when scheduling future ones~\citep{caravel}.\\
 
-Caravel addresses these concerns by letting stateful containers evict stateless containers as these can be restarted in only a few seconds on another node. 
+Caravel addresses these concerns by letting stateful containers evict stateless containers as these can be restarted on another node in only a few seconds. 
 By doing so, it tolerates bursty behavior of stateful applications and reduces their evictions. Furthermore, Caravel imposes several mechanisms to control excessive evictions of stateless applications. In this paper, we explore how similar behavior could be achieved by only using Kubernetes mechanisms. However, the distinction is not made between stateful and stateless applications but rather between high and low priority applications. 
 
-Wong et al.~\citep{hyscale} describes the (dis)advantages of vertical and horizontal scaling and proposes a hybrid solution, developed on top of Docker engine without any container orchestration framework. 
+Wong et al.~\citep{hyscale} describes the (dis)advantages of vertical and horizontal scaling and proposes a hybrid solution, HyScale, developed on top of Docker Engine without any container orchestration framework. 
 %The hybrid solution aims to reap the benefits of the fine grained resource control and the high availability of vertical and horizontal scaling respectively. 
 %
 %\subsubsection{Hybrid scaling difficulties}
@@ -56,10 +56,9 @@ Wong et al.~\citep{hyscale} describes the (dis)advantages of vertical and horizo
 %\label{fig:hyscale1}
 %\end{figure}
 %
-Wong compares their scaling solution to the standard autoscalers in Kubernetes. A first disadvantage of Kubernetes noted by Wong is that its default scaling solutions only consider one resource when making scaling decisions. Second, Wong explains how the Kubernetes autoscalers often lead to sub-optimal configurations. 
-Wong's algorithm differs from the default Kubernetes HPA in two ways: the use of vertical scaling and the consideration of multiple metrics to make scale decisions. 
-A complete discussion of the algorithm does not fall within the scope of this paper. 
+Wong compares HyScale to the standard autoscalers in Kubernetes. A first disadvantage of Kubernetes noted is that its default scaling solutions only consider one resource when making scaling decisions. Second, Wong explains how the Kubernetes autoscalers often lead to sub-optimal configurations. 
+HyScale differs from the default Kubernetes HPA in two ways: the use of vertical scaling and the consideration of multiple metrics to make scale decisions. 
 Wong's experimental results show that HyScale outperforms Kubernetes for bursty workloads. For non-bursty workloads, their performance is similar
 ~\citep{hyscale}.
 
-When comparing horizontal and vertical scaling for CPU intensive workloads, Wong describes that Docker's CPU shares mechanism can be used to ``induce a form of vertical scaling, as increasing or decreasing shares directly correlate with an increase or decrease in CPU resource allocation to a container''~\citep{hyscale}. When comparing their solution to Kubernetes, however, they only consider the Kubernetes HPA, without mentioning these CPU shares. This paper evaluates the effects of combining the HPA with the CPU shares mechanism in Kubernetes. 
+When comparing horizontal and vertical scaling for CPU intensive workloads, Wong describes that Docker's \textit{cpu-shares} mechanism can be used to ``induce a form of vertical scaling, as increasing or decreasing shares directly correlate with an increase or decrease in CPU resource allocation to a container''~\citep{hyscale}. When comparing their solution to Kubernetes, however, they only consider the Kubernetes HPA, without mentioning these \textit{cpu-shares}. This paper evaluates the effects of combining the HPA with the \textit{cpu-shares} mechanism in Kubernetes. 
