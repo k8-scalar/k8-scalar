@@ -1,8 +1,8 @@
-# K8-Scalar
-K8-Scalar is a workbench for implementing and evaluating different self-adaptive
+# K8-scalar
+K8-scalar is a workbench for implementing and evaluating different self-adaptive
 approaches to autoscaling container-orchestrated services. 
 
-The K8-Scalar artifact has been used and validated in the context of
+The k8-scalar artifact has been used and validated in the context of
 autoscalers for database clusters. Although autoscalers for database
 clusters  or multi-tier applications  have been researched, developing
 an effective autoscaler for databases is still an art, rather than a
