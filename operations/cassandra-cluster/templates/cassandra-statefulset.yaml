@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: cassandra
-        image: t138/cassandra
+        image: decomads/cassandra:2.2.16
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 7000
