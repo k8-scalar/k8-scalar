@@ -1,0 +1,9 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: experiment-heapster
+spec:
+  containers:
+  - name: experiment-heapster
+    image: t138/experiment-heapster
+    

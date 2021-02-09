@@ -1,0 +1,38 @@
+apiVersion: "apps/v1beta1"
+kind: StatefulSet
+metadata:
+  name: experiment-controller
+spec:
+  serviceName: experiment-controller
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: experiment-controller
+        technology: scalar
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - experiment-controller
+            topologyKey: "kubernetes.io/hostname" 
+      containers:
+      - name: experiment-controller
+        image: decomads/experiment-controller:0.2 
+        volumeMounts:
+        - name: kubeconfig
+          mountPath: /root/.kube
+        - name: resultdata
+          mountPath: /exp/var
+      volumes:
+        - name: kubeconfig
+          secret:
+            secretName: kubeconfig
+        - name: resultdata
+          hostPath:
+            path: /data/results

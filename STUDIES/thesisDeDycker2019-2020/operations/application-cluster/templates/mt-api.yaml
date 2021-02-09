@@ -1,0 +1,38 @@
+apiVersion: "apps/v1beta1"
+kind: Deployment
+metadata:
+  name: mt-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mt-api
+      app-version: v1
+      mt-app: 'true'
+  template:
+    metadata:
+      labels:
+        app: mt-api
+        app-version: v1
+        mt-app: 'true'
+    spec:
+      affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 80
+                podAffinityTerm:
+                  topologyKey: "kubernetes.io/hostname"
+                  labelSelector:
+                    matchLabels:
+                      app-version: v1
+                      app: mt-api
+      containers:
+      - name: backend-v1
+        image: cedricdd/mt-api:v1
+        imagePullPolicy: Always
+        ports:
+          - name: startup-port
+            containerPort: 8080
+        env:
+        - name: DB_CONNECTION_STRING
+          value: 'mongodb://mt-db-s/mt-api'

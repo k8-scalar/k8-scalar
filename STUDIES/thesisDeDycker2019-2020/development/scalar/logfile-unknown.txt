@@ -1,0 +1,7 @@
+15:48:23   Registered new VMShutdownHook housekeeper.
+15:48:23   Loaded data provider LocalStorageProvider
+15:48:23   Could not instantiate Scalar due to missing data or data backend problem: Could not find data provider implementation TestingDataProvider: be.kuleuven.distrinet.scalar.data.TestingDataProvider
+15:48:23   Unregistering from cluster.
+15:48:23   Could not notify others of shutdown: No suitable data provider found to store key run:shutdown.
+15:48:23   Notifying for be.kuleuven.distrinet.scalar.core.LifeCycleTerminatedState@6759ba2e
+15:48:23   Terminating data providers.

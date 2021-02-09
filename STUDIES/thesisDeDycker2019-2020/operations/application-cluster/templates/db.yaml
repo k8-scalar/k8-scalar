@@ -1,0 +1,23 @@
+apiVersion: "apps/v1beta1"
+kind: Deployment
+metadata:
+  name: mongo-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mt-api-db
+  template:
+    metadata:
+      labels:
+        app: mt-api-db
+        version: v1
+        state: stable
+        image: mongo
+    spec:
+      containers:
+      - name: db-mongo
+        image: mongo
+        ports:
+          - name: startup-port
+            containerPort: 27017

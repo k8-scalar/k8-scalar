@@ -1,0 +1,16 @@
+be.kuleuven.distrinet.scalar
+be.kuleuven.distrinet.scalar.config
+be.kuleuven.distrinet.scalar.core
+be.kuleuven.distrinet.scalar.core.housekeeping
+be.kuleuven.distrinet.scalar.data
+be.kuleuven.distrinet.scalar.exceptions
+be.kuleuven.distrinet.scalar.experiment
+be.kuleuven.distrinet.scalar.junit
+be.kuleuven.distrinet.scalar.plugin
+be.kuleuven.distrinet.scalar.reporting
+be.kuleuven.distrinet.scalar.requests
+be.kuleuven.distrinet.scalar.testing
+be.kuleuven.distrinet.scalar.users
+be.kuleuven.distrinet.scalar.users.scheduling
+be.kuleuven.distrinet.scalar.users.scheduling.histogram
+be.kuleuven.distrinet.scalar.util

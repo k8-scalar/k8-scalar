@@ -1,0 +1,44 @@
+apiVersion: "apps/v1beta1"
+kind: Deployment
+metadata:
+  name: mt-att
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mt-att
+      app-version: v1
+      mt-app: 'true'
+      tenant-cap: '10'
+  template:
+    metadata:
+      labels:
+        app: mt-att
+        app-version: v1
+        tenant-cap: '10'
+        mt-app: 'true'
+    spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 50
+            podAffinityTerm:
+              topologyKey: "kubernetes.io/hostname"
+              labelSelector:
+                matchLabels:
+                    app: mt-api
+                    app-version: v1
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 80
+              podAffinityTerm:
+                topologyKey: "kubernetes.io/hostname"
+                labelSelector:
+                  matchLabels:
+                    app-version: v1
+                    app: mt-att
+      containers:
+      - name: attorney-v1
+        image: cedricdd/empty
+        imagePullPolicy: Always
+      

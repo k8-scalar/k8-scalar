@@ -1,0 +1,11 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: experiment-controller
+spec:
+  nodeSelector:
+    role: controller
+  containers:
+  - name: experiment-controller
+    image: t138/experiment-3
+    
