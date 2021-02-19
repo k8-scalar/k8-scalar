@@ -4,3 +4,7 @@ Based on their work, a [short paper](https://doi.org/10.1145/3429885.3429963), e
 
 The [analytical model](https://www.desmos.com/calculator/lwsphz3nbo), describede in this paper, is based on the [master thesis](./2020_ArnoutHoebreckx_Masterproef.pdf) of Arnout. More practical information for understanding the code and running the experiments in this project can explained in this master thesis.
 
+
+Limitations: 
+ * This code does not work for k8s 1.14+
+  
