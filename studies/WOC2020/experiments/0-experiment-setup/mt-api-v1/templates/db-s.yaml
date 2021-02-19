@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mt-db-s
+spec:
+  selector:
+    app: mt-api-db
+  ports:
+  - port: 27017
+    targetPort: 27017

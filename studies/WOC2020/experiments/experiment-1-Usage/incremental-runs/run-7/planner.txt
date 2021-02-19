@@ -1,0 +1,117 @@
+["Tenant 1 created a new group
+Tenant 9 created a new group
+Tenant 2 created a new group
+Tenant 10 created a new group
+Tenant 3 created a new group
+Tenant 4 created a new group
+Tenant 11 created a new group
+Tenant 5 created a new group
+Tenant 6 created a new group
+Tenant 12 created a new group
+Tenant 7 created a new group
+Tenant 13 created a new group
+Tenant 8 created a new group
+
+14:32:17.883- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=1, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:13}] from 1 to 2
+14:32:17.908- START: Upgrade to new version 2 for [TenantConfig{tenantId=1, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:13}]
+14:32:20.105- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=1, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:13}] will be swapped to the new version
+14:33:26.686- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=1, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:13}]
+14:33:31.717- START: Downgrade of old version 1 for [TenantConfig{tenantId=1, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:13}]
+14:34:26.845- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=1, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:13}]
+14:34:28.137- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=1, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:13}]
+
+14:34:30.688- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=9, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:26}] from 1 to 2
+14:34:30.706- START: Upgrade to new version 2 for [TenantConfig{tenantId=9, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:26}]
+14:34:32.863- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=9, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:26}] will be swapped to the new version
+14:35:21.996- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=9, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:26}]
+14:35:27.024- START: Downgrade of old version 1 for [TenantConfig{tenantId=9, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:26}]
+14:36:11.308- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=9, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:26}]
+14:36:12.624- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=9, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:26}]
+
+14:36:14.870- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=2, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:39}] from 1 to 2
+14:36:14.895- START: Upgrade to new version 2 for [TenantConfig{tenantId=2, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:39}]
+14:36:17.036- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=2, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:39}] will be swapped to the new version
+14:37:02.283- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=2, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:39}]
+14:37:07.316- START: Downgrade of old version 1 for [TenantConfig{tenantId=2, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:39}]
+14:37:56.937- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=2, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:39}]
+14:37:58.209- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=2, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:39}]
+
+14:38:00.346- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=10, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:52}] from 1 to 2
+14:38:00.369- START: Upgrade to new version 2 for [TenantConfig{tenantId=10, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:52}]
+14:38:02.524- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=10, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:52}] will be swapped to the new version
+14:38:57.415- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=10, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:52}]
+14:39:02.457- START: Downgrade of old version 1 for [TenantConfig{tenantId=10, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:52}]
+14:39:57.378- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=10, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:52}]
+14:39:58.610- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=10, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:32:52}]
+
+14:40:00.520- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=3, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:05}] from 1 to 2
+14:40:00.536- START: Upgrade to new version 2 for [TenantConfig{tenantId=3, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:05}]
+14:40:02.689- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=3, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:05}] will be swapped to the new version
+14:40:46.735- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=3, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:05}]
+14:40:51.803- START: Downgrade of old version 1 for [TenantConfig{tenantId=3, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:05}]
+14:41:46.740- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=3, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:05}]
+14:41:48.001- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=3, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:05}]
+
+14:41:49.565- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=4, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:18}] from 1 to 2
+14:41:49.589- START: Upgrade to new version 2 for [TenantConfig{tenantId=4, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:18}]
+14:41:52.110- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=4, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:18}] will be swapped to the new version
+14:42:41.173- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=4, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:18}]
+14:42:46.199- START: Downgrade of old version 1 for [TenantConfig{tenantId=4, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:18}]
+14:43:37.406- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=4, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:18}]
+14:43:38.640- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=4, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:18}]
+
+14:43:40.060- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=11, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:31}] from 1 to 2
+14:43:40.082- START: Upgrade to new version 2 for [TenantConfig{tenantId=11, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:31}]
+14:43:42.227- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=11, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:31}] will be swapped to the new version
+14:44:27.295- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=11, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:31}]
+14:44:32.323- START: Downgrade of old version 1 for [TenantConfig{tenantId=11, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:31}]
+14:45:27.169- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=11, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:31}]
+14:45:28.467- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=11, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:31}]
+
+14:45:29.707- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=5, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:44}] from 1 to 2
+14:45:29.732- START: Upgrade to new version 2 for [TenantConfig{tenantId=5, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:44}]
+14:45:31.875- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=5, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:44}] will be swapped to the new version
+14:46:16.857- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=5, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:44}]
+14:46:21.913- START: Downgrade of old version 1 for [TenantConfig{tenantId=5, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:44}]
+14:47:07.070- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=5, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:44}]
+14:47:08.317- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=5, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:44}]
+
+14:47:09.341- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=6, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:57}] from 1 to 2
+14:47:09.409- START: Upgrade to new version 2 for [TenantConfig{tenantId=6, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:57}]
+14:47:11.581- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=6, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:57}] will be swapped to the new version
+14:47:56.675- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=6, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:57}]
+14:48:01.712- START: Downgrade of old version 1 for [TenantConfig{tenantId=6, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:57}]
+14:48:46.929- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=6, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:57}]
+14:48:48.202- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=6, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:33:57}]
+
+14:48:49.012- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=12, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:10}] from 1 to 2
+14:48:49.040- START: Upgrade to new version 2 for [TenantConfig{tenantId=12, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:10}]
+14:48:51.190- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=12, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:10}] will be swapped to the new version
+14:49:37.490- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=12, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:10}]
+14:49:42.601- START: Downgrade of old version 1 for [TenantConfig{tenantId=12, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:10}]
+14:50:37.343- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=12, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:10}]
+14:50:38.617- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=12, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:10}]
+
+14:50:39.225- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=7, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:23}] from 1 to 2
+14:50:39.251- START: Upgrade to new version 2 for [TenantConfig{tenantId=7, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:23}]
+14:50:41.400- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=7, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:23}] will be swapped to the new version
+14:51:23.262- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=7, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:23}]
+14:51:28.367- START: Downgrade of old version 1 for [TenantConfig{tenantId=7, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:23}]
+14:52:17.763- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=7, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:23}]
+14:52:18.997- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=7, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:23}]
+
+14:52:19.390- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=13, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:36}] from 1 to 2
+14:52:19.414- START: Upgrade to new version 2 for [TenantConfig{tenantId=13, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:36}]
+14:52:21.576- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=13, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:36}] will be swapped to the new version
+14:53:07.057- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=13, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:36}]
+14:53:12.162- START: Downgrade of old version 1 for [TenantConfig{tenantId=13, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:36}]
+14:54:16.841- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=13, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:36}]
+14:54:18.099- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=13, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:36}]
+
+14:54:18.387- START OF UPGRADE PROCESS FOR [TenantConfig{tenantId=8, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:49}] from 1 to 2
+14:54:18.411- START: Upgrade to new version 2 for [TenantConfig{tenantId=8, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:49}]
+14:54:20.569- TERMINATION has started for UpdateV2 - Tenant [TenantConfig{tenantId=8, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:49}] will be swapped to the new version
+14:55:07.234- COMPLETION: Upgrade to new version 2 for [TenantConfig{tenantId=8, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:49}]
+14:55:12.305- START: Downgrade of old version 1 for [TenantConfig{tenantId=8, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:49}]
+14:56:07.540- COMPLETION: Downgrade of old version 1 for [TenantConfig{tenantId=8, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:49}]
+14:56:08.788- END OF UPGRADE PROCESS FOR [TenantConfig{tenantId=8, app='mt-api', slaClass='bronze', currVersion='1', newVersion='2', deadLine=14:34:49}]"]

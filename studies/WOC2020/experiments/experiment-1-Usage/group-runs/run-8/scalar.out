@@ -1,0 +1,198 @@
+
+   ______    ______    ______    __        ______    ______
+  /\  ___\  /\  ___\  /\  __ \  /\ \      /\  __ \  /\  == \
+  \ \___  \ \ \ \____ \ \  __ \ \ \ \____ \ \  __ \ \ \  __<
+   \/\_____\ \ \_____\ \ \_\ \_\ \ \_____\ \ \_\ \_\ \ \_\ \_\
+    \/_____/  \/_____/  \/_/\/_/  \/_____/  \/_/\/_/  \/_/ /_/
+
+
+11:17:20   Scalar v1.0.0 starting up...
+           experiment.properties - /exp/etc/normal-group-experiment.properties
+           platform.properties - /exp/etc/platform.properties
+11:17:20   Registered new VMShutdownHook housekeeper.
+11:17:20   Loaded data provider LocalStorageProvider
+11:17:20   Host experiment-controller-0.experiment-controller.default.svc.cluster.local (192.168.91.9) is registered as node fb4803e2-9e76-41b1-b46e-872cf71b99d3.
+11:17:20   Loaded plugin be.kuleuven.distrinet.scalar.plugin.ExperimentalPropertiesLoader
+11:17:20   Loaded plugin be.kuleuven.distrinet.scalar.plugin.ExperimentalResultsPublisher
+11:17:20   Loaded plugin be.kuleuven.distrinet.scalar.plugin.SummaryGenerator
+11:17:20   Loaded plugin be.kuleuven.distrinet.scalar.plugin.RequestReporter
+11:17:20   Loaded plugin be.kuleuven.distrinet.scalar.plugin.GnuPlotGenerator
+11:17:20   Assuming master state - Performing experiment.
+11:17:20   Registered new ClusterShutdownHook housekeeper.
+11:17:20   Registered new ManagerDebugHelper housekeeper.
+11:17:20   Registered new CommandServer housekeeper.
+11:17:20   Attaching command server to port 6666.
+11:17:20   Loaded think time strategy factory ConstantThinkTimeStrategyFactory
+11:17:20   Registered new ClusterWatcher housekeeper.
+11:17:20   Waiting for 1 nodes in total...
+11:17:20   Current members known: 
+           node 1 - fb4803e2-9e76-41b1-b46e-872cf71b99d3 (experiment-controller-0.experiment-controller.default.svc.cluster.local)
+11:17:21   Instantiating user pool.
+11:17:21   Waiting for the other nodes...
+11:17:21   >>> Starting run <<<
+11:17:21   Entering peak phase with a user load of 8 for 360 seconds.
+11:17:21   Starting statistics collection.
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 6] requests: 0
+11:19:21   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 3] requests: 0
+11:19:21   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 5] requests: 0
+11:19:21   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 1] requests: 0
+11:19:22   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 8] requests: 0
+11:19:22   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 4] requests: 0
+11:19:22   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 7] requests: 0
+11:19:22   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 2] requests: 0
+11:19:22   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 3] requests: 1
+[TENANT 6] requests: 1
+11:21:22   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+11:21:22   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 5] requests: 1
+11:21:22   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 1] requests: 1
+11:21:23   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 8] requests: 1
+11:21:23   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 4] requests: 1
+11:21:23   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 7] requests: 1
+11:21:23   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 2] requests: 1
+11:21:23   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+11:23:21   Stopping statistics collection.
+11:23:21   Peak phase deviated from planned duration by 5.305ms.
+11:23:21   >>> Stopping run <<<
+11:23:21   Waiting for all remaining users to finish...
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 6] requests: 2
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 3] requests: 2
+11:23:23   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+11:23:23   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 5] requests: 2
+11:23:23   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 1] requests: 2
+11:23:24   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 8] requests: 2
+11:23:24   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 4] requests: 2
+11:23:24   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 7] requests: 2
+11:23:24   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+### Request failed, reason:bsv1:80 failed to respond
+[TENANT 2] requests: 2
+11:23:24   exception - org.apache.http.NoHttpResponseException: bsv1:80 failed to respond
+           location - file ApplicationInterface.java, line 139
+           type - InternalException
+11:23:25   Total experiment data usage is 1460 bytes.
+11:23:25   message - This node sent out 24 requests, of which 24 login.
+11:23:25   Waiting 0 seconds inbetween runs.
+11:23:25   Closing command socket.
+11:23:25   report - Report written to results--exp-etc-normal-group-experiment-properties.dat
+           residence times - Residence times written to residence-times--exp-etc-normal-group-experiment-properties.dat
+           results - 
+
+Experiment consisting of 1 runs and 1 request types:
+	login
+
+
+Load,          Duration,      Troughput,     Capacity,      Slow requests, Timing accuracy
+------------------------------------------------------------------------------------------
+8,             360s,          0,             0,             ?%,            5.305ms        
+
+
+Breakdown of residence times for login requests:
+
+Load,          Min,           Max,           Mean,          Std. dev.,     Shape,         Scale          (successful)   (failed)       (error)        (conn_problem) (timed_out)    (redirected)   (no_result)    
+8              ?              ?              ?              ?              ?              ?              0              0              0              0              0              0              24             
+
+
+Percentiles of sampled residence times (only an approximation if residence_times_sample_fraction is set):
+
+login (run 1, 8 users):
+	50.0%	of requests handled in ?ms.
+	90.0%	of requests handled in ?ms.
+	95.0%	of requests handled in ?ms.
+	99.0%	of requests handled in ?ms.
+	99.9%	of requests handled in ?ms.
+	99.99%	of requests handled in ?ms.
+
+
+11:23:25   GnuPlot data written to gnuplot-capacity.dat.
+11:23:25   GnuPlot data written to gnuplot-heatmap.dat.
+11:23:25   warn - The GnuPlot fit did not converge.
+11:23:25   Unregistering from cluster.
+11:23:25   Notifying for be.kuleuven.distrinet.scalar.core.LifeCycleTerminatedState@3364d3ac
+11:23:25   Terminating data providers.

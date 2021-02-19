@@ -1,0 +1,43 @@
+09:49:02 **-- Starting Experiment 1: Usage, Surge with AVG workload
+Seeding the UpgradeplannerDB with tenants
+[{"tenantId":1,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":2,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":3,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":4,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":5,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":6,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":7,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":8,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":9,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":10,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":11,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":12,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null},{"tenantId":13,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":null,"deadline":null}]09:49:03 -- Seeding the UpgradeplannerDB with Deployments
+{"deploymentName":"mt-api-v1","appName":"mt-api","version":"1","slaClass":"bronze","podRequests":871,"podLimits":1300,"tenantRequests":67,"tenantLimits":100,"upgradeTime":90}{"deploymentName":"mt-api-v2","appName":"mt-api","version":"2","slaClass":"bronze","podRequests":0,"podLimits":0,"tenantRequests":67,"tenantLimits":100,"upgradeTime":90}09:49:04 -- Seeding the application database
+
+> mt-api@0.0.0 clear-db /app
+> node ./scripts/db-clear.js
+
+2020-05-26T09:49:06.021Z [mt-api] [32minfo[39m: Connecting to database.
+2020-05-26T09:49:06.025Z [mt-api] [32minfo[39m: Connecting to: mongodb://mt-db-s/mt-api
+2020-05-26T09:49:06.054Z [mt-api] [33mwarn[39m: Clearing database.
+2020-05-26T09:49:06.102Z [mt-api] [32minfo[39m: TenantModel: {"n":0,"ok":1,"deletedCount":0}
+2020-05-26T09:49:06.114Z [mt-api] [32minfo[39m: UserModel: {"n":0,"ok":1,"deletedCount":0}
+2020-05-26T09:49:06.114Z [mt-api] [33mwarn[39m: Database cleared.
+2020-05-26T09:49:06.115Z [mt-api] [32minfo[39m: Disconnecting from database.
+
+> mt-api@0.0.0 seed-db /app
+> node ./scripts/db-seed.js
+
+2020-05-26T09:49:07.549Z [mt-api] [32minfo[39m: Connecting to database.
+2020-05-26T09:49:07.552Z [mt-api] [32minfo[39m: Connecting to: mongodb://mt-db-s/mt-api
+2020-05-26T09:49:07.617Z [mt-api] [33mwarn[39m: Seeding database.
+2020-05-26T09:49:07.740Z [mt-api] [33mwarn[39m: Tenants seeded.
+2020-05-26T09:49:08.056Z [mt-api] [32minfo[39m: [REGISTER] User created: user-1-1
+2020-05-26T09:49:08.058Z [mt-api] [32minfo[39m: [REGISTER] User created: user-3-1
+2020-05-26T09:49:08.059Z [mt-api] [32minfo[39m: [REGISTER] User created: user-2-1
+2020-05-26T09:49:08.217Z [mt-api] [32minfo[39m: [REGISTER] User created: user-4-1
+2020-05-26T09:49:08.304Z [mt-api] [32minfo[39m: [REGISTER] User created: user-6-1
+2020-05-26T09:49:08.339Z [mt-api] [32minfo[39m: [REGISTER] User created: user-7-1
+2020-05-26T09:49:08.417Z [mt-api] [32minfo[39m: [REGISTER] User created: user-5-1
+2020-05-26T09:49:08.520Z [mt-api] [32minfo[39m: [REGISTER] User created: user-8-1
+2020-05-26T09:49:08.711Z [mt-api] [32minfo[39m: [REGISTER] User created: user-10-1
+2020-05-26T09:49:08.724Z [mt-api] [32minfo[39m: [REGISTER] User created: user-9-1
+2020-05-26T09:49:08.905Z [mt-api] [32minfo[39m: [REGISTER] User created: user-11-1
+2020-05-26T09:49:08.921Z [mt-api] [32minfo[39m: [REGISTER] User created: user-13-1
+2020-05-26T09:49:08.947Z [mt-api] [32minfo[39m: [REGISTER] User created: user-12-1
+2020-05-26T09:49:08.961Z [mt-api] [33mwarn[39m: Users seeded.
+2020-05-26T09:49:08.962Z [mt-api] [32minfo[39m: Disconnecting from database.
+09:49:09 -- changing experiment files
+Group stress testing
+09:49:12 -- Starting scalar script
+09:49:12 -- Starting upgrade
+[{"tenantId":1,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":9,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":2,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":10,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":3,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":4,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":11,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":5,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":12,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":7,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":13,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"},{"tenantId":8,"appName":"mt-api","slaClass":"bronze","currVersion":"1","upgVersion":"2","deadline":"09:52:09"}]09:55:13 -- Experiment script is over

@@ -1,0 +1,46 @@
+<head>
+    <style>
+        pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+        .string { color: green; }
+        .number { color: darkorange; }
+        .boolean { color: blue; }
+        .null { color: magenta; }
+        .key { color: red; }
+
+    </style>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<%
+function syntaxHighlight(json) {
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+}%>
+<h1> Welcome to Company <%= tenant.name.toUpperCase() %></h1>
+
+<h2>User</h2>
+<pre><%-
+
+    syntaxHighlight(JSON.stringify(user));
+
+ %></pre>
+
+<h2>Tenant</h2>
+<pre><%-
+
+    syntaxHighlight(JSON.stringify(tenant));
+
+    %></pre>

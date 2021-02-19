@@ -1,0 +1,58 @@
+{ "results": "
+
+Experiment consisting of 1 runs and 3 request types:
+	login
+	info
+	home
+
+
+Load,          Duration,      Troughput,     Capacity,      Slow requests, Timing accuracy
+------------------------------------------------------------------------------------------
+7,             300s,          1469,          4.897,         0%,            1.66ms         
+
+
+Breakdown of residence times for login requests:
+
+Load,          Min,           Max,           Mean,          Std. dev.,     Shape,         Scale          (successful)   (failed)       (error)        (conn_problem) (timed_out)    (redirected)   (no_result)    
+7              77.242         831.222        371.995        176.559        4.439          83.8           1469           0              0              0              0              0              0              
+
+
+Breakdown of residence times for info requests:
+
+Load,          Min,           Max,           Mean,          Std. dev.,     Shape,         Scale          (successful)   (failed)       (error)        (conn_problem) (timed_out)    (redirected)   (no_result)    
+7              1.809          533.188        39.152         77.223         0.257          152.314        1469           0              0              0              0              0              0              
+
+
+Breakdown of residence times for home requests:
+
+Load,          Min,           Max,           Mean,          Std. dev.,     Shape,         Scale          (successful)   (failed)       (error)        (conn_problem) (timed_out)    (redirected)   (no_result)    
+7              2.754          301.209        18.104         25.617         0.499          36.247         1469           0              0              0              0              0              0              
+
+
+Percentiles of sampled residence times (only an approximation if residence_times_sample_fraction is set):
+
+login (run 1, 7 users):
+	50.0%	of requests handled in 385.069ms.
+	90.0%	of requests handled in 612.868ms.
+	95.0%	of requests handled in 677.374ms.
+	99.0%	of requests handled in 756.344ms.
+	99.9%	of requests handled in 825.893ms.
+	99.99%	of requests handled in 831.222ms.
+
+info (run 1, 7 users):
+	50.0%	of requests handled in 4.638ms.
+	90.0%	of requests handled in 130.535ms.
+	95.0%	of requests handled in 206.94ms.
+	99.0%	of requests handled in 397.451ms.
+	99.9%	of requests handled in 506.973ms.
+	99.99%	of requests handled in 533.188ms.
+
+home (run 1, 7 users):
+	50.0%	of requests handled in 7.05ms.
+	90.0%	of requests handled in 50.749ms.
+	95.0%	of requests handled in 59.221ms.
+	99.0%	of requests handled in 112.624ms.
+	99.9%	of requests handled in 292.546ms.
+	99.99%	of requests handled in 301.209ms.
+
+" }
