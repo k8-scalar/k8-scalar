@@ -1,0 +1,269 @@
+2020-02-25T20:19:43.282Z [mt-api] warn: Starting server configuration.
+2020-02-25T20:19:43.289Z [mt-api] info: Configuring environment variables.
+2020-02-25T20:19:43.544Z [mt-api] info: Connecting to database.
+2020-02-25T20:19:43.544Z [mt-api] info: Connecting to: mongodb://localhost/mt-api
+2020-02-25T20:19:43.619Z [mt-api] info: Application initialized
+2020-02-25T20:19:43.621Z [mt-api] warn: Server started on: 8080
+2020-02-25T20:20:15.776Z [mt-api] [33mwarn[39m: Starting server configuration.
+2020-02-25T20:20:15.786Z [mt-api] [32minfo[39m: Configuring environment variables.
+2020-02-25T20:20:16.173Z [mt-api] [32minfo[39m: Connecting to database.
+2020-02-25T20:20:16.173Z [mt-api] [32minfo[39m: Connecting to: mongodb://localhost/mt-api
+2020-02-25T20:20:16.286Z [mt-api] [32minfo[39m: Application initialized
+2020-02-25T20:20:16.287Z [mt-api] [33mwarn[39m: Server started on: 8080
+2020-02-25T20:20:27.492Z [mt-api] warn: Starting server configuration.
+2020-02-25T20:20:27.500Z [mt-api] info: Configuring environment variables.
+2020-02-25T20:20:27.750Z [mt-api] info: Connecting to database.
+2020-02-25T20:20:27.750Z [mt-api] info: Connecting to: mongodb://localhost/mt-api
+2020-02-25T20:20:27.827Z [mt-api] info: Application initialized
+2020-02-25T20:20:27.828Z [mt-api] warn: Server started on: 8080
+2020-02-28T11:50:31.199Z [mt-api] warn: Starting server configuration.
+2020-02-28T11:50:31.212Z [mt-api] info: Configuring environment variables.
+2020-02-28T11:50:31.634Z [mt-api] info: Connecting to database.
+2020-02-28T11:50:31.635Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:50:31.750Z [mt-api] info: Application initialized
+2020-02-28T11:50:31.752Z [mt-api] warn: Server started on: 8080
+2020-02-28T11:50:39.408Z [mt-api] info: Connecting to database.
+2020-02-28T11:50:39.411Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:50:39.430Z [mt-api] warn: Clearing database.
+2020-02-28T11:50:39.469Z [mt-api] info: TenantModel: {"n":3,"ok":1,"deletedCount":3}
+2020-02-28T11:50:39.470Z [mt-api] info: UserModel: {"n":3,"ok":1,"deletedCount":3}
+2020-02-28T11:50:39.470Z [mt-api] warn: Database cleared.
+2020-02-28T11:50:39.471Z [mt-api] info: Disconnecting from database.
+2020-02-28T11:50:44.268Z [mt-api] info: Connecting to database.
+2020-02-28T11:50:44.270Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:50:44.315Z [mt-api] warn: Seeding database.
+2020-02-28T11:50:44.373Z [mt-api] warn: Tenants seeded.
+2020-02-28T11:50:44.479Z [mt-api] warn: Users seeded.
+2020-02-28T11:50:44.480Z [mt-api] info: Disconnecting from database.
+2020-02-28T11:50:47.175Z [mt-api] warn: Starting server configuration.
+2020-02-28T11:50:47.186Z [mt-api] info: Configuring environment variables.
+2020-02-28T11:50:47.462Z [mt-api] info: Connecting to database.
+2020-02-28T11:50:47.462Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:50:47.554Z [mt-api] info: Application initialized
+2020-02-28T11:50:47.556Z [mt-api] warn: Server started on: 8080
+2020-02-28T11:52:11.160Z [mt-api] error: Cannot read property 'password' of null
+2020-02-28T11:53:06.708Z [mt-api] warn: Starting server configuration.
+2020-02-28T11:53:06.720Z [mt-api] info: Configuring environment variables.
+2020-02-28T11:53:07.108Z [mt-api] info: Connecting to database.
+2020-02-28T11:53:07.109Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:53:07.224Z [mt-api] info: Application initialized
+2020-02-28T11:53:07.226Z [mt-api] warn: Server started on: 8080
+2020-02-28T11:56:28.938Z [mt-api] warn: Starting server configuration.
+2020-02-28T11:56:28.949Z [mt-api] info: Configuring environment variables.
+2020-02-28T11:56:29.345Z [mt-api] info: Connecting to database.
+2020-02-28T11:56:29.345Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:56:29.468Z [mt-api] info: Application initialized
+2020-02-28T11:56:29.469Z [mt-api] warn: Server started on: 8080
+2020-02-28T11:57:21.879Z [mt-api] warn: Starting server configuration.
+2020-02-28T11:57:21.889Z [mt-api] info: Configuring environment variables.
+2020-02-28T11:57:22.289Z [mt-api] info: Connecting to database.
+2020-02-28T11:57:22.289Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:57:22.416Z [mt-api] info: Application initialized
+2020-02-28T11:57:22.419Z [mt-api] warn: Server started on: 8080
+2020-02-28T11:57:25.255Z [mt-api] error: Cannot read property 'password' of null
+2020-02-28T11:58:05.990Z [mt-api] info: Connecting to database.
+2020-02-28T11:58:05.992Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:58:06.013Z [mt-api] warn: Clearing database.
+2020-02-28T11:58:06.042Z [mt-api] info: TenantModel: {"n":3,"ok":1,"deletedCount":3}
+2020-02-28T11:58:06.047Z [mt-api] info: UserModel: {"n":3,"ok":1,"deletedCount":3}
+2020-02-28T11:58:06.047Z [mt-api] warn: Database cleared.
+2020-02-28T11:58:06.048Z [mt-api] info: Disconnecting from database.
+2020-02-28T11:58:09.968Z [mt-api] info: Connecting to database.
+2020-02-28T11:58:09.970Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:58:10.006Z [mt-api] warn: Seeding database.
+2020-02-28T11:58:10.033Z [mt-api] warn: Tenants seeded.
+2020-02-28T11:58:10.139Z [mt-api] warn: Users seeded.
+2020-02-28T11:58:10.140Z [mt-api] info: Disconnecting from database.
+2020-02-28T11:58:18.067Z [mt-api] warn: Starting server configuration.
+2020-02-28T11:58:18.078Z [mt-api] info: Configuring environment variables.
+2020-02-28T11:58:18.362Z [mt-api] info: Connecting to database.
+2020-02-28T11:58:18.362Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:58:18.450Z [mt-api] info: Application initialized
+2020-02-28T11:58:18.451Z [mt-api] warn: Server started on: 8080
+2020-02-28T11:58:27.441Z [mt-api] error: Cannot read property 'password' of null
+2020-02-28T11:59:06.092Z [mt-api] error: Cannot read property 'password' of null
+2020-02-28T11:59:07.966Z [mt-api] error: Cannot read property 'password' of null
+2020-02-28T11:59:50.298Z [mt-api] info: Connecting to database.
+2020-02-28T11:59:50.301Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:59:50.322Z [mt-api] warn: Clearing database.
+2020-02-28T11:59:50.353Z [mt-api] info: TenantModel: {"n":3,"ok":1,"deletedCount":3}
+2020-02-28T11:59:50.361Z [mt-api] info: UserModel: {"n":3,"ok":1,"deletedCount":3}
+2020-02-28T11:59:50.361Z [mt-api] warn: Database cleared.
+2020-02-28T11:59:50.362Z [mt-api] info: Disconnecting from database.
+2020-02-28T11:59:53.284Z [mt-api] info: Connecting to database.
+2020-02-28T11:59:53.286Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:59:53.324Z [mt-api] warn: Seeding database.
+2020-02-28T11:59:53.349Z [mt-api] warn: Tenants seeded.
+2020-02-28T11:59:53.452Z [mt-api] warn: Users seeded.
+2020-02-28T11:59:53.453Z [mt-api] info: Disconnecting from database.
+2020-02-28T11:59:55.674Z [mt-api] info: Connecting to database.
+2020-02-28T11:59:55.676Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T11:59:55.695Z [mt-api] warn: Clearing database.
+2020-02-28T11:59:55.724Z [mt-api] info: TenantModel: {"n":3,"ok":1,"deletedCount":3}
+2020-02-28T11:59:55.732Z [mt-api] info: UserModel: {"n":3,"ok":1,"deletedCount":3}
+2020-02-28T11:59:55.733Z [mt-api] warn: Database cleared.
+2020-02-28T11:59:55.733Z [mt-api] info: Disconnecting from database.
+2020-02-28T12:00:00.994Z [mt-api] info: Connecting to database.
+2020-02-28T12:00:00.996Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:00:01.031Z [mt-api] warn: Seeding database.
+2020-02-28T12:00:01.057Z [mt-api] warn: Tenants seeded.
+2020-02-28T12:00:01.163Z [mt-api] warn: Users seeded.
+2020-02-28T12:00:01.163Z [mt-api] info: Disconnecting from database.
+2020-02-28T12:00:04.765Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:00:04.777Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:00:05.050Z [mt-api] info: Connecting to database.
+2020-02-28T12:00:05.051Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:00:05.140Z [mt-api] info: Application initialized
+2020-02-28T12:00:05.142Z [mt-api] warn: Server started on: 8080
+2020-02-28T12:02:17.560Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:02:17.570Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:02:17.970Z [mt-api] info: Connecting to database.
+2020-02-28T12:02:17.970Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:02:18.096Z [mt-api] info: Application initialized
+2020-02-28T12:02:18.098Z [mt-api] warn: Server started on: 8080
+2020-02-28T12:03:19.881Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:03:19.892Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:03:20.273Z [mt-api] info: Connecting to database.
+2020-02-28T12:03:20.274Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:03:20.385Z [mt-api] info: Application initialized
+2020-02-28T12:03:20.386Z [mt-api] warn: Server started on: 8080
+2020-02-28T12:03:34.346Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:03:34.354Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:03:34.604Z [mt-api] info: Connecting to database.
+2020-02-28T12:03:34.604Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:03:34.680Z [mt-api] info: Application initialized
+2020-02-28T12:03:34.682Z [mt-api] warn: Server started on: 8080
+2020-02-28T12:03:49.434Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:03:49.442Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:03:49.685Z [mt-api] info: Connecting to database.
+2020-02-28T12:03:49.685Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:03:49.766Z [mt-api] info: Application initialized
+2020-02-28T12:03:49.769Z [mt-api] warn: Server started on: 8080
+2020-02-28T12:05:11.815Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:05:11.823Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:05:12.064Z [mt-api] info: Connecting to database.
+2020-02-28T12:05:12.064Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:05:12.140Z [mt-api] info: Application initialized
+2020-02-28T12:05:12.142Z [mt-api] warn: Server started on: 8080
+2020-02-28T12:05:32.994Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:05:33.003Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:05:33.250Z [mt-api] info: Connecting to database.
+2020-02-28T12:05:33.250Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:05:33.329Z [mt-api] info: Application initialized
+2020-02-28T12:05:33.331Z [mt-api] warn: Server started on: 8080
+2020-02-28T12:07:09.868Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:07:09.875Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:07:10.117Z [mt-api] info: Connecting to database.
+2020-02-28T12:07:10.117Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:07:10.193Z [mt-api] info: Application initialized
+2020-02-28T12:07:10.194Z [mt-api] warn: Server started on: 8080
+2020-02-28T12:07:43.757Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:07:43.765Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:07:44.006Z [mt-api] info: Connecting to database.
+2020-02-28T12:07:44.007Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:07:44.087Z [mt-api] info: Application initialized
+2020-02-28T12:07:44.089Z [mt-api] warn: Server started on: 8080
+2020-02-28T12:08:38.513Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:08:38.521Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:08:38.763Z [mt-api] info: Connecting to database.
+2020-02-28T12:08:38.763Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:08:38.838Z [mt-api] info: Application initialized
+2020-02-28T12:08:38.840Z [mt-api] warn: Server started on: 8080
+2020-02-28T12:09:07.295Z [mt-api] warn: Starting server configuration.
+2020-02-28T12:09:07.307Z [mt-api] info: Configuring environment variables.
+2020-02-28T12:09:07.690Z [mt-api] info: Connecting to database.
+2020-02-28T12:09:07.691Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-02-28T12:09:07.805Z [mt-api] info: Application initialized
+2020-02-28T12:09:07.806Z [mt-api] warn: Server started on: 8080
+2020-04-09T20:30:04.532Z [mt-api] warn: Starting server configuration.
+2020-04-09T20:30:04.545Z [mt-api] info: Configuring environment variables.
+2020-04-09T20:30:04.986Z [mt-api] info: Connecting to database.
+2020-04-09T20:30:04.986Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-09T20:30:05.119Z [mt-api] info: Application initialized
+2020-04-09T20:30:05.122Z [mt-api] warn: Server started on: 8080
+2020-04-10T10:14:57.890Z [mt-api] warn: Starting server configuration.
+2020-04-10T10:14:57.902Z [mt-api] info: Configuring environment variables.
+2020-04-10T10:14:58.333Z [mt-api] info: Connecting to database.
+2020-04-10T10:14:58.333Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-10T10:14:58.455Z [mt-api] info: Application initialized
+2020-04-10T10:14:58.457Z [mt-api] warn: Server started on: 8080
+2020-04-10T10:20:12.817Z [mt-api] warn: Starting server configuration.
+2020-04-10T10:20:12.828Z [mt-api] info: Configuring environment variables.
+2020-04-10T10:20:13.229Z [mt-api] info: Connecting to database.
+2020-04-10T10:20:13.230Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-10T10:20:13.339Z [mt-api] info: Application initialized
+2020-04-10T10:20:13.341Z [mt-api] warn: Server started on: 8080
+2020-04-10T10:20:27.103Z [mt-api] warn: Starting server configuration.
+2020-04-10T10:20:27.111Z [mt-api] info: Configuring environment variables.
+2020-04-10T10:20:27.349Z [mt-api] info: Connecting to database.
+2020-04-10T10:20:27.349Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-10T10:20:27.423Z [mt-api] info: Application initialized
+2020-04-10T10:20:27.425Z [mt-api] warn: Server started on: 8080
+2020-04-12T09:15:55.362Z [mt-api] warn: Starting server configuration.
+2020-04-12T09:15:55.373Z [mt-api] info: Configuring environment variables.
+2020-04-12T09:15:55.828Z [mt-api] info: Connecting to database.
+2020-04-12T09:15:55.829Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-12T09:15:55.965Z [mt-api] info: Application initialized
+2020-04-12T09:15:55.967Z [mt-api] warn: Server started on: 8080
+2020-04-15T14:49:41.574Z [mt-api] warn: Starting server configuration.
+2020-04-15T14:49:41.586Z [mt-api] info: Configuring environment variables.
+2020-04-15T14:49:41.991Z [mt-api] info: Connecting to database.
+2020-04-15T14:49:41.991Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-15T14:49:42.256Z [mt-api] info: Application initialized
+2020-04-15T14:49:42.258Z [mt-api] warn: Server started on: 8080
+2020-04-15T14:50:02.973Z [mt-api] warn: Starting server configuration.
+2020-04-15T14:50:02.980Z [mt-api] info: Configuring environment variables.
+2020-04-15T14:50:03.242Z [mt-api] info: Connecting to database.
+2020-04-15T14:50:03.242Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-15T14:50:03.404Z [mt-api] info: Application initialized
+2020-04-15T14:50:03.406Z [mt-api] warn: Server started on: 8080
+2020-04-28T16:33:48.715Z [mt-api] info: Connecting to database.
+2020-04-28T16:33:48.717Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-28T16:33:48.738Z [mt-api] warn: Clearing database.
+2020-04-28T16:33:48.823Z [mt-api] info: TenantModel: {"n":3,"ok":1,"deletedCount":3}
+2020-04-28T16:33:48.830Z [mt-api] info: UserModel: {"n":3,"ok":1,"deletedCount":3}
+2020-04-28T16:33:48.830Z [mt-api] warn: Database cleared.
+2020-04-28T16:33:48.830Z [mt-api] info: Disconnecting from database.
+2020-04-28T16:33:52.816Z [mt-api] info: Connecting to database.
+2020-04-28T16:33:52.819Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-28T16:33:52.856Z [mt-api] warn: Seeding database.
+2020-04-28T16:33:52.883Z [mt-api] warn: Tenants seeded.
+2020-04-28T16:33:52.979Z [mt-api] info: [REGISTER] User created: user-def-1
+2020-04-28T16:33:52.982Z [mt-api] info: [REGISTER] User created: user-ghi-1
+2020-04-28T16:33:52.990Z [mt-api] info: [REGISTER] User created: user-abc-1
+2020-04-28T16:33:53.003Z [mt-api] warn: Users seeded.
+2020-04-28T16:33:53.004Z [mt-api] info: Disconnecting from database.
+2020-04-28T16:33:57.931Z [mt-api] warn: Starting server configuration.
+2020-04-28T16:33:57.941Z [mt-api] info: Configuring environment variables.
+2020-04-28T16:33:58.235Z [mt-api] info: Connecting to database.
+2020-04-28T16:33:58.235Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-28T16:33:58.328Z [mt-api] info: Application initialized
+2020-04-28T16:33:58.330Z [mt-api] warn: Server started on: 8080
+2020-04-28T16:36:55.965Z [mt-api] error: Cannot read property 'password' of null
+2020-04-28T16:38:18.917Z [mt-api] warn: Starting server configuration.
+2020-04-28T16:38:18.929Z [mt-api] info: Configuring environment variables.
+2020-04-28T16:38:19.353Z [mt-api] info: Connecting to database.
+2020-04-28T16:38:19.353Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-28T16:38:19.460Z [mt-api] info: Application initialized
+2020-04-28T16:38:19.461Z [mt-api] warn: Server started on: 8080
+2020-04-28T16:38:39.339Z [mt-api] error: Cannot read property 'password' of null
+2020-04-28T16:39:01.141Z [mt-api] error: Cannot read property 'password' of null
+2020-04-28T16:40:12.504Z [mt-api] warn: Starting server configuration.
+2020-04-28T16:40:12.514Z [mt-api] info: Configuring environment variables.
+2020-04-28T16:40:12.903Z [mt-api] info: Connecting to database.
+2020-04-28T16:40:12.903Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-28T16:40:12.980Z [mt-api] info: Application initialized
+2020-04-28T16:40:12.982Z [mt-api] warn: Server started on: 8080
+2020-04-28T16:40:16.567Z [mt-api] error: Cannot read property 'password' of null
+2020-04-28T16:52:24.479Z [mt-api] warn: Starting server configuration.
+2020-04-28T16:52:24.490Z [mt-api] info: Configuring environment variables.
+2020-04-28T16:52:24.937Z [mt-api] info: Connecting to database.
+2020-04-28T16:52:24.937Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-28T16:52:25.061Z [mt-api] info: Application initialized
+2020-04-28T16:52:25.063Z [mt-api] warn: Server started on: 8080
+2020-04-28T16:53:21.432Z [mt-api] warn: Starting server configuration.
+2020-04-28T16:53:21.443Z [mt-api] info: Configuring environment variables.
+2020-04-28T16:53:21.874Z [mt-api] info: Connecting to database.
+2020-04-28T16:53:21.874Z [mt-api] info: Connecting to: mongodb://localhost:27017/mt-api
+2020-04-28T16:53:22.008Z [mt-api] info: Application initialized
+2020-04-28T16:53:22.010Z [mt-api] warn: Server started on: 8080

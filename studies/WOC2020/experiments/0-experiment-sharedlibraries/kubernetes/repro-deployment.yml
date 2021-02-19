@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: reproduction
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: experiment
+  template: 
+    metadata:
+      labels:
+        app: experiment
+        image: reproduction
+    spec:
+      containers:
+      - name: nginx-test
+        image: tourna/repro
+        imagePullPolicy: Always
+      nodeSelector:
+        expdynamiclib: "yes"

@@ -1,0 +1,10 @@
+Load;Duration;Throughput;Capacity;Slow Requests;Timing Accuracy
+13,;125s,;796,;6.368,;0%,;1.415ms;
+
+;13;
+50.0%;55.43ms.;
+90.0%;118.23ms.;
+95.0%;148.327ms.;
+99.0%;287.306ms.;
+99.9%;469.974ms.;
+99.99%;469.974ms.;
