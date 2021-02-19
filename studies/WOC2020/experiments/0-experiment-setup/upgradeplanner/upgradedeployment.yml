@@ -90,7 +90,7 @@ spec:
       serviceAccountName: api-service-account
       containers:
       - name: upgradeplanner
-        image: "tourna/upgradeplanner"
+        image: "decomads/upgradeplanner"
         imagePullPolicy: Always
       nodeSelector:
         planner: "true"
