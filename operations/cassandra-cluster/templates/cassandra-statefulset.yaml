@@ -45,7 +45,7 @@ spec:
           - name: HEAP_NEWSIZE
             value: 200M
           - name: CASSANDRA_SEEDS
-            value: "cassandra-0.cassandra"
+            value: "cassandra-0.cassandra.{{ .Release.Namespace }}.svc.cluster.local"
           - name: CASSANDRA_CLUSTER_NAME
             value: "thesis-cassandra"
           - name: CASSANDRA_DC
