@@ -264,7 +264,9 @@ root@experiment-controller:/exp/var/results# ls
 run-1500.dat  run-500.dat
 
 #OR: Open a shell to the minikube VM. 
-#For Windows Users, execute the following commands in a regular Command Prompt App and not the Git Bash. You need to set the minikube binary in the Windows Path environment variable via the Control Panel. The Escape character in Vi is Control-C. 
+#For Windows Users, execute the following commands in a regular Command Prompt App and not the Git Bash. 
+#You need to set the minikube binary in the Windows Path environment variable via the Control Panel. 
+#The Escape character in Vim is Control-C. 
 $ minikube ssh
 $ cd /data/results/results
 $ ls
