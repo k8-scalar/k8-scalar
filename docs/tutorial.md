@@ -176,7 +176,8 @@ helm install ${k8_scalar_dir}/operations/cassandra-cluster --generate-name
 ## (3) Determine and implement desired workload type for the deployed database in Scalar
 This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](../development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](../development/scalar/src/be/kuleuven/distrinet/scalar/requests). These classes use the Datastax driver for Cassandra. When using the datastax driver, [the rules linked here](https://www.datastax.com/dev/blog/4-simple-rules-when-using-the-datastax-drivers-for-cassandra) must be adhered to!
 
-Afterwards we want to build the application and copy the resulting jar:
+Afterwards we want to build the application and copy the resulting jar.
+If docker is not installed in your environment, you can try the docker version in minikube. Here, first login into the minikube VM by executing the `minikube ssh` command. However you will need to run the mvn command inside a docker container thaty is based on Java and has a volume attached to a dir on the minikube VM. 
 
 
 ```
@@ -262,7 +263,8 @@ root@experiment-controller:/exp/var# cd results/
 root@experiment-controller:/exp/var/results# ls
 run-1500.dat  run-500.dat
 
-#OR: Open a shell to the minikube VM
+#OR: Open a shell to the minikube VM. 
+#For Windows Users, execute the following commands in a regular Command Prompt App and not the Git Bash. You need to set the minikube binary in the Windows Path environment variable via the Control Panel. The Escape character in Vi is Control-C. 
 $ minikube ssh
 $ cd /data/results/results
 $ ls
