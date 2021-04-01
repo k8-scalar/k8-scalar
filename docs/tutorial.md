@@ -61,7 +61,7 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/d
 # Install MiniKube
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube
-minikube start --cpus 4 --memory 8192
+minikube start --driver=virtualbox --cpus 4 --memory 8192
 
 ```
 Wait until the minikube worker node is ready. You can check the readiness of the worker node by running the following command:
@@ -90,7 +90,7 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/l
 #Install MiniKube
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube with enough resources
-minikube start --cpus 4 --memory 8192
+minikube start --driver=virtualbox --cpus 4 --memory 8192
 ```
 
 If you get an authorization error when running `kubectl get nodes`:
@@ -130,7 +130,7 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/w
 
 # Install minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
-minikube start --cpus 4 --memory 8192
+minikube start --driver=virtualbox --cpus 4 --memory 8192
 ```
 Install Helm
 ```bash
