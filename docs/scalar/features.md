@@ -97,6 +97,8 @@ It is possible to implement all kinds of interactions between Users via a DataPr
 
 The [following paper](./heyman_preuveneers_joosen.pdf) illustrates in detail how to configure and use a DataProvider for implementing such real-life User interactions.
 
+### Changing the target host
+To change the host on which the workload must be exercised, change the targeturl property  
 
 ### Custom experiment.properties
 It is also possible to add custom properties to configure the experment.
