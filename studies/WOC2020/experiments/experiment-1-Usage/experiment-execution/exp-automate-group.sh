@@ -3,7 +3,7 @@
 
 runs=$1
 duration=$2
-url=`minikube ip:30123
+url=`minikube ip`:30123
 echo "Starting the run loop"
 for i in $(seq 1 1 ${runs})
 do
