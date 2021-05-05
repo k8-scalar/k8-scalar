@@ -15,7 +15,7 @@ spec:
         monitoringNode: "yes"
       containers:
       - name: experiment-controller-0
-        image: tourna/exp-ex-1
+        image: tourna/exp-ex:cont1
         imagePullPolicy: Always
         volumeMounts:
         - name: kubeconfig
