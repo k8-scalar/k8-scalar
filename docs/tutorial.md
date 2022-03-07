@@ -57,7 +57,7 @@ install kubectl, minikube and helm client
 # Install VirtualBox
 brew cask install virtualbox
 # Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/darwin/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/latest/bin/darwin/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
 # Install MiniKube
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube
