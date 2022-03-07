@@ -1,0 +1,31 @@
+apiVersion: "apps/v1beta1"
+kind: StatefulSet
+metadata:
+  name: experiment-controller
+spec:
+  serviceName: experiment-controller
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: experiment-controller-0
+        technology: scalar
+    spec:
+      nodeSelector:
+        monitoringNode: "yes"
+      containers:
+      - name: experiment-controller-0
+        image: tourna/exp-ex:cont1
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: kubeconfig
+          mountPath: /root/.kube
+        - name: resultdata
+          mountPath: /exp/var
+      volumes:
+        - name: kubeconfig
+          secret:
+            secretName: kubeconfig
+        - name: resultdata
+          hostPath:
+            path: /data/results

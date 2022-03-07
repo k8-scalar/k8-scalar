@@ -17,7 +17,7 @@ do
 
     now3=$(date +"%T")
     echo "${now3}: Let environment settle for 420 seconds"
-    sleep 420
+    sleep 60
 
 
     now4=$(date +"%T")

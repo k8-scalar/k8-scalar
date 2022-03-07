@@ -4,7 +4,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 9,
@@ -12,7 +12,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 2,
@@ -20,7 +20,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 10,
@@ -28,7 +28,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 3,
@@ -36,7 +36,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 4,
@@ -44,7 +44,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 11,
@@ -52,7 +52,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 5,
@@ -60,7 +60,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 12,
@@ -68,7 +68,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 7,
@@ -76,7 +76,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 13,
@@ -84,7 +84,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 8,
@@ -92,7 +92,7 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 },
 {
     "tenantId": 6,
@@ -100,5 +100,5 @@
     "slaClass": "bronze",
     "currVersion": "1",
     "upgVersion": "2",
-    "deadline": "17:22:27"
+    "deadline": "17:45:44"
 }]
