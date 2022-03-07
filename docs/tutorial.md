@@ -126,7 +126,7 @@ Open the GitBash desktop application. Make sure you run it as an **Administrator
 install kubectl, minikube and helm client
 ```bash
 # Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
+curl -LO https://storage.googleapis.com/kubernetes-release/release/latest/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
 
 # Install minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
