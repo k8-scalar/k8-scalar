@@ -86,7 +86,7 @@ Install [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
 install kubectl, minikube and helm client
 ```bash
 # Install kubectl:
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/latest/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
 #Install MiniKube
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube with enough resources
@@ -106,7 +106,7 @@ Switched to context "minikube".
 
 $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
-minikube   Ready     <none>    21m       v1.9.0
+minikube   Ready     <none>    21m       v1.23.0
 ```
 
 Install Helm
