@@ -45,33 +45,21 @@ The tutorial provides a number of bash scripts to demonstrate the usage of K8-Sc
   * `${my_experiment}` = the name of the directory under `${k8_scalar_dir}` where code and data of your current experiment is stored
 
 
-### For Mac OS:
+### Install VirtualBox:
+
+**For Mac OS
+
 Install [Homebrew](https://brew.sh/) if not yet installed:
 ```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
+Install Virtual Box
 
-install kubectl, minikube and helm client
 ```bash
 # Install VirtualBox
 brew cask install virtualbox
-# Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/latest/bin/darwin/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
-# Install MiniKube
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
-# Start MiniKube
-minikube start --no-vtx-check --driver=virtualbox --cpus 4 --memory 8192
-
 ```
-Wait until the minikube worker node is ready. You can check the readiness of the worker node by running the following command:
-
-```
-$ kubectl get nodes
-NAME       STATUS    ROLES     AGE       VERSION
-minikube   Ready     <none>    21m       v1.9.0
-```
-
 Install Helm
 ```bash
 # Install Helm client:
@@ -79,35 +67,11 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scr
 chmod 700 get_helm.sh
 ./get_helm.sh
 ```
-### For Linux:
+
+
+**For Linux:
 
 Install [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
-
-install kubectl, minikube and helm client
-```bash
-# Install kubectl:
-curl -LO https://storage.googleapis.com/kubernetes-release/release/latest/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
-#Install MiniKube
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
-# Start MiniKube with enough resources
-minikube start --no-vtx-check --driver=virtualbox --cpus 4 --memory 8192
-```
-
-If you get an authorization error when running `kubectl get nodes`:
-```
-$ kubectl.exe get nodes
-error: You must be logged in to the server (Unauthorized)
-```
-then you have to switch to the minikube kubectl context
-
-```
-$ kubectl config use-context minikube
-Switched to context "minikube".
-
-$ kubectl get nodes
-NAME       STATUS    ROLES     AGE       VERSION
-minikube   Ready     <none>    21m       v1.23.0
-```
 
 Install Helm
 ```bash
@@ -117,22 +81,29 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-### For Windows:
+**For Windows:
 
 Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads). And reboot 
 
+
 Open the GitBash desktop application. Make sure you run it as an **Administrator**. You find this option in the menu that appears when clicking on the right mouse button.
 
-install kubectl, minikube and helm client
-```bash
-# Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/v1.18/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
+Install Helm
 
-# Install minikube
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
+```bash
+# Install Helm client
+curl -LO https://get.helm.sh/helm-v3.3.4-windows-amd64.zip && unzip helm-v3.3.4-windows-amd64.zip && export PATH=`pwd`/windows-amd64/:$PATH
+```
+
+## Install minikube and kubectl 
+See https://minikube.sigs.k8s.io/docs/start/
+
+## Start minikube cluster
+```bash
 minikube start --no-vtx-check --driver=virtualbox --cpus 4 --memory 8192
 ```
-Install Helm
+
+## Install Helm
 ```bash
 # Install Helm client
 curl -LO https://get.helm.sh/helm-v3.3.4-windows-amd64.zip && unzip helm-v3.3.4-windows-amd64.zip && export PATH=`pwd`/windows-amd64/:$PATH
