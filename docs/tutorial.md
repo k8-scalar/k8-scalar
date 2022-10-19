@@ -57,7 +57,7 @@ install kubectl, minikube and helm client
 # Install VirtualBox
 brew cask install virtualbox
 # Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/darwin/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/latest/bin/darwin/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
 # Install MiniKube
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube
@@ -126,7 +126,7 @@ Open the GitBash desktop application. Make sure you run it as an **Administrator
 install kubectl, minikube and helm client
 ```bash
 # Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
+curl -LO https://storage.googleapis.com/kubernetes-release/release/latest/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
 
 # Install minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
