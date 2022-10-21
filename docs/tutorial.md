@@ -43,6 +43,7 @@ The tutorial provides a number of bash scripts to demonstrate the usage of K8-Sc
                         advance an account for the ${MyRepository} repository at https://hub.docker.com/. In the context of this tutorial, 
                         all experiments from the paper are stored in the t138 repository at docker hub.
   * `${my_experiment}` = the name of the directory under `${k8_scalar_dir}` where code and data of your current experiment is stored
+  * `${my_username}`= your username that also corresponds with the name of your relative homedir
 
 
 ### For Mac OS:
@@ -149,7 +150,7 @@ kubectl delete clusterrole $role
 Then install the monitoring-core chart:
 
 ```
-helm install ${k8_scalar_dir}/operations/monitoring-core --generate-name
+helm install ${k8_scalar_dir}/operations/monitoring-core --generate-name --namespace=kube-system
 ```
 
 To check if all services are running execute the following command to see if all Pods of these services are running
@@ -174,6 +175,7 @@ helm install ${k8_scalar_dir}/operations/cassandra-cluster --generate-name
 ```
 
 ## (3) Determine and implement desired workload type for the deployed database in Scalar
+## For the course capita-selecta Distributed Systems you can skip this step!
 This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](../development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](../development/scalar/src/be/kuleuven/distrinet/scalar/requests). These classes use the Datastax driver for Cassandra. When using the datastax driver, [the rules linked here](https://www.datastax.com/dev/blog/4-simple-rules-when-using-the-datastax-drivers-for-cassandra) must be adhered to!
 
 Afterwards we want to build the application and copy the resulting jar.
@@ -253,6 +255,15 @@ bin/stress.sh [OPTIONS] [ARGS]
    # Executes the experiment: 10 users for first run, 20 users for second run, .., 100 users for last run.
    bin/stress.sh 10:100:10
 ```
+
+Underlying the experiment controller uses the scalar Java library. If you want to simulate other workloads than linearly increasing stress workloads, you have to run the scalar library directly in the experiment controller pod. To exec into the experiment controller pod run the following command:
+
+```
+kubectl exec -it experiment-controller-0 -- bash
+```
+Scalar is a fully distributed, extensible load testing tool with numerous features. Have a look at the [Scalar documentation](./scalar) for more information about how to configure and run it as a Java program directly.
+
+
 ### Inspect the experiment's results
 Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the experiment-controller pod in the `/exp/var` directory as well as in the `/data/results` directory of the VM on which the experiment-controller pod runs. This snipper provides an easy way to copy the results to the local developer machine. 
 
