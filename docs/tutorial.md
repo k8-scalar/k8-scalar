@@ -413,6 +413,7 @@ Secondly, change all absolute paths in the  `config` file to the location at whi
 
 *Windows*
 
+Replace manually 'eddy' with your username stored in $my_username
 ```
 sed -i 's/C:\\Users\\eddy\\.minikube\\profiles\\minikube\\/\/root\/.kube\//g' ./config
 sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
@@ -421,8 +422,8 @@ sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
 *Linux/MacOS*
 
 ```
-sed -i 's/Users\/eddy\/.minikube\/profiles\/minikube\//root\/.kube\//g" ./config
-sed -i 's/Users\/eddy\/.minikube\//root\/.kube\//g" ./config
+sed -i "s/Users\/${my_username}\/.minikube\/profiles\/minikube\//root\/.kube\//g" ./config
+sed -i "s/Users\/${my_username}\/.minikube\//root\/.kube\//g" ./config
 ```
 
 ### Creating the secret
