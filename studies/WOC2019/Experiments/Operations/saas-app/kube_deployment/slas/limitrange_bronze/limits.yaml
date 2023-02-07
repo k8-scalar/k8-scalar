@@ -8,20 +8,20 @@ spec:
       cpu: 237m
       memory: 875Mi
     min:
-      cpu: 237m
-      memory: 875Mi
+      cpu: 200m
+      memory: 500Mi
     type: Pod
   - default:
-      cpu: 237m
-      memory: 875Mi
+      cpu: 200m
+      memory: 500Mi
     defaultRequest:
-      cpu: 237m
-      memory: 875Mi
+      cpu: 200m
+      memory: 500Mi
     max:
       cpu: 237m
       memory: 875Mi
     min:
-      cpu: 237m
-      memory: 875Mi
+      cpu: 200m
+      memory: 500Mi
     type: Container
 
