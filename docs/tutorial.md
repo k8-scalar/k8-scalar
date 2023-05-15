@@ -1,5 +1,5 @@
 # Tutorial
-For this K8-Scalar 101, we will go over the steps to implement and evaluate elastic scaling policies for container-orchestrated database clusters using the Advanced Riemann-Based Autoscaler (ARBA). Furthermore, additional details about infrastructure and operation are appended. 
+For this K8-Scalar 101, we will go over the steps to stress testing a container-orchestrated database cluster using k8-scalar. Furthermore, additional details about infrastructure and operation are appended. 
   
 ## (1) Setup a Kubernetes cluster, Helm and install the Heapster monitoring service
 
@@ -43,6 +43,7 @@ The tutorial provides a number of bash scripts to demonstrate the usage of K8-Sc
                         advance an account for the ${MyRepository} repository at https://hub.docker.com/. In the context of this tutorial, 
                         all experiments from the paper are stored in the t138 repository at docker hub.
   * `${my_experiment}` = the name of the directory under `${k8_scalar_dir}` where code and data of your current experiment is stored
+  * `${my_username}`= your username that also corresponds with the name of your relative homedir
 
 
 ### For Mac OS:
@@ -57,11 +58,11 @@ install kubectl, minikube and helm client
 # Install VirtualBox
 brew cask install virtualbox
 # Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/darwin/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.25.0/bin/darwin/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
 # Install MiniKube
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube
-minikube start --driver=virtualbox --cpus 4 --memory 8192
+minikube start --no-vtx-check --driver=virtualbox --cpus 4 --memory 8192
 
 ```
 Wait until the minikube worker node is ready. You can check the readiness of the worker node by running the following command:
@@ -79,18 +80,18 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scr
 chmod 700 get_helm.sh
 ./get_helm.sh
 ```
-### For Linux on bare-metal:
+### For Linux:
 
 Install [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
 
 install kubectl, minikube and helm client
 ```bash
 # Install kubectl:
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.25.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
 #Install MiniKube
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube with enough resources
-minikube start --driver=virtualbox --cpus 4 --memory 8192
+minikube start --no-vtx-check --driver=virtualbox --cpus 4 --memory 8192
 ```
 
 If you get an authorization error when running `kubectl get nodes`:
@@ -106,7 +107,7 @@ Switched to context "minikube".
 
 $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
-minikube   Ready     <none>    21m       v1.9.0
+minikube   Ready     <none>    21m       v1.23.0
 ```
 
 Install Helm
@@ -126,11 +127,11 @@ Open the GitBash desktop application. Make sure you run it as an **Administrator
 install kubectl, minikube and helm client
 ```bash
 # Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
+curl -LO https://storage.googleapis.com/kubernetes-release/v1.25.0/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
 
 # Install minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
-minikube start --driver=virtualbox --cpus 4 --memory 8192
+minikube start --no-vtx-check --driver=virtualbox --cpus 4 --memory 8192
 ```
 Install Helm
 ```bash
@@ -149,7 +150,7 @@ kubectl delete clusterrole $role
 Then install the monitoring-core chart:
 
 ```
-helm install ${k8_scalar_dir}/operations/monitoring-core --generate-name
+helm install ${k8_scalar_dir}/operations/monitoring-core --generate-name --namespace=kube-system
 ```
 
 To check if all services are running execute the following command to see if all Pods of these services are running
@@ -174,6 +175,7 @@ helm install ${k8_scalar_dir}/operations/cassandra-cluster --generate-name
 ```
 
 ## (3) Determine and implement desired workload type for the deployed database in Scalar
+## For the course capita-selecta Distributed Systems you can skip this step!
 This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](../development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](../development/scalar/src/be/kuleuven/distrinet/scalar/requests). These classes use the Datastax driver for Cassandra. When using the datastax driver, [the rules linked here](https://www.datastax.com/dev/blog/4-simple-rules-when-using-the-datastax-drivers-for-cassandra) must be adhered to!
 
 Afterwards we want to build the application and copy the resulting jar.
@@ -253,6 +255,8 @@ bin/stress.sh [OPTIONS] [ARGS]
    # Executes the experiment: 10 users for first run, 20 users for second run, .., 100 users for last run.
    bin/stress.sh 10:100:10
 ```
+
+
 ### Inspect the experiment's results
 Afterwards, experiment results include Scalar statistics and Grafana graphs. The Scalar results are found in the experiment-controller pod in the `/exp/var` directory as well as in the `/data/results` directory of the VM on which the experiment-controller pod runs. This snipper provides an easy way to copy the results to the local developer machine. 
 
@@ -329,38 +333,11 @@ The Kubernetes cluster exposes thus the Grafana dashboard at node port 30345. Of
 
 To see the resource usage graphs of the cassandra pod, Open the Pods dashboard page, and change the Namespace from `kube-system` into `default`. Note that although a default graph for Cassandra is provided for each resource type, you can also write your own detailed graph views as SQL like queries. To write such queries,  left-click on the area of the graph of interest; then click _Edit_ in the appeared pop-up menu. Grafana documentation can be found [here](http://docs.grafana.org/v4.1/guides/basic_concepts/).
 
-## (6) Implement an elastic scaling policy
-This step requires some custom development in the Riemann component. Extend Riemann's configuration with a custom scaling strategy. We recommend checking out http://riemann.io/ to get familiar with the way that events are processed. While Riemann has a slight learning curve, the configuration has access to a Clojure, which is a complete programming language. While out of scope for the provided examplar, new strategies should most often combine events of the same deployment or statefulset by folding them. The image should be build and uploaded to the repository in a similar fashion as demonstrated in step (3).
-
-This example experiment has created an [Riemann-based auto-scaler with three scaling strategies](../development/riemann/etc/riemann.config) as defined in Table 1 of the [related paper](./SEAMS2018_CR.pdf). The ARBA service will be deployed with as configuration to use one of these strategies (i.e Strategy 2 of Table 1: `scale if CPU usage > 67% of CPU usage limit`). See [operations/arba/values.yaml](../operations/arba/values.yaml). You can change this strategy without having to build a new Docker image of ARBA.
-
-## (7) Deploy the default Riemann-based autoscaler
-
-To deploy the k8s-scalar's default ARBA autoscaler using Helm, execute the following script
-
-```
-helm install ${k8_scalar_dir}/operations/arba --generate-name
-```
-
-## (8) Test the elastic scaling policy by executing the workload and measuring the number of SLA violations
-Finally, this step is very similar to the fifth step. The biggest difference occurs during processing the results. We will analyze the request latencies to determine how many SLO violations have occured with respect to the expected latency of 150 ms. The implemented scaling policy is ineffective if SLO violations have occurred for more than 5% of the requests.
-
-Repeat the experiment:
-```bash
-kubectl exec experiment-controller-0 -- bash bin/stress.sh --duration 400 500:1500:1000
-```
-And open grafana to see when a second cassandra Pod is added.
-```bash
-# Open the Grafana dashboard in your default browser and take relevant screenshots
-open http://$(minikube ip):30345/
-```
-or requests the number of replicas of the statefulset:
-```bash
-kubectl get statefulset cassandra
-```
 
 ### Test another workload profile
-If you want to test the scaling policy with another kind of workload profile, like an oscillating workload profile, you'll need to define this workload profile in the file [experiment.properties](../development/scalar/conf/experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](./scalar/features.md).
+Underlying the experiment controller uses the scalar Java library. If you want to simulate other workloads than a linearly increasing stress workload profile, for example an oscillating workload profile, you have to run the scalar library directly in the experiment controller pod.
+
+First, you'll need to define this workload profile in the file [experiment.properties](../development/scalar/conf/experiment.properties). An explanation overview of all the configuration options for defining a Scalar experiment is explained [here](./scalar/features.md).
 
 The easiest way to change the experiment.properties file is to start a bash session inside the experiment-controller-0 Pod and edit the `etc/experiment.properties` file
 
@@ -382,7 +359,12 @@ java -jar lib/scalar-1.0.0.jar etc/platform.properties etc/experiment.properties
 After the experiment is finished, you can inspect run-data as explained in Step 5. The only difference is that all run-data is now stored in one file. 
 
 
-## (9) Repeat steps 7 and 8 until you have found an elastic scaling policy that works for this workload
+ To exec into the experiment controller pod run the following command:
+
+```
+kubectl exec -it experiment-controller-0 -- bash
+```
+Scalar is a fully distributed, extensible load testing tool with numerous features. Have a look at the [Scalar documentation](./scalar) for more information about how to configure and run it as a Java program directly.
 
 # II. Infrastructure
 You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster. For example, create a Kubernetes cluster on Amazon Web Services ([tutorial](https://kubernetes.io/docs/getting-started-guides/aws/)) or quickly bootstrap a best-practice cluster using the [kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) toolkit. K8-scalar has been tested on kubernetes v1.9.x and v1.14.x. 
@@ -431,6 +413,7 @@ Secondly, change all absolute paths in the  `config` file to the location at whi
 
 *Windows*
 
+Replace manually 'eddy' with your username stored in $my_username
 ```
 sed -i 's/C:\\Users\\eddy\\.minikube\\profiles\\minikube\\/\/root\/.kube\//g' ./config
 sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
@@ -439,8 +422,8 @@ sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
 *Linux/MacOS*
 
 ```
-sed -i 's/Users\/eddy\/.minikube\/profiles\/minikube\//root\/.kube\//g" ./config
-sed -i 's/Users\/eddy\/.minikube\//root\/.kube\//g" ./config
+sed -i "s/Users\/${my_username}\/.minikube\/profiles\/minikube\//root\/.kube\//g" ./config
+sed -i "s/Users\/${my_username}\/.minikube\//root\/.kube\//g" ./config
 ```
 
 ### Creating the secret
@@ -484,4 +467,3 @@ benchmarking tool as Experiment-Controller if that tool is more appropriate
 for a particular experiment. The ARBA-with-experiment-
 Controller must then be changed with a Docker image for that
 tool.
-

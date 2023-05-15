@@ -28,16 +28,11 @@ spec:
       - name: experiment-controller
         image:  decomads/experiment-controller-cassandra-saas 
         volumeMounts:
-        - name: kubeconfig
-          mountPath: /root/.kube
         - name: resultdata
           mountPath: /exp/var
       volumes:
-        - name: kubeconfig
-          secret:
-            secretName: kubeconfig
         - name: resultdata
           hostPath:
-            path: /data/results
+            path: /tmp/data/results
       nodeSelector:
         controllerNode: "yes"
