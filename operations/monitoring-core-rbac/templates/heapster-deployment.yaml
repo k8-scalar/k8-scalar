@@ -1,9 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: heapster
   namespace: kube-system
 spec:
+  selector:
+    matchLabels:
+      k8s-app: heapster      
   replicas: 1
   template:
     metadata:
@@ -18,9 +21,9 @@ spec:
         imagePullPolicy: IfNotPresent
         command:
         - /heapster
+        - --metric-resolution=5s
         - --source=kubernetes.summary_api:https://kubernetes.default?kubeletHttps=true&kubeletPort=10250&insecure=true
         - --sink=influxdb:http://monitoring-influxdb:8086
-        - --sink=riemann:http://riemann:5555?batchsize=1
         - --v=8
       nodeSelector:
         monitoringNode: "yes"
