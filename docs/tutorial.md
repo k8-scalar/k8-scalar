@@ -161,8 +161,15 @@ helm init
 Now with Kubernetes and Helm installed, you should be able to install services on Kubernetes using Helm.
 
 Let us add the monitoring capabilities of Heapstwe to the cluster using Helm. We install the _monitoring-core_ chart by the following command. This chart includes instantiated templates for the following Kubernetes services: Heapster, Grafana and the InfluxDb. 
+First, check however, if there is still an old clusterrole defined named system:heapster. If it does, please remove it:
 ```
-helm install ${k8_scalar_dir}/operations/monitoring-core
+role=`kubectl get clusterrole | grep heapster | head -n1 | awk '{print $1;}'`
+kubectl delete clusterrole $role
+```
+Then install the monitoring-core chart:
+
+```
+helm install ${k8_scalar_dir}/operations/monitoring-core-rbac --generate-name --namespace=kube-system
 ```
 
 To check if all services are running execute the following command to see if all Pods of these services are running
@@ -171,12 +178,11 @@ $ kubectl get pods --namespace=kube-system
 NAME                                    READY     STATUS    RESTARTS   AGE
 heapster-76647b5d6c-ln7lp               1/1       Running   0          6m
 kube-addon-manager-minikube             1/1       Running   0          17m
-kube-dns-54cccfbdf8-wstwt               3/3       Running   0          17m
-kubernetes-dashboard-77d8b98585-qqkmx   1/1       Running   0          17m
+core-dns-54cccfbdf8-wstwt               3/3       Running   0          17m
 monitoring-grafana-8fcc5f8d6-x49wv      1/1       Running   0          6m
 monitoring-influxdb-7bf9b74f99-kpvr8    1/1       Running   0          6m
 storage-provisioner                     1/1       Running   0          17m
-tiller-deploy-7594bf7b76-598xv          1/1       Running   0          7m
+...
 ```
 
 
@@ -184,43 +190,93 @@ tiller-deploy-7594bf7b76-598xv          1/1       Running   0          7m
 ## (2) Setup a Database Cluster
 This _cassandra-cluster_ chart uses a modified image which resolves a missing dependency in one of Google Cassandra's image. Of course, this chart can be replaced with a different database technology. Do mind that Scalar will have to be modified for the experiment with implementations of desired workload generators for the Cassandra database. The next step will provide more information about this modification.
 ``` 
-helm install ${k8_scalar_dir}/operations/cassandra-cluster
+helm install ${k8_scalar_dir}/operations/cassandra-cluster --generate-name
 ```
 
 ## (3) Determine and implement desired workload type for the deployed database in Scalar
-This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](../development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](../development/scalar/src/be/kuleuven/distrinet/scalar/requests). Afterwards we want to build the application and copy the resulting jar:
+## For the course capita-selecta Distributed Systems you can skip this step!
+This step requires some custom development for different database technologies. Extend Scalar with custom _users_ for your database which can read, write or perform more complex operations. For more information how to implement this, we refer to the [Cassandra User classes](../development/scalar/src/be/kuleuven/distrinet/scalar/users) and the [Cassandra Request classes](../development/scalar/src/be/kuleuven/distrinet/scalar/requests). These classes use the Datastax driver for Cassandra. When using the datastax driver, [the rules linked here](https://www.datastax.com/dev/blog/4-simple-rules-when-using-the-datastax-drivers-for-cassandra) must be adhered to!
 
-For this tutorial we will perform these steps on the minikube vm: 
+Afterwards we want to build the application and copy the resulting jar.
+If docker is not installed in your environment, you can try the docker version in minikube. Here, first login into the minikube VM by executing the `minikube ssh` command. However you will need to run the mvn command inside a docker container thaty is based on Java and has a volume attached to a dir on the minikube VM. 
+
+
 ```
-# Login on the minikube vm and clone the k8-scalar project
-minikube ssh
+# clone the k8-scalar project in a normal linux distribution with Docker installed 
 git clone https://github.com/k8-scalar/k8-scalar/ && export k8_scalar_dir=`pwd`/k8-scalar
 
 # Extend User with operations for your database in the directory below
 cd ${k8_scalar_dir}/development/scalar/src/be/kuleuven/distrinet/scalar/users
 vim ${myDatabase}User.java # Cfr CassandraWriteUser.java
 
-# After building the project....
+# Building the project....
 mvn package
-#....copy the resulting Jar file in the lib directory of the [example-experiment](../example-experiment):
+#copy the Jar file in the lib directory of the [example-experiment](../example-experiment):
 cp ${k8_scalar_dir}/development/scalar/target/scalar-1.0.0.jar ${k8_scalar_dir}/development/example-experiment/lib/scalar-1.0.0.jar
-```
-Then, build a new image for the experiment-controller using the Dockerfile in the [example-experiment](../example-experiment).
-As Docker is already installed in the minikube VM, it can be directly perfored in the minikube VM as follows:
-```
-docker build -t ${myRepository}/experiment-controller ${k8_scalar_dir}/development/example-experiment/
-# overwrite in following command MyRepository_DOCKERHUB_PASSWRD with your secret password: 
-# docker login -u ${myRepository} -p MyRepository_DOCKERHUB_PASSWRD  
-docker push ${myRepository}/experiment-controller
 
-#leave the minikube vm
-exit
+#Then, build a new image for the experiment-controller using the Dockerfile in the [example-experiment](../example-experiment).
+docker build -t ${myRepository}/experiment-controller ${k8_scalar_dir}/development/example-experiment/
+overwrite in the following command MyRepository_DOCKERHUB_PASSWRD with your secret password: 
+# docker login -u ${MyRepository} -p MyRepository_DOCKERHUB_PASSWRD  
+docker push ${MyRepository}/experiment-controller
+
 ```
 Scalar is a fully distributed, extensible load testing tool with numerous features. Have a look at the [Scalar documentation](./scalar) for more information.
 
 ## (4) Deploying experiment-controller
+Some experiment-controllers may need access to the API server. In this tutorial, we will give the experiment-controller cluster admin privileges. This is of course very insecure and disallowed for clusters in production workloads
 
-**Before deploying, check out the [Operations section](tutorial.md#iii-operations) below in this document for performing the necessary Kubernetes secret management and resource configuration**. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
+## Creating secrets to enable access to Kubernetes API for experiment-controller pod 
+When th erperiment-controller interact directly with the Kubernetes cluster, it uses _kubectl_ tool, as a normal user.
+
+Note the following instructions work for minikube. Instructions for other kubernetes vendors are not exactly the same. We try to differentiate the common parts for all vendors and kubernetes-specific parts 
+
+### Copying the kube config file and the secret
+
+The next snippet creates the required keys for a cluster for any vendor. First, prepare a directory that contains all the required files. 
+
+
+```bash
+mkdir ${k8_scalar_dir}/operations/secrets
+cd ${k8_scalar_dir}/operations/secrets
+cp ~/.kube/config .
+```
+**Additional instructions for Minikube**
+
+First the following keys need to be copied as well
+
+```bash
+cp ~/.minikube/ca.crt .
+cp ~/.minikube/profiles/minikube/client.crt .
+cp ~/.minikube/profiles/minikube/client.key .
+```
+Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directories `minikube` and `minikube/profiles/minikube`  of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
+
+*Windows*
+
+Replace your username stored in `$my_username` with `/root/.kube/` in file ./config. Unfortunately in windows this has to be done manually, e.g. if `$my_user_name` equals `eddy`: 
+```
+sed -i 's/C:\\Users\\eddy\\.minikube\\profiles\\minikube\\/\/root\/.kube\//g' ./config
+sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
+```
+
+*Linux/MacOS*
+
+```
+sed -i "s/Users\/${my_username}\/.minikube\/profiles\/minikube\//root\/.kube\//g" ./config
+sed -i "s/Users\/${my_username}\/.minikube\//root\/.kube\//g" ./config
+```
+
+### Creating the secret
+
+Finally, the following command will create the secret. You will have to create the same secret in two different namespaces.  Do note that the keys required depend on the platform that you have your cluster deployed on.
+
+```
+#The secret for the experiment-controller that runs in default namespace
+kubectl create secret generic kubeconfig --from-file . 
+```
+
+## Deploying the experiment-controller for the Cassandra workload
 
 We deploy the experiment controller also a statefulset that can be scaled to multiple instances. To install the stateful set with one instance, execute the following command 
 
