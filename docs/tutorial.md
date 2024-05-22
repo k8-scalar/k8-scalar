@@ -224,11 +224,9 @@ docker push ${MyRepository}/experiment-controller
 Scalar is a fully distributed, extensible load testing tool with numerous features. Have a look at the [Scalar documentation](./scalar) for more information.
 
 ## (4) Deploying experiment-controller
-Some experiment-controllers may need access to the API server. In this tutorial, we will give the experiment-controller cluster admin privileges. This is of course very insecure and disallowed for clusters in production workloads
+Some experiment-controllers may need access to the API server, for example to get more information about the tested database deployments. In this tutorial, we will give these pods cluster admin privileges, so every kind of information about any deployment in any namesace in a K8s cluster can be created, read, updated and deleted. This is of course very insecure and disallowed for clusters in production workloads, and only allowed for benchmarking purposes in closed labs. 
 
 ## Creating secrets to enable access to Kubernetes API for experiment-controller pod 
-When th erperiment-controller interact directly with the Kubernetes cluster, it uses _kubectl_ tool, as a normal user.
-
 Note the following instructions work for minikube. Instructions for other kubernetes vendors are not exactly the same. We try to differentiate the common parts for all vendors and kubernetes-specific parts 
 
 ### Copying the kube config file and the secret
@@ -404,6 +402,7 @@ This step requires some custom development in the Riemann component. Extend Riem
 This example experiment has created an [Riemann-based auto-scaler with three scaling strategies](../development/riemann/etc/riemann.config) as defined in Table 1 of the [related paper](./SEAMS2018_CR.pdf). The ARBA service will be deployed with as configuration to use one of these strategies (i.e Strategy 2 of Table 1: `scale if CPU usage > 67% of CPU usage limit`). See [operations/arba/values.yaml](../operations/arba/values.yaml). You can change this strategy without having to build a new Docker image of ARBA.
 
 ## (7) Deploy the default Riemann-based autoscaler
+## For the course capita-selecta Distributed Systems you can skip this step!
 
 To deploy the k8s-scalar's default ARBA autoscaler using Helm, execute the following script
 
@@ -412,6 +411,7 @@ helm install ${k8_scalar_dir}/operations/arba
 ```
 
 ## (8) Test the elastic scaling policy by executing the workload and measuring the number of SLA violations
+## For the course capita-selecta Distributed Systems you can skip this step!
 Finally, this step is very similar to the fifth step. The biggest difference occurs during processing the results. We will analyze the request latencies to determine how many SLO violations have occured with respect to the expected latency of 150 ms. The implemented scaling policy is ineffective if SLO violations have occurred for more than 5% of the requests.
 
 Repeat the experiment:
@@ -485,8 +485,17 @@ You can, however, follow the same exact steps on a multi-node cluster.
 For a more accurate reproduction scenario, we suggest adding labels to each node and add them as constraints to the YAML files of the relevant Kubernetes objects via a [nodeSelector](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector). As such different Kubernetes objects such as experiment-controller and the cassandra instance will not be created on the same node, as presented in the related paper.
 
 # III. Operations
-## Creating secrets to enable access to Kubernetes API for autoscaler pod.   
+## Creating secrets to enable access to Kubernetes API for certain pods 
+
+The ARBA autoscaler and some experiment-controllers may need access to the API server, for example to get more information about the tested database deployments. In this tutorial, we will give these pods cluster admin privileges, so every kind of information about any deployment in any namesace in a K8s cluster can be created, read, updated and deleted. This is of course very insecure and disallowed for clusters in production workloads, and only allowed for benchmarking purposes in closed labs 
+
+
+Note the following instructions work for minikube. Instructions for other kubernetes vendors are not exactly the same. We try to differentiate the common parts for all vendors and kubernetes-specific parts 
+
+### Copying the kube config file and the secret
+
 The next snippet creates the required keys for a cluster for any vendor. First, prepare a directory that contains all the required files. 
+
 
 ```bash
 mkdir ${k8_scalar_dir}/operations/secrets
@@ -507,17 +516,19 @@ Secondly, change all absolute paths in the  `config` file to the location at whi
 *Windows*
 
 Replace your username stored in `$my_username` with `/root/.kube/` in file ./config. Unfortunately in windows this has to be done manually, e.g. if `$my_user_name` equals `eddy`: 
-**Windows**
 ```
-#Espacing a backslash requires three backslashes in Windows Cygwin 
-sed -ie "s@C:\\\Users\\\eddy\\\.minikube\\\@/root/.kube/@g" ./config
-```
-
-**Linux/MacOS**
-```
-sed -ie "s@/Users/wito/.minikube/@/root/.kube/@g" ./config
+sed -i 's/C:\\Users\\eddy\\.minikube\\profiles\\minikube\\/\/root\/.kube\//g' ./config
+sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
 ```
 
+*Linux/MacOS*
+
+```
+sed -i "s/Users\/${my_username}\/.minikube\/profiles\/minikube\//root\/.kube\//g" ./config
+sed -i "s/Users\/${my_username}\/.minikube\//root\/.kube\//g" ./config
+```
+
+### Creating the secret
 
 Finally, the following command will create the secret. You will have to create the same secret in two different namespaces.  Do note that the keys required depend on the platform that you have your cluster deployed on.
 
@@ -525,9 +536,10 @@ Finally, the following command will create the secret. You will have to create t
 #Secret for ARBA that runs in the kube-system namespace
 kubectl create secret generic kubeconfig --from-file . --namespace=kube-system
 
-#The same secret for the experiment-controller that runs in default namespace
+#The secret for the experiment-controller that runs in default namespace
 kubectl create secret generic kubeconfig --from-file . 
 ```
+
 
 ## Configuration of other Kubernetes objects 
 Several Kubernetes resources can optionally be fine-tuned. Application configuration is done by setting environment variables. For example, the Riemann component can have a strategy configured or the Cassandra cpu threshold at which it should scale. 
