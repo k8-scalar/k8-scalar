@@ -49,7 +49,8 @@ spec:
         planner: "true"
       containers:
       - name: example
-        image: postgres
+        image: postgres:10.14
+        imagePullPolicy: IfNotPresent
         ports:
           - name: startup-port
             containerPort: 5432
@@ -97,7 +98,7 @@ spec:
       containers:
       - name: upgradeplanner
         image: "tourna/upgradeplanner"
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
       nodeSelector:
         planner: "true"
 ---

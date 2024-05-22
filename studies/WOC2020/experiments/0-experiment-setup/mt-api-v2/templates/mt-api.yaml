@@ -52,7 +52,7 @@ spec:
       containers:
       - name: backend-v2
         image: tourna/mt-api:v2
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         resources:
           requests:
             cpu: "0m"

@@ -1,15 +1,14 @@
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2584    0  1383  100  1201   1557   1352 --:--:-- --:--:-- --:--:--  1557100  2584    0  1383  100  1201   1544   1341 --:--:-- --:--:-- --:--:--  1545
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2584    0  1383  100  1201   4102   3562 --:--:-- --:--:-- --:--:--  7690
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   174    0   174    0     0    182      0 --:--:-- --:--:-- --:--:--   182100   174    0   174    0     0    182      0 --:--:-- --:--:-- --:--:--   182
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   174    0   174    0     0    218      0 --:--:-- --:--:-- --:--:--   218100   174    0   174    0     0    217      0 --:--:-- --:--:-- --:--:--   218
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   169    0   169    0     0   1225      0 --:--:-- --:--:-- --:--:--  1233
-rm: cannot remove 'output/normal.sh': No such file or directory
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   169    0   169    0     0   1177      0 --:--:-- --:--:-- --:--:--  1181
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1838    0     0  100  1838      0   1833  0:00:01  0:00:01 --:--:--  1834100  3286    0  1448  100  1838   1012   1284  0:00:01  0:00:01 --:--:--  1286
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1838    0     0  100  1838      0   9104 --:--:-- --:--:-- --:--:--  9099100  3286    0  1448  100  1838   2081   2642 --:--:-- --:--:-- --:--:--  4721
 sleep: missing operand
 Try 'sleep --help' for more information.

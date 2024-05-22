@@ -7,7 +7,7 @@
 
 # update: k8-scalar zal normaal dynamisch tenants overplaatsen, dus vorm moet zijn 8,8,8,8,8,8,8,8 want dezelfde controller blijft het sturen. 
 
-url=172.19.112.28:30123
+url=`minikube ip`:30123
 now1=$(date +"%T")
 
 echo "${now1} **-- Starting Experiment 2: Latency, with high workload for ${runDuration} seconds"

@@ -3,7 +3,7 @@
 
 runs=$1
 duration=$2
-url=172.19.112.28:30123
+url=`minikube ip`:30123
 echo "Starting the run loop"
 for i in $(seq 1 1 ${runs})
 do
@@ -17,7 +17,7 @@ do
 
     now3=$(date +"%T")
     echo "${now3}: Let environment settle for 420seconds"
-    sleep 420
+    sleep 60
 
     now4=$(date +"%T")
     echo "${now4}: Start the scalar run && surge-validator"
