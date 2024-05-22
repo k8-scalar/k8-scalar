@@ -430,19 +430,27 @@ For a more accurate reproduction scenario, we suggest adding labels to each node
 
 # III. Operations
 ## Creating secrets to enable access to Kubernetes API for autoscaler pod.   
-The autoscaler interacts directly with the Kubernetes cluster. The _kubectl_ tool, which is used for this interaction, requires configuration. Secrets are used to pass this sensitive information to the required pods. The next snippet creates the required keys for a MiniKube cluster. First, prepare a directory that contains all the required files. 
+The next snippet creates the required keys for a cluster for any vendor. First, prepare a directory that contains all the required files. 
 
 ```bash
 mkdir ${k8_scalar_dir}/operations/secrets
 cd ${k8_scalar_dir}/operations/secrets
 cp ~/.kube/config .
-cp ~/.minikube/client.crt .
-cp ~/.minikube/client.key .
-cp ~/.minikube/ca.crt .
 ```
+**Additional instructions for Minikube**
 
-Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directory `C:\Users\eddy\.minikube` directory of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
+First the following keys need to be copied as well
 
+```bash
+cp ~/.minikube/ca.crt .
+cp ~/.minikube/profiles/minikube/client.crt .
+cp ~/.minikube/profiles/minikube/client.key .
+```
+Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directories `minikube` and `minikube/profiles/minikube`  of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
+
+*Windows*
+
+Replace your username stored in `$my_username` with `/root/.kube/` in file ./config. Unfortunately in windows this has to be done manually, e.g. if `$my_user_name` equals `eddy`: 
 **Windows**
 ```
 #Espacing a backslash requires three backslashes in Windows Cygwin 
