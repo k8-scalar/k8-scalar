@@ -413,7 +413,7 @@ Secondly, change all absolute paths in the  `config` file to the location at whi
 
 *Windows*
 
-Replace manually 'eddy' with your username stored in $my_username
+Replace your username stored in `$my_username` with `/root/.kube/` in file ./config. Unfortunately in windows this has to be done manually, e.g. if `$my_user_name` equals `eddy`: 
 ```
 sed -i 's/C:\\Users\\eddy\\.minikube\\profiles\\minikube\\/\/root\/.kube\//g' ./config
 sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
