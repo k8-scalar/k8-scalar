@@ -6,7 +6,7 @@ if [ $1 == --delete ]; then
     kubectl delete -f upgradeplanner/upgradedeployment.yml
     kubectl delete deployment mongo-db
     kubectl delete deployment mt-api-v1
-    helm delete exp-cont-0 api-v2 --purge
+    helm delete exp-cont-0 api-v2
     sleep 20
 else
     echo "start creating the deployments"
