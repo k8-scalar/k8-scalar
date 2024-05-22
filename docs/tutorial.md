@@ -205,7 +205,7 @@ docker push ${MyRepository}/experiment-controller
 Scalar is a fully distributed, extensible load testing tool with numerous features. Have a look at the [Scalar documentation](./scalar) for more information.
 
 ## (4) Deploying experiment-controller
-Some experiment-controllers may need access to the API server. In this tutorial, we will give the experiment-controller cluster admin privileges. This is of course very insecure and disallowed for clusters in production workloads
+Some experiment-controllers may need access to the API server. In this tutorial, we will give the experiment-controller cluster admin privileges so it can create, read, update and delete any information about any deployments in any namespace of the K8s cluster. This is of course very insecure and disallowed for clusters in production environments. Thus, only allowed for benchmarking purposes in closed lab scenarios.
 
 ## Creating secrets to enable access to Kubernetes API for experiment-controller pod 
 When th erperiment-controller interact directly with the Kubernetes cluster, it uses _kubectl_ tool, as a normal user.
