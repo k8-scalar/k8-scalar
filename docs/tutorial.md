@@ -205,8 +205,59 @@ docker push ${MyRepository}/experiment-controller
 Scalar is a fully distributed, extensible load testing tool with numerous features. Have a look at the [Scalar documentation](./scalar) for more information.
 
 ## (4) Deploying experiment-controller
+Some experiment-controllers may need access to the API server. In this tutorial, we will give the experiment-controller cluster admin privileges. This is of course very insecure and disallowed for clusters in production workloads
 
-**Before deploying, check out the [Operations section](tutorial.md#iii-operations) below in this document for performing the necessary Kubernetes secret management and resource configuration**. The secret management is mandatory as the experiment-controller requires this to communicate with the Master API of the Kubernetes cluster.
+## Creating secrets to enable access to Kubernetes API for experiment-controller pod 
+When th erperiment-controller interact directly with the Kubernetes cluster, it uses _kubectl_ tool, as a normal user.
+
+Note the following instructions work for minikube. Instructions for other kubernetes vendors are not exactly the same. We try to differentiate the common parts for all vendors and kubernetes-specific parts 
+
+### Copying the kube config file and the secret
+
+The next snippet creates the required keys for a cluster for any vendor. First, prepare a directory that contains all the required files. 
+
+
+```bash
+mkdir ${k8_scalar_dir}/operations/secrets
+cd ${k8_scalar_dir}/operations/secrets
+cp ~/.kube/config .
+```
+**Additional instructions for Minikube**
+
+First the following keys need to be copied as well
+
+```bash
+cp ~/.minikube/ca.crt .
+cp ~/.minikube/profiles/minikube/client.crt .
+cp ~/.minikube/profiles/minikube/client.key .
+```
+Secondly, change all absolute paths in the  `config` file to the location at which these secrets are mounted by the `experiment-controller` and `arba` Helm charts, i.e. `/root/.kube`. The directories `minikube` and `minikube/profiles/minikube`  of the local machine must be changed to `/root/.kube`. You can either do it manually or modify and execute one of the following two sed scripts:
+
+*Windows*
+
+Replace your username stored in `$my_username` with `/root/.kube/` in file ./config. Unfortunately in windows this has to be done manually, e.g. if `$my_user_name` equals `eddy`: 
+```
+sed -i 's/C:\\Users\\eddy\\.minikube\\profiles\\minikube\\/\/root\/.kube\//g' ./config
+sed -i 's/C:\\Users\\eddy\\.minikube\\/\/root\/.kube\//g' ./config
+```
+
+*Linux/MacOS*
+
+```
+sed -i "s/Users\/${my_username}\/.minikube\/profiles\/minikube\//root\/.kube\//g" ./config
+sed -i "s/Users\/${my_username}\/.minikube\//root\/.kube\//g" ./config
+```
+
+### Creating the secret
+
+Finally, the following command will create the secret. You will have to create the same secret in two different namespaces.  Do note that the keys required depend on the platform that you have your cluster deployed on.
+
+```
+#The secret for the experiment-controller that runs in default namespace
+kubectl create secret generic kubeconfig --from-file . 
+```
+
+## Deploying the experiment-controller for the Cassandra workload
 
 We deploy the experiment controller also a statefulset that can be scaled to multiple instances. To install the stateful set with one instance, execute the following command 
 
