@@ -15,8 +15,8 @@ spec:
         monitoringNode: "yes"
       containers:
       - name: experiment-controller-0
-        image: tourna/exp-ex:cont1
-        imagePullPolicy: Always
+        image: decomads/poly-pod-exp-ex:cont1 
+        imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: kubeconfig
           mountPath: /root/.kube

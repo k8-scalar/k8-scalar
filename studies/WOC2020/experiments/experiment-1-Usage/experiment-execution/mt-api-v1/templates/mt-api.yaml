@@ -62,7 +62,7 @@ spec:
           periodSeconds: 2
           successThreshold: 1
         image: tourna/mt-api:v1
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         resources:
           requests:
             cpu: "871m"
