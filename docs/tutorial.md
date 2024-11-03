@@ -130,7 +130,7 @@ install kubectl, minikube and helm client
 curl -LO https://storage.googleapis.com/kubernetes-release/v1.25.0/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
 
 # Install minikube
-curl -LO https://storage.googleapis.com/minikube/releases/v1.25.0/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
+curl -LO https://storage.googleapis.com/minikube/releases/release/v1.25.0/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
 minikube start --no-vtx-check --driver=virtualbox --cpus 4 --memory 8192
 ```
 Install Helm
