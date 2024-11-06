@@ -15,7 +15,7 @@ spec:
     required:
       nodeSelectorTerms:
       - matchExpressions:
-        - key: kubernetes.io/hostname
+        - key: "workerNode"
           operator: In
           values:
-          - minikube
+          - "yes"
