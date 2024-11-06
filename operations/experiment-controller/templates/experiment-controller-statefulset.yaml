@@ -1,8 +1,11 @@
-apiVersion: "apps/v1beta1"
+apiVersion: "apps/v1"
 kind: StatefulSet
 metadata:
   name: experiment-controller
 spec:
+  selector:
+    matchLabels:
+      app: experiment-controller
   serviceName: experiment-controller
   replicas: 1
   template:
@@ -23,13 +26,16 @@ spec:
             topologyKey: "kubernetes.io/hostname" 
       containers:
       - name: experiment-controller
-        image: decomads/experiment-controller
+        image: decomads/experiment-controller:0.2 
         volumeMounts:
         - name: kubeconfig
           mountPath: /root/.kube
+        - name: resultdata
+          mountPath: /exp/var
       volumes:
         - name: kubeconfig
           secret:
             secretName: kubeconfig
-      nodeSelector:
-        monitoringNode: "yes" 
+        - name: resultdata
+          hostPath:
+            path: /data/results
