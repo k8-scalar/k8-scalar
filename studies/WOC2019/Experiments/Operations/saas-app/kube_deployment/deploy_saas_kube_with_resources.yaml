@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: saas
+spec:
+  selector:
+    matchLabels:
+      run: saas
+  replicas: 1
+  template:
+    metadata:
+      name: saas
+      labels:
+        run: saas 
+    spec:
+      containers: 
+      - name: saas
+        image: sverreydt/saas-app
+        ports: 
+        - containerPort: 5000
+        resources:
+          limits:
+            cpu: 450m
+            memory: 1000Mi
+          requests:
+            cpu: 450m
+            memory: 1000Mi      
