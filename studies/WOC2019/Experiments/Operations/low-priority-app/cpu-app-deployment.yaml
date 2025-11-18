@@ -1,8 +1,11 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cpu-app
 spec:
+  selector:
+    matchLabels:
+      app: cpu-app
   replicas: 1
   template:
     metadata:
@@ -11,23 +14,13 @@ spec:
         app: cpu-app
         technology: python
     spec:
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - saas-app
-            topologyKey: kubernetes.io/hostname
       containers:
       - name: cpu-app
-        image: sverreydt/cpu-app
+        image: decomads/cpu-app
+          #command: ["python"]
+          #args: ["cpu-app.py"] 
         imagePullPolicy: Always
         resources:
           limits:
           requests:
-            cpu: "10m"
-      nodeSelector:
-        app: "yes"
+            cpu: 1
