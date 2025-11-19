@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: saas
+  name: saas-with-resources
 spec:
   selector:
     matchLabels:
