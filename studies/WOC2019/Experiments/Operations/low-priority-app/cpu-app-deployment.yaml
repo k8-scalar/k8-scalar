@@ -21,6 +21,7 @@ spec:
           #args: ["cpu-app.py"] 
         imagePullPolicy: Always
         resources:
-          limits:
+          limits: 
+            cpu: 200m
           requests:
-            cpu: 1
+            cpu: 200m
