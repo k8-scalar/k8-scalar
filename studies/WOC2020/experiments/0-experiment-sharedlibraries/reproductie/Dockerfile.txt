@@ -1,3 +1,0 @@
-FROM jaewonpark/gsl
-COPY a.out .
-ENTRYPOINT ./a.out
