@@ -1,0 +1,637 @@
+12:07:37.009 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 107288 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:07:37.010 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:07:37.410 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:07:37.432 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 2 MongoDB repository interfaces.
+12:07:37.621 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:07:37.627 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:07:37.628 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:07:37.628 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:07:37.659 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:07:37.660 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 633 ms
+12:07:37.895 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@5c76fce4], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@5aab5b31, com.mongodb.Jep395RecordCodecProvider@5408d4b3, com.mongodb.KotlinCodecProvider@eded048]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@65a48cab], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:07:37.908 [cluster-ClusterId{value='675d66f9523f2701193c1f51', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=17677045}
+12:07:38.168 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+12:07:38.168 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+12:07:38.391 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+12:07:38.552 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:07:38.558 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+12:07:38.564 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.7 seconds (process running for 2.165)
+12:07:40.098 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:07:40.099 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:07:40.099 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+12:07:45.182 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Request: GET /api/info
+12:07:45.196 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Response: 200 /api/info
+12:09:09.533 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 109022 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:09:09.534 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:09:09.930 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:09:09.954 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 2 MongoDB repository interfaces.
+12:09:10.176 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:09:10.184 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:09:10.187 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:09:10.187 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:09:10.220 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:09:10.220 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 667 ms
+12:09:10.410 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@5408d4b3], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@eded048, com.mongodb.Jep395RecordCodecProvider@65a48cab, com.mongodb.KotlinCodecProvider@655621fd]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@77e9dca8], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:09:10.426 [cluster-ClusterId{value='675d6756bb4dc62ee87c22f6', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=14003722}
+12:09:10.675 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+12:09:10.679 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+12:09:17.419 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+12:09:17.583 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:09:17.588 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+12:09:17.595 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 8.208 seconds (process running for 8.645)
+12:09:18.716 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:09:18.716 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:09:18.717 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+12:09:44.368 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 109861 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:09:44.369 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:09:44.774 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:09:44.796 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 2 MongoDB repository interfaces.
+12:09:44.997 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:09:45.002 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:09:45.004 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:09:45.004 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:09:45.040 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:09:45.040 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 651 ms
+12:09:45.261 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@655621fd], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@77e9dca8, com.mongodb.Jep395RecordCodecProvider@fcd0e8d, com.mongodb.KotlinCodecProvider@4e4d0a0b]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@1a4083f6], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:09:45.277 [cluster-ClusterId{value='675d67795bdded09d381cb00', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=14328965}
+12:09:45.565 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+12:09:45.566 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+12:09:45.766 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+12:09:45.929 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:09:45.934 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+12:09:45.941 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.711 seconds (process running for 2.132)
+12:09:47.531 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:09:47.531 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:09:47.532 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+12:09:55.277 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/api/info, Headers=Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+12:09:57.572 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Request: GET /api/info
+12:09:58.777 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Response: 200 /api/info
+12:09:58.779 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/info, Duration=3500ms, Headers=Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+12:10:32.593 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/api/info, Headers=Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+Request Header: {}={}
+12:10:32.594 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingInterceptor - Request: GET /api/info
+12:10:32.595 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingInterceptor - Response: 200 /api/info
+12:10:59.796 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/info, Duration=2ms, Headers=Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+Response Header: {}={}
+12:14:00.958 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 114526 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:14:00.959 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:14:01.362 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:14:01.385 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 2 MongoDB repository interfaces.
+12:14:01.571 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:14:01.576 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:14:01.577 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:14:01.577 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:14:01.597 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:14:01.598 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 621 ms
+12:14:01.787 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@fcd0e8d], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@4e4d0a0b, com.mongodb.Jep395RecordCodecProvider@1a4083f6, com.mongodb.KotlinCodecProvider@23f5008a]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@44abdb1f], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:14:01.804 [cluster-ClusterId{value='675d68790431197b676226f4', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=15636759}
+12:14:02.085 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+12:14:02.085 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+12:14:02.332 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+12:14:02.507 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:14:02.513 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+12:14:02.520 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.72 seconds (process running for 2.163)
+12:14:04.032 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:14:04.032 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:14:04.033 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+12:14:13.510 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/api/info, Headers=Request Header: {tenant-id}={admin}
+Request Header: {user-agent}={PostmanRuntime/7.43.0}
+Request Header: {accept}={*/*}
+Request Header: {postman-token}={218ef5eb-65be-4177-b139-d4164ca7dcd7}
+Request Header: {accept-encoding}={gzip, deflate, br}
+Request Header: {connection}={keep-alive}
+Request Header: {referer}={http://localhost:8080/api/info/}
+Request Header: {host}={localhost:8080}
+12:14:13.520 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Request: GET /api/info
+12:14:13.544 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Response: 200 /api/info
+12:14:17.893 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/info, Duration=31ms, Headers=Response Header: {X-Content-Type-Options}={nosniff}
+Response Header: {X-XSS-Protection}={0}
+Response Header: {Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+Response Header: {Pragma}={no-cache}
+Response Header: {Expires}={0}
+Response Header: {X-Frame-Options}={DENY}
+Response Header: {Content-Type}={application/json}
+Response Header: {Transfer-Encoding}={chunked}
+Response Header: {Date}={Sat, 14 Dec 2024 11:14:13 GMT}
+Response Header: {Keep-Alive}={timeout=60}
+Response Header: {Connection}={keep-alive}
+12:15:30.480 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 116222 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:15:30.481 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:15:30.914 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:15:30.937 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 2 MongoDB repository interfaces.
+12:15:31.171 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:15:31.179 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:15:31.181 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:15:31.182 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:15:31.210 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:15:31.210 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 705 ms
+12:15:31.384 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@5731caaf], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@59933644, com.mongodb.Jep395RecordCodecProvider@67e6eb52, com.mongodb.KotlinCodecProvider@3e8b8f0]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@5ad57e90], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:15:31.393 [cluster-ClusterId{value='675d68d3d4c4f30aac996a47', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=9206505}
+12:15:31.660 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+12:15:31.661 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+12:15:31.918 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+12:15:32.092 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:15:32.098 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+12:15:32.105 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.767 seconds (process running for 2.429)
+12:15:33.381 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:15:33.382 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:15:33.382 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+12:15:33.686 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/api/info, Headers=
+
+12:15:33.689 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Request: GET /api/info
+12:15:33.703 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Response: 200 /api/info
+12:15:33.704 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/info, Duration=16ms, Headers=
+
+12:15:39.721 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/api/info, Headers=
+
+12:15:39.721 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingInterceptor - Request: GET /api/info
+12:15:39.722 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingInterceptor - Response: 200 /api/info
+12:15:39.722 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/info, Duration=1ms, Headers=
+
+12:16:14.337 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 117180 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:16:14.339 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:16:14.758 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:16:14.780 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 2 MongoDB repository interfaces.
+12:16:15.004 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:16:15.012 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:16:15.014 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:16:15.015 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:16:15.045 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:16:15.045 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 688 ms
+12:16:15.230 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@4beae1e3], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@3c488b34, com.mongodb.Jep395RecordCodecProvider@32e697ac, com.mongodb.KotlinCodecProvider@3866c96e]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@241fc278], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:16:15.235 [cluster-ClusterId{value='675d68ff7d8ae954f3455d71', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=10828303}
+12:16:15.567 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+12:16:15.568 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+12:16:15.812 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+12:16:15.995 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:16:16.001 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+12:16:16.008 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.848 seconds (process running for 2.308)
+12:16:17.410 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:16:17.410 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:16:17.410 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+12:16:17.847 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/api/info, Headers=	Request Header: {tenant-id}={admin}
+	Request Header: {user-agent}={PostmanRuntime/7.43.0}
+	Request Header: {accept}={*/*}
+	Request Header: {postman-token}={356321fe-d8f2-40bd-bbc0-f8bf0549524f}
+	Request Header: {accept-encoding}={gzip, deflate, br}
+	Request Header: {connection}={keep-alive}
+	Request Header: {referer}={http://localhost:8080/api/info/}
+	Request Header: {host}={localhost:8080}
+
+12:16:17.849 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Request: GET /api/info
+12:16:17.862 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Response: 200 /api/info
+12:16:17.863 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/info, Duration=14ms, Headers=	Response Header: {X-Content-Type-Options}={nosniff}
+	Response Header: {X-XSS-Protection}={0}
+	Response Header: {Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+	Response Header: {Pragma}={no-cache}
+	Response Header: {Expires}={0}
+	Response Header: {X-Frame-Options}={DENY}
+	Response Header: {Content-Type}={application/json}
+	Response Header: {Transfer-Encoding}={chunked}
+	Response Header: {Date}={Sat, 14 Dec 2024 11:16:17 GMT}
+	Response Header: {Keep-Alive}={timeout=60}
+	Response Header: {Connection}={keep-alive}
+
+12:16:59.274 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 118085 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:16:59.276 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:16:59.720 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:16:59.744 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 2 MongoDB repository interfaces.
+12:16:59.955 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:16:59.962 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:16:59.965 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:16:59.965 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:16:59.992 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:16:59.992 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 678 ms
+12:17:00.229 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@65a48cab], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@655621fd, com.mongodb.Jep395RecordCodecProvider@77e9dca8, com.mongodb.KotlinCodecProvider@fcd0e8d]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@4e4d0a0b], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:17:00.238 [cluster-ClusterId{value='675d692cdfed7572a705cbe0', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=13845850}
+12:17:00.483 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+12:17:00.484 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+12:17:00.744 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+12:17:00.915 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:17:00.921 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+12:17:00.929 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.797 seconds (process running for 2.256)
+12:17:02.069 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:17:02.069 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:17:02.070 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+12:17:02.094 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/api/info, Headers=
+	Request Header: {tenant-id}={admin}
+	Request Header: {user-agent}={PostmanRuntime/7.43.0}
+	Request Header: {accept}={*/*}
+	Request Header: {postman-token}={e470b437-4e79-44e6-97f0-2c7a9eb8ee3f}
+	Request Header: {accept-encoding}={gzip, deflate, br}
+	Request Header: {connection}={keep-alive}
+	Request Header: {referer}={http://localhost:8080/api/info/}
+	Request Header: {host}={localhost:8080}
+
+12:17:02.096 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Request: GET /api/info
+12:17:02.111 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingInterceptor - Response: 200 /api/info
+12:17:02.112 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/info, Duration=17ms, Headers=
+	Response Header: {X-Content-Type-Options}={nosniff}
+	Response Header: {X-XSS-Protection}={0}
+	Response Header: {Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+	Response Header: {Pragma}={no-cache}
+	Response Header: {Expires}={0}
+	Response Header: {X-Frame-Options}={DENY}
+	Response Header: {Content-Type}={application/json}
+	Response Header: {Transfer-Encoding}={chunked}
+	Response Header: {Date}={Sat, 14 Dec 2024 11:17:02 GMT}
+	Response Header: {Keep-Alive}={timeout=60}
+	Response Header: {Connection}={keep-alive}
+
+12:17:19.000 [http-nio-8080-exec-4] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=POST, URI=/api/login, Headers=
+	Request Header: {content-type}={application/json}
+	Request Header: {tenant-id}={admin}
+	Request Header: {user-agent}={PostmanRuntime/7.43.0}
+	Request Header: {accept}={*/*}
+	Request Header: {postman-token}={aa6739c6-8684-4511-9d56-0c1feda16324}
+	Request Header: {host}={localhost:8080}
+	Request Header: {accept-encoding}={gzip, deflate, br}
+	Request Header: {connection}={keep-alive}
+	Request Header: {content-length}={44}
+
+12:17:19.000 [http-nio-8080-exec-4] INFO  c.e.mt_api.filter.LoggingInterceptor - Request: POST /api/login
+12:17:19.178 [http-nio-8080-exec-4] INFO  c.e.mt_api.filter.LoggingInterceptor - Response: 200 /api/login
+12:17:19.178 [http-nio-8080-exec-4] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/login, Duration=178ms, Headers=
+	Response Header: {X-Content-Type-Options}={nosniff}
+	Response Header: {X-XSS-Protection}={0}
+	Response Header: {Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+	Response Header: {Pragma}={no-cache}
+	Response Header: {Expires}={0}
+	Response Header: {X-Frame-Options}={DENY}
+	Response Header: {Content-Type}={application/json}
+	Response Header: {Transfer-Encoding}={chunked}
+	Response Header: {Date}={Sat, 14 Dec 2024 11:17:19 GMT}
+	Response Header: {Keep-Alive}={timeout=60}
+	Response Header: {Connection}={keep-alive}
+
+12:23:10.454 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 124596 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:23:10.455 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:23:10.915 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:23:10.937 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 2 MongoDB repository interfaces.
+12:23:11.168 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:23:11.173 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:23:11.174 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:23:11.174 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:23:11.197 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:23:11.197 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 724 ms
+12:23:11.369 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@57416e49], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@2e7bb00e, com.mongodb.Jep395RecordCodecProvider@7d1f3fe9, com.mongodb.KotlinCodecProvider@74d22ddd]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@283d3628], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:23:11.383 [cluster-ClusterId{value='675d6a9f217b7e7a13dc5123', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=12542068}
+12:23:11.625 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webConfig': Unsatisfied dependency expressed through field 'loggingInterceptor': No qualifying bean of type 'com.example.mt_api.filter.LoggingInterceptor' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+12:23:11.628 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+12:23:11.630 [main] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [BufferPoolPruner-1-thread-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1763)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1070)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+12:23:11.638 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+12:23:11.647 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field loggingInterceptor in com.example.mt_api.config.WebConfig required a bean of type 'com.example.mt_api.filter.LoggingInterceptor' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.example.mt_api.filter.LoggingInterceptor' in your configuration.
+
+12:25:02.532 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 126587 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:25:02.534 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:25:02.946 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:25:02.973 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24 ms. Found 2 MongoDB repository interfaces.
+12:25:03.171 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:25:03.177 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:25:03.179 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:25:03.179 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:25:03.200 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:25:03.201 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 649 ms
+12:25:03.373 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@eded048], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@65a48cab, com.mongodb.Jep395RecordCodecProvider@655621fd, com.mongodb.KotlinCodecProvider@77e9dca8]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@fcd0e8d], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:25:03.382 [cluster-ClusterId{value='675d6b0fa2897f3dd911f1b4', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=10189981}
+12:25:03.656 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+12:25:03.657 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+12:25:03.845 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+12:25:04.004 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:25:04.010 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+12:25:04.020 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.631 seconds (process running for 2.052)
+12:25:05.691 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:25:05.692 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:25:05.692 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+12:25:12.361 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/api/info, Headers=
+	Request Header: {tenant-id}={admin}
+	Request Header: {user-agent}={PostmanRuntime/7.43.0}
+	Request Header: {accept}={*/*}
+	Request Header: {postman-token}={14e1b85d-77ca-45e3-b393-b4ae1181e9a1}
+	Request Header: {accept-encoding}={gzip, deflate, br}
+	Request Header: {connection}={keep-alive}
+	Request Header: {referer}={http://localhost:8080/api/info/}
+	Request Header: {host}={localhost:8080}
+
+12:25:12.375 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/info, Duration=12ms, Headers=
+	Response Header: {X-Content-Type-Options}={nosniff}
+	Response Header: {X-XSS-Protection}={0}
+	Response Header: {Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+	Response Header: {Pragma}={no-cache}
+	Response Header: {Expires}={0}
+	Response Header: {X-Frame-Options}={DENY}
+	Response Header: {Content-Type}={application/json}
+	Response Header: {Transfer-Encoding}={chunked}
+	Response Header: {Date}={Sat, 14 Dec 2024 11:25:12 GMT}
+	Response Header: {Keep-Alive}={timeout=60}
+	Response Header: {Connection}={keep-alive}
+
+12:26:56.019 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 128726 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:26:56.020 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:26:56.490 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:26:56.514 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 2 MongoDB repository interfaces.
+12:26:56.725 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:26:56.734 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:26:56.736 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:26:56.736 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:26:56.769 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:26:56.769 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 728 ms
+12:26:56.985 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@5aab5b31], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@5408d4b3, com.mongodb.Jep395RecordCodecProvider@eded048, com.mongodb.KotlinCodecProvider@65a48cab]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@655621fd], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:26:56.999 [cluster-ClusterId{value='675d6b804dacd62e70f99da8', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16924103}
+12:26:57.338 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+12:26:57.339 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+12:26:57.595 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+12:26:57.774 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:26:57.781 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+12:26:57.787 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.92 seconds (process running for 2.346)
+12:26:59.124 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:26:59.125 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:26:59.126 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+12:27:36.577 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 129590 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+12:27:36.579 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+12:27:36.981 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+12:27:37.003 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 2 MongoDB repository interfaces.
+12:27:37.226 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:27:37.231 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:27:37.232 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:27:37.232 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+12:27:37.251 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:27:37.251 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 654 ms
+12:27:37.422 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@3866c96e], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@241fc278, com.mongodb.Jep395RecordCodecProvider@5c76fce4, com.mongodb.KotlinCodecProvider@5aab5b31]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@5408d4b3], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+12:27:37.429 [cluster-ClusterId{value='675d6ba9c5e2d01d64bcf483', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=10501414}
+12:27:37.688 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+12:27:37.689 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+12:27:37.895 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+12:27:38.086 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:27:38.093 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+12:27:38.104 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.664 seconds (process running for 2.07)
+12:27:39.785 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:27:39.786 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:27:39.786 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+12:27:45.436 [http-nio-8080-exec-1] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/home, Headers=
+	{tenant-id}={admin}
+	{user-agent}={PostmanRuntime/7.43.0}
+	{accept}={*/*}
+	{postman-token}={dd31cc2a-0805-43a3-af1d-5e6cd0ec3acf}
+	{host}={localhost:8080}
+	{accept-encoding}={gzip, deflate, br}
+	{connection}={keep-alive}
+
+12:27:45.445 [http-nio-8080-exec-1] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=401, URI=/home, Duration=9ms, Headers=
+	{X-Content-Type-Options}={nosniff}
+	{X-XSS-Protection}={0}
+	{Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+	{Pragma}={no-cache}
+	{Expires}={0}
+	{X-Frame-Options}={DENY}
+
+12:28:03.357 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/home, Headers=
+	{tenant-id}={admin}
+	{authentication-token}={eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyLTEtMSIsImlhdCI6MTczNDE3NTAzOSwiZXhwIjoxNzM0MjYxNDM5fQ.nexIC8UMwRTTUjbolazQAcb2PsjErvJ5fNZKa_4zDsYK0vJWBQ3IO8srlr6jTBW_}
+	{user-agent}={PostmanRuntime/7.43.0}
+	{accept}={*/*}
+	{postman-token}={ff6a276a-a24f-47d8-9478-5a322662d282}
+	{host}={localhost:8080}
+	{accept-encoding}={gzip, deflate, br}
+	{connection}={keep-alive}
+
+12:28:03.458 [http-nio-8080-exec-3] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=500, URI=/home, Duration=101ms, Headers=
+	{X-Content-Type-Options}={nosniff}
+	{X-XSS-Protection}={0}
+	{Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+	{Pragma}={no-cache}
+	{Expires}={0}
+	{X-Frame-Options}={DENY}
+
+12:28:13.017 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/home, Headers=
+	{tenant-id}={1}
+	{authentication-token}={eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyLTEtMSIsImlhdCI6MTczNDE3NTAzOSwiZXhwIjoxNzM0MjYxNDM5fQ.nexIC8UMwRTTUjbolazQAcb2PsjErvJ5fNZKa_4zDsYK0vJWBQ3IO8srlr6jTBW_}
+	{user-agent}={PostmanRuntime/7.43.0}
+	{accept}={*/*}
+	{postman-token}={467af65b-8913-490f-b539-009aa2e1c6b4}
+	{host}={localhost:8080}
+	{accept-encoding}={gzip, deflate, br}
+	{connection}={keep-alive}
+
+12:28:13.129 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/home, Duration=112ms, Headers=
+	{X-Content-Type-Options}={nosniff}
+	{X-XSS-Protection}={0}
+	{Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+	{Pragma}={no-cache}
+	{Expires}={0}
+	{X-Frame-Options}={DENY}
+	{Content-Type}={text/html;charset=UTF-8}
+	{Content-Language}={en-US}
+	{Transfer-Encoding}={chunked}
+	{Date}={Sat, 14 Dec 2024 11:28:13 GMT}
+	{Keep-Alive}={timeout=60}
+	{Connection}={keep-alive}
+
+13:12:07.778 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 176690 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+13:12:07.780 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+13:12:08.256 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+13:12:08.282 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24 ms. Found 2 MongoDB repository interfaces.
+13:12:08.518 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+13:12:08.528 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+13:12:08.530 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+13:12:08.530 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+13:12:08.553 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+13:12:08.553 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 745 ms
+13:12:08.737 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@5c76fce4], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@5aab5b31, com.mongodb.Jep395RecordCodecProvider@5408d4b3, com.mongodb.KotlinCodecProvider@eded048]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@65a48cab], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+13:12:08.750 [cluster-ClusterId{value='675d761846618a751067c785', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=11446903}
+13:12:09.036 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+13:12:09.037 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+13:12:09.247 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+13:12:09.425 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+13:12:09.427 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+13:12:09.440 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+13:12:09.446 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+13:12:32.488 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 177672 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+13:12:32.489 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+13:12:32.898 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+13:12:32.920 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 2 MongoDB repository interfaces.
+13:12:33.125 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+13:12:33.130 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+13:12:33.132 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+13:12:33.132 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+13:12:33.153 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+13:12:33.154 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 647 ms
+13:12:33.305 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@5c76fce4], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@5aab5b31, com.mongodb.Jep395RecordCodecProvider@5408d4b3, com.mongodb.KotlinCodecProvider@eded048]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@65a48cab], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+13:12:33.314 [cluster-ClusterId{value='675d763163e02d5e7a660ce8', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=11595803}
+13:12:33.559 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+13:12:33.560 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+13:12:33.761 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+13:12:33.937 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+13:12:33.942 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+13:12:33.949 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.605 seconds (process running for 2.005)
+13:12:35.701 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+13:12:35.701 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+13:12:35.702 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+13:12:36.799 [http-nio-8080-exec-1] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=GET, URI=/home, Headers=
+	{tenant-id}={1}
+	{authentication-token}={eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyLTEtMSIsImlhdCI6MTczNDE3NTAzOSwiZXhwIjoxNzM0MjYxNDM5fQ.nexIC8UMwRTTUjbolazQAcb2PsjErvJ5fNZKa_4zDsYK0vJWBQ3IO8srlr6jTBW_}
+	{user-agent}={PostmanRuntime/7.43.0}
+	{accept}={*/*}
+	{postman-token}={fc352f3b-7afe-490a-bfb5-da35c97ff97b}
+	{host}={localhost:8080}
+	{accept-encoding}={gzip, deflate, br}
+	{connection}={keep-alive}
+
+13:12:37.001 [http-nio-8080-exec-1] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/home, Duration=202ms, Headers=
+	{X-Content-Type-Options}={nosniff}
+	{X-XSS-Protection}={0}
+	{Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+	{Pragma}={no-cache}
+	{Expires}={0}
+	{X-Frame-Options}={DENY}
+	{Content-Type}={text/html;charset=UTF-8}
+	{Content-Language}={en-US}
+	{Transfer-Encoding}={chunked}
+	{Date}={Sat, 14 Dec 2024 12:12:37 GMT}
+	{Keep-Alive}={timeout=60}
+	{Connection}={keep-alive}
+
+13:14:14.966 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=POST, URI=/api/login, Headers=
+	{content-type}={application/json}
+	{tenant-id}={1}
+	{user-agent}={PostmanRuntime/7.43.0}
+	{accept}={*/*}
+	{postman-token}={97c200a3-9fdc-4f9f-bc3d-515ef3ea4b34}
+	{host}={localhost:8080}
+	{accept-encoding}={gzip, deflate, br}
+	{connection}={keep-alive}
+	{content-length}={44}
+
+13:14:15.095 [http-nio-8080-exec-5] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/login, Duration=127ms, Headers=
+	{X-Content-Type-Options}={nosniff}
+	{X-XSS-Protection}={0}
+	{Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+	{Pragma}={no-cache}
+	{Expires}={0}
+	{X-Frame-Options}={DENY}
+	{Content-Type}={application/json}
+	{Transfer-Encoding}={chunked}
+	{Date}={Sat, 14 Dec 2024 12:14:15 GMT}
+	{Keep-Alive}={timeout=60}
+	{Connection}={keep-alive}
+
+13:20:53.012 [main] INFO  com.example.mt_api.MtApiApplication - Starting MtApiApplication using Java 21.0.5 with PID 191997 (/home/ben/sources/master-thesis-ben-de-boevere/mt-api/target/classes started by ben in /home/ben/sources/master-thesis-ben-de-boevere/mt-api)
+13:20:53.014 [main] INFO  com.example.mt_api.MtApiApplication - No active profile set, falling back to 1 default profile: "default"
+13:20:53.451 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+13:20:53.475 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 2 MongoDB repository interfaces.
+13:20:53.667 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+13:20:53.672 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+13:20:53.674 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+13:20:53.674 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+13:20:53.695 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+13:20:53.695 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 643 ms
+13:20:53.898 [main] INFO  org.mongodb.driver.client - MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "5.0.1"}, "os": {"type": "Linux", "name": "Linux", "architecture": "amd64", "version": "6.8.0-49-generic"}, "platform": "Java/Ubuntu/21.0.5+11-Ubuntu-1ubuntu124.04"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@3866c96e], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@241fc278, com.mongodb.Jep395RecordCodecProvider@5c76fce4, com.mongodb.KotlinCodecProvider@5aab5b31]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27018], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@5408d4b3], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+13:20:53.910 [cluster-ClusterId{value='675d78259fbd515f509e0380', description='null'}-localhost:27018] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:27018, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=25, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=15474476}
+13:20:54.190 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+13:20:54.191 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+13:20:54.404 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+13:20:54.563 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+13:20:54.569 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+13:20:54.577 [main] INFO  com.example.mt_api.MtApiApplication - Started MtApiApplication in 1.712 seconds (process running for 2.144)
+13:20:56.141 [RMI TCP Connection(2)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+13:20:56.141 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+13:20:56.142 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+13:21:08.140 [http-nio-8080-exec-1] INFO  c.e.mt_api.filter.LoggingFilter - Request: Method=POST, URI=/api/login, Headers=
+	{content-type}={application/json}
+	{tenant-id}={1}
+	{user-agent}={PostmanRuntime/7.43.0}
+	{accept}={*/*}
+	{postman-token}={e204e5c4-2dc4-4dd2-b57b-c8d6dd954db8}
+	{host}={localhost:8080}
+	{accept-encoding}={gzip, deflate, br}
+	{connection}={keep-alive}
+	{content-length}={44}
+
+13:21:08.350 [http-nio-8080-exec-1] INFO  c.e.mt_api.filter.LoggingFilter - Response: Status=200, URI=/api/login, Duration=209ms, Headers=
+	{authentication-token}={eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyLTEtMSIsImlhdCI6MTczNDE3ODg2OCwiZXhwIjoxNzM0MjY1MjY4fQ.Of0VfHiVpoNMT6UQmB9N9gtHA0zeVfbmx3_VdVATL3XkcG0P9wE3IpRn9fqY6ENb}
+	{X-Content-Type-Options}={nosniff}
+	{X-XSS-Protection}={0}
+	{Cache-Control}={no-cache, no-store, max-age=0, must-revalidate}
+	{Pragma}={no-cache}
+	{Expires}={0}
+	{X-Frame-Options}={DENY}
+	{Content-Type}={application/json}
+	{Transfer-Encoding}={chunked}
+	{Date}={Sat, 14 Dec 2024 12:21:08 GMT}
+	{Keep-Alive}={timeout=60}
+	{Connection}={keep-alive}
+

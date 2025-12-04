@@ -1,0 +1,38 @@
+<head>
+    <style>
+        pre {
+            outline: 1px solid #ccc;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .string {
+            color: green;
+        }
+
+        .number {
+            color: darkorange;
+        }
+
+        .boolean {
+            color: blue;
+        }
+
+        .null {
+            color: magenta;
+        }
+
+        .key {
+            color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<h1>Welcome to Company [[${tenantName.toUpperCase()}]]</h1>
+
+<h2>User</h2>
+<pre>[(${userHtml})]</pre>
+
+<h2>Tenant</h2>
+<pre>[(${tenantHtml})]</pre>

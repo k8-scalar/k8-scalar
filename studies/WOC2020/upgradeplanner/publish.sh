@@ -1,0 +1,1 @@
+mvn clean package -DskipTests && docker build -t bendb1993/upgradeplanner:patchpod . && docker push bendb1993/upgradeplanner:patchpod

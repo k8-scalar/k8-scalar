@@ -1,0 +1,7 @@
+FROM amazoncorretto:21-alpine-jdk
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+
+ENV EXPECTED_VERSION=v2
+
+ENTRYPOINT ["java", "-XX:+UseG1GC", "-XX:G1PeriodicGCInterval=2000", "-XX:+G1PeriodicGCInvokesConcurrent", "-XX:+UseCompressedOops", "-XX:MinHeapFreeRatio=5", "-XX:MaxHeapFreeRatio=10", "-XX:AdaptiveSizePolicyWeight=90", "-XX:GCTimeRatio=4", "-Xmx2G", "-jar","/app.jar", "seed"]

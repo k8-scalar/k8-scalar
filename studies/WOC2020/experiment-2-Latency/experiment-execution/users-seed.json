@@ -1,0 +1,78 @@
+[{
+    "tenantId": 1,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 2,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 3,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 4,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 5,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 6,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 7,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 8,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 9,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 10,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 11,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 12,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+},
+{
+    "tenantId": 13,
+    "appName": "mt-api",
+    "slaClass": "bronze",
+    "currVersion": "1"
+}]

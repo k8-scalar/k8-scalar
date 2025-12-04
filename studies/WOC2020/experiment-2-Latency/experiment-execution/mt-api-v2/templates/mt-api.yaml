@@ -1,0 +1,85 @@
+apiVersion: "apps/v1"
+kind: Deployment
+metadata:
+  name: mt-api-v2
+  labels:
+    app: mt-api
+    version: "2"
+    sla: bronze
+    requests: "60"  # used as mem increment
+    limits: "76"    # used as cpu increment
+    upgradeTime: "50"
+spec:
+  strategy: 
+    type: "RollingUpdate"
+    rollingUpdate:
+      maxUnavailable: 0% 
+      maxSurge: 100% 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mt-api
+      version: "2"
+      sla: bronze
+  template:
+    metadata:
+      deletionGracePeriodSeconds: 60
+      labels:
+        app: mt-api
+        version: "2"
+        sla: bronze
+      annotations:
+        resize-pod-policy/processed: "false"
+    spec:
+      nodeSelector:
+        deployable: "true"
+      affinity:
+        podAffinity: 
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 50
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: mt-api
+              topologyKey: "kubernetes.io/hostname"
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 80
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    version: "2"
+                    sla: bronze
+                topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: backend-v2
+        image: bendb1993/mt-api-java:v2
+        imagePullPolicy: IfNotPresent
+        resizePolicy:
+        - resourceName: cpu
+          restartPolicy: NotRequired
+        - resourceName: memory
+          restartPolicy: NotRequired
+        resources:
+          requests:
+            cpu: "0m"
+            memory: "0Mi"
+          limits:
+            cpu: "1000m" # limit set to 1 core to enable fast startup of the java application. Will be scaled down to 100m on ready (kyverno policy)
+            memory: "250Mi"
+        ports:
+          - name: startup-port
+            containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /api/info/
+            port: 8080
+            httpHeaders: 
+            - name: tenant-id
+              value: "admin"
+          initialDelaySeconds: 15
+          periodSeconds: 2
+          successThreshold: 1
+        env:
+        - name: DB_CONNECTION_STRING
+          value: 'mongodb://mt-db-s/mt-api'

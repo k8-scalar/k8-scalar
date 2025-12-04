@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mtapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: experiment
+      tier: frontend
+  template: 
+    metadata:
+      labels:
+        app: experiment
+        tier: frontend
+        image: mtapi
+    spec:
+      containers:
+      - name: nginx-test
+        image: cedricdd/mt-api
+        imagePullPolicy: Always
+        ports:
+          - name: startup-port
+            containerPort: 80
+      nodeSelector:
+        expdynamiclib: "yes"
