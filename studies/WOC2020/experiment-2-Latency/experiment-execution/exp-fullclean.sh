@@ -28,7 +28,7 @@ kubectl create -f mt-api-v1/templates/mt-api.yaml
 if [[ "$(hostname)" == *thesis* ]]; then
     helm install api-v2 mt-api-v2
 else
-    helm install api-v2 ../../0-experiment-setup/mt-api-v2
+    helm install api-v2 mt-api-v2
 fi
 
 # kubectl rollout restart deployment upgradeplanner
