@@ -1,7 +1,0 @@
-00:01:21 **-- Starting Experiment 2: Latency, with high workload for  seconds
-Seeding the UpgradeplannerDB with tenants
-Seeding the UpgradeplannerDB with Deployments
-Single increment stress testing
-00:01:39 -- Starting scalar script
-00:01:39 --Starting upgrade
-{"timestamp":"2025-12-02T23:01:38.713+00:00","status":500,"error":"Internal Server Error","path":"/tenantconfig"}00:01:39 -- Experiment script is over

@@ -1,1 +1,0 @@
-["Tenant 1 created a new group"]
