@@ -113,7 +113,7 @@ spec:
       containers:
       - name: upgradeplanner
         #image: "bendb1993/upgradeplanner:patchpod"
-        image: decomands/upgradeplanner-bgdeployments
+        image: decomads/upgradeplanner-bgdeployments
         imagePullPolicy: Always
         env:
         - name: PATCH_POD
