@@ -112,7 +112,8 @@ spec:
         imagePullPolicy: IfNotPresent
       containers:
       - name: upgradeplanner
-        image: "bendb1993/upgradeplanner:patchpod"
+        #image: "bendb1993/upgradeplanner:patchpod"
+        image: decomands/upgradeplanner-bgdeployments
         imagePullPolicy: Always
         env:
         - name: PATCH_POD
