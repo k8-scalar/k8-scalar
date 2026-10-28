@@ -58,9 +58,9 @@ install kubectl, minikube and helm client
 # Install VirtualBox
 brew cask install virtualbox
 # Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.25.0/bin/darwin/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/$(uname -m | sed 's/x86_64/amd64/')/kubectl" && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
 # Install MiniKube
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.25.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+curl -Lo minikube "https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-$(uname -m | sed 's/x86_64/amd64/')" && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube
 minikube start --no-vtx-check --driver=virtualbox --cpus 4 --memory 8192
 
@@ -87,9 +87,9 @@ Install [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads)
 install kubectl, minikube and helm client
 ```bash
 # Install kubectl:
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.25.0/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/latest/bin/linux/amd64/kubectl && chmod +x ./kubectl && sudo mv ./kubectl /usr/local/bin/kubectl
 #Install MiniKube
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.25.0/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 # Start MiniKube with enough resources
 minikube start --no-vtx-check --driver=virtualbox --cpus 4 --memory 8192
 ```
@@ -127,10 +127,10 @@ Open the GitBash desktop application. Make sure you run it as an **Administrator
 install kubectl, minikube and helm client
 ```bash
 # Install kubectl
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.25.0/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
+curl -LO https://storage.googleapis.com/kubernetes-release/release/latest/bin/windows/amd64/kubectl.exe && export PATH=`pwd`:$PATH
 
 # Install minikube
-curl -LO https://storage.googleapis.com/minikube/releases/v1.25.0/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
+curl -Lo minikube.exe https://storage.googleapis.com/minikube/releases/latest/minikube-windows-amd64.exe && mv minikube-windows-amd64.exe minikube.exe && export PATH=`pwd`:$PATH
 minikube start --no-vtx-check --driver=virtualbox --cpus 4 --memory 8192
 ```
 Install Helm
